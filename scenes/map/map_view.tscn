@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdljwqj2vc8s3"]
+[gd_scene load_steps=5 format=3 uid="uid://bdljwqj2vc8s3"]
 
 [ext_resource type="Script" uid="uid://dvs32inj4xnfv" path="res://scenes/map/map_view.gd" id="1_l7nnv"]
 [ext_resource type="Texture2D" uid="uid://bxppnuo3bvjl3" path="res://assets/Map_colored_1700.png" id="2_uy0ap"]
 [ext_resource type="PackedScene" uid="uid://x7puhedievgp" path="res://scenes/map/province_node.tscn" id="3_sxqj8"]
+[ext_resource type="LabelSettings" uid="uid://3iwuyuun5xvd" path="res://fonts/map_label_settings.tres" id="4_p7fer"]
 
 [node name="MapView" type="Node2D"]
 script = ExtResource("1_l7nnv")
@@ -65,6 +66,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" parent="province_0" index="3"]
 text = "Ulster"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionPolygon2D" parent="province_0/Area2D" index="1"]
@@ -93,6 +95,7 @@ offset_top = -29.0
 offset_right = 84.0
 offset_bottom = 27.0
 text = "Connacht"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionPolygon2D" parent="province_1/Area2D" index="1"]
@@ -121,6 +124,7 @@ offset_top = -32.0
 offset_right = 89.0
 offset_bottom = 24.0
 text = "Leinster"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_2" index="4"]
@@ -155,6 +159,7 @@ offset_top = -64.0
 offset_right = 143.0
 offset_bottom = -8.0
 text = "Munster"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_3" index="4"]
@@ -189,6 +194,7 @@ offset_top = -50.0
 offset_right = 119.0
 offset_bottom = 6.0
 text = "Cornwall"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_4" index="4"]
@@ -223,6 +229,7 @@ offset_top = -46.0
 offset_right = 83.0
 offset_bottom = 10.0
 text = "Wessex"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_5" index="4"]
@@ -257,6 +264,7 @@ offset_top = -46.0
 offset_right = 83.0
 offset_bottom = 10.0
 text = "Kent"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_6" index="4"]
@@ -291,6 +299,7 @@ offset_top = -46.0
 offset_right = 83.0
 offset_bottom = 10.0
 text = "Essex"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_7" index="4"]
@@ -325,6 +334,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "East Anglia"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_8" index="4"]
@@ -359,6 +369,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Mercia"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_9" index="4"]
@@ -393,6 +404,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Northumbria"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_10" index="4"]
@@ -427,6 +439,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Gwynedd"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_11" index="4"]
@@ -461,6 +474,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Powys"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_12" index="4"]
@@ -495,6 +509,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Cumbria"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_13" index="4"]
@@ -529,6 +544,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Lothian"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_14" index="4"]
@@ -563,6 +579,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Galloway"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_15" index="4"]
@@ -597,6 +614,7 @@ offset_top = -36.0
 offset_right = 55.0
 offset_bottom = 20.0
 text = "Strathclyde"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_16" index="4"]
@@ -631,6 +649,7 @@ offset_top = -36.0
 offset_right = 55.0
 offset_bottom = 20.0
 text = "Fife"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_17" index="4"]
@@ -665,6 +684,7 @@ offset_top = -36.0
 offset_right = 55.0
 offset_bottom = 20.0
 text = "Alba"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_18" index="4"]
@@ -699,6 +719,7 @@ offset_top = -36.0
 offset_right = 55.0
 offset_bottom = 20.0
 text = "Moray"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_19" index="4"]
@@ -733,6 +754,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Greyfells"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_20" index="4"]
@@ -767,6 +789,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Silvermere"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_21" index="4"]
@@ -801,6 +824,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Barrowlands"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_22" index="4"]
@@ -835,6 +859,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Sunstone Hills"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_23" index="4"]
@@ -869,6 +894,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Dragon's Tooth"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_24" index="4"]
@@ -903,6 +929,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Gloomfen"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_25" index="4"]
@@ -937,6 +964,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Ostengard"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_26" index="4"]
@@ -971,6 +999,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Westmarch"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_27" index="4"]
@@ -1005,6 +1034,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Blackfen"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_28" index="4"]
@@ -1039,6 +1069,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Sunken Isles"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_29" index="4"]
@@ -1073,6 +1104,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Kingsfall"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_30" index="4"]
@@ -1107,6 +1139,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Whisper wood"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_31" index="4"]
@@ -1141,6 +1174,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Verdant Valley"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_32" index="4"]
@@ -1175,6 +1209,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Amber Peaks"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_33" index="4"]
@@ -1209,6 +1244,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Frostwind Pass"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_34" index="4"]
@@ -1243,6 +1279,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Stonehearth"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_35" index="4"]
@@ -1277,6 +1314,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Serpent's Spine"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_36" index="4"]
@@ -1311,6 +1349,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Shadow march"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_37" index="4"]
@@ -1345,6 +1384,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Goldengrove"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_38" index="4"]
@@ -1379,6 +1419,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Sun's Reach"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_39" index="4"]
@@ -1413,6 +1454,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Ironoath Peaks"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_40" index="4"]
@@ -1447,6 +1489,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Salt Wastes"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_41" index="4"]
@@ -1481,6 +1524,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Riverlands"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_42" index="4"]
@@ -1515,6 +1559,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Winter's Grasp"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_43" index="4"]
@@ -1549,6 +1594,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Greenwold"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_44" index="4"]
@@ -1583,6 +1629,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Sundered Coast"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_45" index="4"]
@@ -1617,6 +1664,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Heartlands"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_46" index="4"]
@@ -1651,6 +1699,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Ghostwater"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_47" index="4"]
@@ -1685,6 +1734,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Dornwood"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_48" index="4"]
@@ -1719,6 +1769,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Silent Glade"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_49" index="4"]
@@ -1753,6 +1804,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Tanglewood"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_50" index="4"]
@@ -1787,6 +1839,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The High Moors"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_51" index="4"]
@@ -1821,6 +1874,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Redwater Crossing"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_52" index="4"]
@@ -1855,6 +1909,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Dragon's Maw"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_53" index="4"]
@@ -1889,6 +1944,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Azure Coast"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_54" index="4"]
@@ -1923,6 +1979,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Whispering Plains"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_55" index="4"]
@@ -1957,6 +2014,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Raven's Perch"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_56" index="4"]
@@ -1991,6 +2049,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Icevein Peaks"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_57" index="4"]
@@ -2025,6 +2084,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Broken Steppes"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_58" index="4"]
@@ -2059,6 +2119,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Blackwood Forest"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_59" index="4"]
@@ -2093,6 +2154,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Crystal Fens"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_60" index="4"]
@@ -2127,6 +2189,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Golden Plains"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_61" index="4"]
@@ -2161,6 +2224,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Emberfall"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_62" index="4"]
@@ -2195,6 +2259,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Sundown Vale"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_63" index="4"]
@@ -2229,6 +2294,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Starfall Peninsula"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_64" index="4"]
@@ -2263,6 +2329,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Shimmering Isles"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_65" index="4"]
@@ -2297,6 +2364,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Howling Wastes"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_66" index="4"]
@@ -2331,6 +2399,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Dragon's Graveyard"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_67" index="4"]
@@ -2365,6 +2434,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "The Cinderlands"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_68" index="4"]
@@ -2400,6 +2470,7 @@ offset_top = -36.0
 offset_right = 75.0
 offset_bottom = 20.0
 text = "Obsidian Fields"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_69" index="4"]
@@ -2434,6 +2505,7 @@ offset_top = -36.0
 offset_right = 85.0
 offset_bottom = 20.0
 text = "Rockside"
+label_settings = ExtResource("4_p7fer")
 metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" parent="province_70" index="4"]

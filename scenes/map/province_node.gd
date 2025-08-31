@@ -27,6 +27,15 @@ func setup(p_data: Province,p_map_view_controller):
 	self.province_data = p_data
 	self.map_view_controller = p_map_view_controller
 	label.text = province_data.province_name
+	var player_kingdom = GameManager.player_kingdom
+	
+	# 2. Check if this province IS the player's capital.
+	#    We compare the province data object (p_data) with the player's capital object.
+	if is_instance_valid(player_kingdom) and is_instance_valid(player_kingdom.capital):
+		if p_data == player_kingdom.capital:
+			# If it is, prepend the crown icon to the label text.
+			# You can copy-paste the crown emoji directly.
+			label.text = "👑 " + label.text
 	
 func update_color():
 	if is_instance_valid(province_data.owner):
