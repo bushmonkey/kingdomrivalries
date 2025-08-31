@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=10 format=3 uid="uid://cqxoirql01awe"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_wndp0"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_0c15e"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_ggttl"]
+
+[sub_resource type="Resource" id="Resource_2e36k"]
+script = ExtResource("2_ggttl")
+type = "EndWarBySurrender"
+target = "PlayerWar"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_n5ci3"]
+script = ExtResource("2_ggttl")
+type = "ChangeOpinion"
+target = "Public"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_47oif"]
+script = ExtResource("2_ggttl")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wg6yi"]
+script = ExtResource("2_ggttl")
+type = "ChangeOpinion"
+target = "Church"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_orkff"]
+script = ExtResource("2_ggttl")
+type = "ChangeStat"
+target = "Martial"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_l55nc"]
+script = ExtResource("1_wndp0")
+text = "\"A wise decision. We accept your surrender.\""
+success_text = "The terms are signed, and the war is officially over. Your soldiers cheer as the news spreads. You have proven the might of your kingdom and have been rewarded with the spoils of victory. The realm celebrates your leadership."
+failure_text = "The terms are signed, and the war is officially over. Your soldiers cheer as the news spreads. You have proven the might of your kingdom and have been rewarded with the spoils of victory. The realm celebrates your leadership."
+success_outcomes = Array[ExtResource("2_ggttl")]([SubResource("Resource_2e36k"), SubResource("Resource_n5ci3"), SubResource("Resource_47oif"), SubResource("Resource_wg6yi"), SubResource("Resource_orkff")])
+failure_outcomes = Array[ExtResource("2_ggttl")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_0c15e")
+category = 4
+event_id = "SP004"
+title = "Their Spirit is Broken"
+rarity = 0
+selection_cost = 0
+summary = "Your enemy has sued for peace, offering to surrender and end the war on your terms."
+description = "A haggard envoy from the {enemy_kingdom_name} has arrived at your war camp under a flag of truce. \"Our will to fight is broken,\" he declares, kneeling before you. \"Our armies are shattered and our treasury is empty. My master, {enemy_ruler_name}, sues for peace. He is prepared to surrender and accept your terms to end this bloody conflict.\""
+options = Array[ExtResource("1_wndp0")]([SubResource("Resource_l55nc")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -1,0 +1,177 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=22 format=3 uid="uid://drdgfcmaawmim"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_c6hy4"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_mrghy"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_u1t1r"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_kruri"]
+
+[sub_resource type="Resource" id="Resource_mrghy"]
+script = ExtResource("2_mrghy")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_kruri"]
+script = ExtResource("2_mrghy")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_clslc"]
+script = ExtResource("3_kruri")
+stat = "Stewardship"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_cbtl4"]
+script = ExtResource("2_mrghy")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_35jrq"]
+script = ExtResource("2_mrghy")
+type = "ChangeOpinion"
+target = "Public"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_i2nhr"]
+script = ExtResource("1_c6hy4")
+text = "Open the royal granaries and distribute grain to the affected regions."
+success_text = "Your foresight pays off. The grain from the royal stores is distributed efficiently, ensuring no one starves. The people are immensely grateful for your responsible leadership, though your emergency reserves are now significantly depleted."
+failure_text = "The grain distribution is chaotic. Corrupt officials skim from the shipments, and much of the food spoils or is lost to bandits before it reaches the neediest. It is a costly and inefficient effort that does little to improve your standing."
+skill_check = SubResource("Resource_clslc")
+required_gold = 100
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_mrghy")]([SubResource("Resource_cbtl4"), SubResource("Resource_35jrq")])
+failure_outcomes = Array[ExtResource("2_mrghy")]([SubResource("Resource_mrghy"), SubResource("Resource_kruri")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_5rupr"]
+script = ExtResource("2_mrghy")
+type = "ChangeResource"
+target = "Treasury"
+value = -300
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bl2m0"]
+script = ExtResource("3_kruri")
+stat = "Diplomacy"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_hh3f2"]
+script = ExtResource("2_mrghy")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_8u0cc"]
+script = ExtResource("2_mrghy")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dh3xu"]
+script = ExtResource("1_c6hy4")
+text = "Purchase grain from our neighbors. We must not deplete our own stores."
+success_text = "Your envoys negotiate skillfully, securing shiploads of foreign grain at a reasonable price. The food arrives just in time to avert a famine, and your strategic reserves remain untouched. A masterful display of statecraft."
+failure_text = "Your neighbors, seeing your desperation, exploit the situation mercilessly. They charge you an exorbitant price for their grain. You are forced to pay, and the cost is a heavy blow to the treasury."
+skill_check = SubResource("Resource_bl2m0")
+required_gold = 150
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_mrghy")]([SubResource("Resource_hh3f2"), SubResource("Resource_8u0cc")])
+failure_outcomes = Array[ExtResource("2_mrghy")]([SubResource("Resource_5rupr")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_8yaxq"]
+script = ExtResource("2_mrghy")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3abqw"]
+script = ExtResource("2_mrghy")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q828v"]
+script = ExtResource("3_kruri")
+stat = "Vigor"
+difficulty = 16
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_qgifh"]
+script = ExtResource("2_mrghy")
+type = "ChangeOpinion"
+target = "Church"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ieywv"]
+script = ExtResource("2_mrghy")
+type = "ChangeOpinion"
+target = "Public"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2q87q"]
+script = ExtResource("1_c6hy4")
+text = "Order a kingdom-wide day of prayer and fasting. God will provide."
+success_text = "The Church is deeply moved by your piety. The bishop leads a grand service, praising your faith in the face of hardship. The people, their spirits lifted by your conviction, find the strength to endure. Miraculously, a light rain begins to fall by evening, saving a portion of the crops."
+failure_text = "You order the prayers, but the heavens remain silent and brazen. The people's fasting only adds to their misery. They see your piety not as a sign of strength, but as a ruler's excuse for inaction. The Church is pleased, but your people's bellies are empty and their faith in you is shaken."
+skill_check = SubResource("Resource_q828v")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_mrghy")]([SubResource("Resource_qgifh"), SubResource("Resource_ieywv")])
+failure_outcomes = Array[ExtResource("2_mrghy")]([SubResource("Resource_8yaxq"), SubResource("Resource_3abqw")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_u1t1r")
+category = 2
+event_id = "AG003"
+title = "The Unforgiving Sun"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 1
+selection_cost = 0
+summary = "A severe drought threatens the harvest, and the farmers have come to you for aid."
+description = "A delegation of farmers, their faces sun-cracked and etched with worry, have come from the countryside. \"My Liege,\" their spokesman begins, his voice hoarse, \"the rains have forsaken us. The sun beats down without mercy, the streams are running dry, and the crops are withering in the fields. Without aid, our harvest will be lost and our families will starve come winter.\""
+vignette_texture = ""
+options = Array[ExtResource("1_c6hy4")]([SubResource("Resource_i2nhr"), SubResource("Resource_dh3xu"), SubResource("Resource_2q87q")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

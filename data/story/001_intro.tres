@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=7 format=3 uid="uid://ui13op6al4y6"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_rkk8x"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_bam72"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_tytly"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_7x6mw"]
+
+[sub_resource type="Resource" id="Resource_ttpig"]
+script = ExtResource("3_7x6mw")
+stat = "story"
+difficulty = 1
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_1h43x"]
+script = ExtResource("1_rkk8x")
+text = "Continue"
+success_text = "You wake up on your first day."
+failure_text = "Failure!"
+skill_check = SubResource("Resource_ttpig")
+success_outcomes = Array[ExtResource("2_tytly")]([null])
+failure_outcomes = Array[ExtResource("2_tytly")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_bam72")
+event_id = "story_001"
+title = "You have landed"
+description = "You are the captain of the Epsilon, a colonising ship 120 light-years away from home.
+
+You just landed on K2-18b, your new home. Your job is to rebuild life in this new world.
+
+With your small crew, you can make 3 decisions a month and will need to cope with unexpected issues as they arise but such is the life of a captain.
+
+You are 30 years old, unmarried and need to think about future generations to keep your way of life going after you're going.
+
+Good luck."
+options = Array[ExtResource("1_rkk8x")]([SubResource("Resource_1h43x")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

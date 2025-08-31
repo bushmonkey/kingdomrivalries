@@ -1,0 +1,170 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=21 format=3 uid="uid://6okk8xtruxqo"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_x26di"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_unh5c"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_npm4u"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_l5001"]
+
+[sub_resource type="Resource" id="Resource_x26di"]
+script = ExtResource("2_unh5c")
+type = "ChangeResource"
+target = "Treasury"
+value = -300
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_unh5c"]
+script = ExtResource("2_unh5c")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jdk3l"]
+script = ExtResource("3_npm4u")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_npm4u"]
+script = ExtResource("2_unh5c")
+type = "ChangeResource"
+target = "Treasury"
+value = -300
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_l5001"]
+script = ExtResource("2_unh5c")
+type = "AddModifier"
+target = "NewFarmlands"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0qu4c"]
+script = ExtResource("1_x26di")
+text = "\"Begin the grand project. The future bounty is worth the cost.\""
+success_text = "The project is an engineering marvel. The marshes are drained, revealing rich, black soil. New villages spring up, and the kingdom's breadbasket grows significantly."
+failure_text = "The project is a disaster. The dikes fail, flooding the construction sites and wasting a fortune. The marsh remains untamed."
+skill_check = SubResource("Resource_jdk3l")
+required_gold = 300
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_unh5c")]([SubResource("Resource_npm4u"), SubResource("Resource_l5001")])
+failure_outcomes = Array[ExtResource("2_unh5c")]([SubResource("Resource_x26di"), SubResource("Resource_unh5c")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_o1m51"]
+script = ExtResource("2_unh5c")
+type = "ChangeResource"
+target = "Manpower"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_yg2o7"]
+script = ExtResource("2_unh5c")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sr8pj"]
+script = ExtResource("3_npm4u")
+stat = "Stewardship"
+difficulty = 20
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_axvsc"]
+script = ExtResource("2_unh5c")
+type = "AddModifier"
+target = "NewFarmlands"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_uey5f"]
+script = ExtResource("2_unh5c")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_k6c5u"]
+script = ExtResource("2_unh5c")
+type = "ChangeResource"
+target = "Manpower"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dn6jy"]
+script = ExtResource("1_x26di")
+text = "\"Offer the land to any peasant who can tame it themselves.\" "
+success_text = "Hardy pioneers, tempted by the promise of free land, slowly begin to drain small patches of the fen. It is a slow, inefficient process, but over the years, the amount of arable land in your kingdom grows without costing you a single coin."
+failure_text = "The volunteers lack the discipline to conquer the harsh environment and give up after a few months, leaving the land uninhabitable in the process."
+skill_check = SubResource("Resource_sr8pj")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_unh5c")]([SubResource("Resource_axvsc"), SubResource("Resource_uey5f"), SubResource("Resource_k6c5u")])
+failure_outcomes = Array[ExtResource("2_unh5c")]([SubResource("Resource_o1m51"), SubResource("Resource_yg2o7")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_bokb8"]
+script = ExtResource("2_unh5c")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_6pt8v"]
+script = ExtResource("2_unh5c")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_566ve"]
+script = ExtResource("1_x26di")
+text = "\"Leave it to the frogs and mosquitoes. It's not worth the effort.\" "
+success_text = "You decide the project is too ambitious. The fens remain a wild borderland."
+failure_text = "You decide the project is too ambitious. The fens remain a wild borderland."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_unh5c")]([SubResource("Resource_bokb8"), SubResource("Resource_6pt8v")])
+failure_outcomes = Array[ExtResource("2_unh5c")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_l5001")
+category = 2
+event_id = "ag005"
+title = "The Fenlands"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = ""
+description = "Your steward reports on the vast, marshy fenlands at the edge of the kingdom. \"My Liege, it is a mosquito-infested swamp now,\" he says, \"but with a series of canals and dikes, it could be drained to create the most fertile farmland in the realm. The cost would be immense.\""
+vignette_texture = ""
+options = Array[ExtResource("1_x26di")]([SubResource("Resource_0qu4c"), SubResource("Resource_dn6jy"), SubResource("Resource_566ve")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

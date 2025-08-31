@@ -1,0 +1,207 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=25 format=3 uid="uid://dgkoxyv5kulkk"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_eajcl"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_2jcac"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_fcotl"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_douiy"]
+
+[sub_resource type="Resource" id="Resource_fcotl"]
+script = ExtResource("2_fcotl")
+type = "ChangeResource"
+target = "Treasury"
+value = -250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_douiy"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dhrtv"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_eyrhi"]
+script = ExtResource("3_douiy")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mayfs"]
+script = ExtResource("2_fcotl")
+type = "ChangeResource"
+target = "Treasury"
+value = -250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_githn"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Public"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jgs2e"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3o7u8"]
+script = ExtResource("2_fcotl")
+type = "AddModifier"
+target = "FestivalSpirit"
+value = 12
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hyc0s"]
+script = ExtResource("1_eajcl")
+text = "Do it! Announce the tournament and spare no expense for the glory of the realm!"
+success_text = "The tournament is a legendary success! Cheers echo for days as knights clash in the joust and archers compete for the prize purse. The people are overjoyed, their spirits lifted by the celebration. The nobility, too, are pleased with the chance to prove their valor. Your popularity has never been higher.
+"
+failure_text = "The event is a disaster. Poor organization leads to brawls in the stands, accusations of cheating sour the competitions, and worse, a promising young knight is tragically killed in a poorly-managed melee. The spectacle has only deepened the realm's gloom."
+skill_check = SubResource("Resource_eyrhi")
+required_gold = 250
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_fcotl")]([SubResource("Resource_mayfs"), SubResource("Resource_githn"), SubResource("Resource_jgs2e"), SubResource("Resource_3o7u8")])
+failure_outcomes = Array[ExtResource("2_fcotl")]([SubResource("Resource_fcotl"), SubResource("Resource_douiy"), SubResource("Resource_dhrtv")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_el0sl"]
+script = ExtResource("2_fcotl")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2fy1k"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_fwrpa"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_smi24"]
+script = ExtResource("3_douiy")
+stat = "Stewardship"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_2uraj"]
+script = ExtResource("2_fcotl")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mpi8h"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a0fba"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3rcju"]
+script = ExtResource("1_eajcl")
+text = "A smaller, local tourney. A modest affair for our own people."
+success_text = "The local tournament is a pleasant success. While not a grand spectacle, it provides a welcome diversion for the people and a chance for local lords to compete for bragging rights. A fine use of resources."
+failure_text = "Even the small tourney is bungled. The turnout is poor and the competitions are uninspired. The event is seen as a half-hearted gesture and does little to improve the mood."
+skill_check = SubResource("Resource_smi24")
+required_gold = 100
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_fcotl")]([SubResource("Resource_2uraj"), SubResource("Resource_mpi8h"), SubResource("Resource_a0fba")])
+failure_outcomes = Array[ExtResource("2_fcotl")]([SubResource("Resource_el0sl"), SubResource("Resource_2fy1k"), SubResource("Resource_fwrpa")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_gy5y4"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0cyxj"]
+script = ExtResource("2_fcotl")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ct1u0"]
+script = ExtResource("1_eajcl")
+text = "A waste of gold. The people can find their own entertainment."
+success_text = "You refuse the request. Your steward nods in grim approval of your fiscal responsibility. The treasury is safe, though a chance to win the hearts of your people has been lost."
+failure_text = "You refuse the request. Your steward nods in grim approval of your fiscal responsibility. The treasury is safe, though a chance to win the hearts of your people has been lost."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_fcotl")]([SubResource("Resource_gy5y4"), SubResource("Resource_0cyxj")])
+failure_outcomes = Array[ExtResource("2_fcotl")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_2jcac")
+category = 5
+event_id = "CU001"
+title = "A Time for Celebration"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 1
+selection_cost = 50
+summary = " To lift the spirits of the realm, your steward suggests hosting a grand and costly tournament."
+description = "Your steward approaches with a suggestion. \"My liege, the people grow weary of their daily toil. The mood in the kingdom is somber. Perhaps a grand tournament is in order? It would be a magnificent spectacle to lift the spirits of both commoner and noble alike, and a chance to display the splendor of your reign. However, such an event requires significant investment.\""
+vignette_texture = ""
+options = Array[ExtResource("1_eajcl")]([SubResource("Resource_hyc0s"), SubResource("Resource_3rcju"), SubResource("Resource_ct1u0")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

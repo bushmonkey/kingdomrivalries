@@ -1,0 +1,106 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://o5iqxf4re12f"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_0fwgp"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_g643s"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_tvv06"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_s20ra"]
+
+[sub_resource type="Resource" id="Resource_6ahs0"]
+script = ExtResource("2_tvv06")
+type = "ChangeResource"
+target = "Treasury"
+value = -450
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_yl2ci"]
+script = ExtResource("2_tvv06")
+type = "AddBuilding"
+target = "{owned_province_id}"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sf1pi"]
+script = ExtResource("3_s20ra")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_1421y"]
+script = ExtResource("2_tvv06")
+type = "ChangeResource"
+target = "Treasury"
+value = -300
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4lvlg"]
+script = ExtResource("2_tvv06")
+type = "AddBuilding"
+target = "{owned_province_id}"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_o0suf"]
+script = ExtResource("1_0fwgp")
+text = "\"Begin the excavation. This mine will belong to the crown.\""
+success_text = "The project is an overwhelming success! Under your steward's expert guidance, the new mine is established with remarkable speed. The first carts of rich iron ore are already making their way to the capital. The kingdom's wealth and military potential have grown significantly."
+failure_text = "The project is a disaster. The engineers miscalculate, causing a major tunnel collapse that sets the project back months and costs a fortune to repair. The mine is eventually opened, but it is a much more expensive and troubled venture than promised."
+skill_check = SubResource("Resource_sf1pi")
+success_outcomes = Array[ExtResource("2_tvv06")]([SubResource("Resource_1421y"), SubResource("Resource_4lvlg")])
+failure_outcomes = Array[ExtResource("2_tvv06")]([SubResource("Resource_6ahs0"), SubResource("Resource_yl2ci")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_tvv06"]
+script = ExtResource("2_tvv06")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_s20ra"]
+script = ExtResource("1_0fwgp")
+text = "\"Grant a charter to a loyal noble house to fund and run the mine.\""
+success_text = "You grant the mining rights to a powerful and grateful noble family. They fund the entire operation, and in return, the crown receives a steady share of the profits. The noble's loyalty is secured, and you have gained an asset without spending your own gold."
+failure_text = "You grant the mining rights to a powerful and grateful noble family. They fund the entire operation, and in return, the crown receives a steady share of the profits. The noble's loyalty is secured, and you have gained an asset without spending your own gold."
+success_outcomes = Array[ExtResource("2_tvv06")]([SubResource("Resource_tvv06")])
+failure_outcomes = Array[ExtResource("2_tvv06")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_r7782"]
+script = ExtResource("2_tvv06")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wqxhb"]
+script = ExtResource("1_0fwgp")
+text = "\"We cannot afford such a massive undertaking right now. Leave the iron in the ground.\""
+success_text = "You decide the investment is too great at this time. The plans for the mine are shelved. Your treasury is safe, but a major opportunity for economic and military growth has been passed over."
+failure_text = "You decide the investment is too great at this time. The plans for the mine are shelved. Your treasury is safe, but a major opportunity for economic and military growth has been passed over."
+success_outcomes = Array[ExtResource("2_tvv06")]([SubResource("Resource_r7782")])
+failure_outcomes = Array[ExtResource("2_tvv06")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_g643s")
+category = 3
+event_id = "MF005"
+title = "A Vein of Iron"
+rarity = 2
+selection_cost = 150
+summary = "Prospectors have discovered a rich vein of iron, offering a chance to build a new mine."
+description = "Prospectors have returned from the highlands of the province of {owned_province_name} with exciting news! They have discovered a rich, untapped vein of iron ore. Establishing a new mine would be a massive and costly undertaking, requiring skilled engineers and laborers, but it would provide a steady stream of valuable iron for generations to come, strengthening our armies and enriching our smiths."
+options = Array[ExtResource("1_0fwgp")]([SubResource("Resource_o0suf"), SubResource("Resource_s20ra"), SubResource("Resource_wqxhb")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

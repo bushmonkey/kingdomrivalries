@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://d5tmxn6i0cos"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_g3bke"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_bghis"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_te270"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_4it5t"]
+
+[sub_resource type="Resource" id="Resource_xmgvl"]
+script = ExtResource("2_bghis")
+type = "AddModifier"
+target = "RivalSchemePower"
+value = 12
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_86s0m"]
+script = ExtResource("3_4it5t")
+stat = "Intrigue"
+difficulty = 17
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_5rljt"]
+script = ExtResource("2_bghis")
+type = "ChangeStat"
+target = "Intrigue"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qu2jt"]
+script = ExtResource("2_bghis")
+type = "ChangeKingdomRelation"
+target = "{unfriendly_kingdom_id}"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_i10um"]
+script = ExtResource("1_g3bke")
+text = "\"Let the messenger go, but have my spymaster follow him.\""
+success_text = "Your spymaster tails the messenger back to his master, an agent of {unfriendly_ruler_name}. You have uncovered their entire network!"
+failure_text = "Your spymaster loses the tail almost immediately. The enemy now knows you are aware of their activities, and will redouble their efforts, becoming more effective."
+skill_check = SubResource("Resource_86s0m")
+success_outcomes = Array[ExtResource("2_bghis")]([SubResource("Resource_5rljt"), SubResource("Resource_qu2jt")])
+failure_outcomes = Array[ExtResource("2_bghis")]([SubResource("Resource_xmgvl")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_bghis"]
+script = ExtResource("2_bghis")
+type = "AddModifier"
+target = "RivalSchemePower"
+value = 12
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4it5t"]
+script = ExtResource("3_4it5t")
+stat = "Diplomacy"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_cnb0u"]
+script = ExtResource("2_bghis")
+type = "ChangeStat"
+target = "Diplomacy"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_axfd5"]
+script = ExtResource("2_bghis")
+type = "ChangeKingdomRelation"
+target = "{unfriendly_kingdom_id}"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_7gkq7"]
+script = ExtResource("1_g3bke")
+text = "\"Send a scathing reply back with the messenger.\" "
+success_text = "Your letter, full of veiled threats and sharp wit, lets your rival know you are not a fool. They are publicly shamed and forced to back down."
+failure_text = "Your letter is clumsy and makes you sound weak. Your rival is emboldened by your poor response."
+skill_check = SubResource("Resource_4it5t")
+success_outcomes = Array[ExtResource("2_bghis")]([SubResource("Resource_cnb0u"), SubResource("Resource_axfd5")])
+failure_outcomes = Array[ExtResource("2_bghis")]([SubResource("Resource_bghis")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_te270")
+category = 0
+event_id = "RD008"
+title = "The Forged Letter"
+rarity = 0
+selection_cost = 0
+summary = ""
+description = "A messenger is caught at the border carrying a letter sealed with a crude forgery of your royal seal. The letter contains treasonous orders to one of your border garrisons. It is clearly an attempt by a rival to sow chaos. What do you do?"
+options = Array[ExtResource("1_g3bke")]([SubResource("Resource_i10um"), SubResource("Resource_7gkq7")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

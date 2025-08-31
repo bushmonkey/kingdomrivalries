@@ -1,0 +1,145 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=18 format=3 uid="uid://ckl6hldabn3wl"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_swfpg"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_4tmw3"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_5bebr"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_w8wjo"]
+
+[sub_resource type="Resource" id="Resource_5bebr"]
+script = ExtResource("2_5bebr")
+type = "ChangeResource"
+target = "Treasury"
+value = 500
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_w8wjo"]
+script = ExtResource("2_5bebr")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_448gj"]
+script = ExtResource("3_w8wjo")
+stat = "Stewardship"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_1pojh"]
+script = ExtResource("2_5bebr")
+type = "ChangeResource"
+target = "Treasury"
+value = 500
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_05dy1"]
+script = ExtResource("2_5bebr")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nifsf"]
+script = ExtResource("1_swfpg")
+text = "\"The land is mine, therefore the treasure is mine. Seize it for the treasury.\""
+success_text = "You invoke the ancient right of the crown. Your reeve efficiently takes possession of the entire hoard, cataloging it for the treasury. The farmer is sent away with a token payment, and while the common folk grumble, the law is the law. The state is vastly richer."
+failure_text = "You claim the treasure, but the wily farmer had already hidden away the finest pieces before coming to you. You still get a significant sum, but the feeling that you were outsmarted by a peasant lingers. The common folk whisper about the \"people's treasure\" that was stolen from them."
+skill_check = SubResource("Resource_448gj")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_5bebr")]([SubResource("Resource_1pojh"), SubResource("Resource_05dy1")])
+failure_outcomes = Array[ExtResource("2_5bebr")]([SubResource("Resource_5bebr"), SubResource("Resource_w8wjo")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_aln8u"]
+script = ExtResource("2_5bebr")
+type = "ChangeResource"
+target = "Treasury"
+value = 250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_r0sbl"]
+script = ExtResource("2_5bebr")
+type = "ChangeOpinion"
+target = "Public"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_f5ikk"]
+script = ExtResource("2_5bebr")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jun4j"]
+script = ExtResource("1_swfpg")
+text = "Reward the farmer with a share for his honesty. The rest is for the kingdom."
+success_text = "You grant the farmer a generous portion of the treasure, enough to make him a wealthy man. He falls to his knees in gratitude. The rest of the hoard still provides a welcome boost to your treasury, and your reputation for fairness and generosity spreads throughout the realm."
+failure_text = "You grant the farmer a generous portion of the treasure, enough to make him a wealthy man. He falls to his knees in gratitude. The rest of the hoard still provides a welcome boost to your treasury, and your reputation for fairness and generosity spreads throughout the realm."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_5bebr")]([SubResource("Resource_aln8u"), SubResource("Resource_r0sbl"), SubResource("Resource_f5ikk")])
+failure_outcomes = Array[ExtResource("2_5bebr")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_7sq3w"]
+script = ExtResource("2_5bebr")
+type = "ChangeOpinion"
+target = "Public"
+value = 40
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_w0vky"]
+script = ExtResource("2_5bebr")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jxnko"]
+script = ExtResource("1_swfpg")
+text = "\"Let the finder keep his fortune. It is a gift from God, not the crown.\""
+success_text = "Your declaration is met with stunned silence, then erupts into wild cheers from the commoners at court. The farmer becomes a local legend overnight, and so do you. The people see you as one of them, a truly just and benevolent ruler. Your nobles, however, are aghast that you would let such a fortune slip through the crown's fingers."
+failure_text = "Your declaration is met with stunned silence, then erupts into wild cheers from the commoners at court. The farmer becomes a local legend overnight, and so do you. The people see you as one of them, a truly just and benevolent ruler. Your nobles, however, are aghast that you would let such a fortune slip through the crown's fingers."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_5bebr")]([SubResource("Resource_7sq3w"), SubResource("Resource_w0vky")])
+failure_outcomes = Array[ExtResource("2_5bebr")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_4tmw3")
+category = 1
+event_id = "EC002"
+title = "An Ancient Hoard"
+unlocked_at_start = true
+rarity = 2
+cooldown_years = 1
+selection_cost = 150
+summary = "A farmer has unearthed a chest of ancient Roman treasure, creating a dispute over its ownership."
+description = "A farmer from a village near your capital, his face a mixture of fear and excitement, has demanded an audience. While plowing a new field, his plow struck something hard. Digging further, he unearthed a rotten wooden chest, spilling over with ancient, glittering coins and jewelry from the long-vanished Roman Empire. He has brought the treasure to you, but the question hangs in the air: to whom does it truly belong?"
+vignette_texture = ""
+options = Array[ExtResource("1_swfpg")]([SubResource("Resource_nifsf"), SubResource("Resource_jun4j"), SubResource("Resource_jxnko")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

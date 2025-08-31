@@ -1,0 +1,156 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=20 format=3 uid="uid://dg8f3ikrnuupj"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_wpwok"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_4wfxx"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_ka2b2"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_ctbf0"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="3_ka2b2"]
+
+[sub_resource type="Resource" id="Resource_wepx2"]
+script = ExtResource("2_ka2b2")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_knisp"]
+script = ExtResource("2_ka2b2")
+type = "ChangeKingdomRelation"
+target = "{unfriendly_kingdom_id}"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_my7g2"]
+script = ExtResource("3_ctbf0")
+stat = "Intrigue"
+difficulty = 20
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_bao6x"]
+script = ExtResource("2_ka2b2")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_027dk"]
+script = ExtResource("2_ka2b2")
+type = "AddModifier"
+target = "AgentInCourt_{unfriendly_kingdom_id} "
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_owj0v"]
+script = ExtResource("2_ka2b2")
+type = "GainIntel"
+target = "{unfriendly_kingdom_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rj6uw"]
+script = ExtResource("1_wpwok")
+text = "\"Hire him. The risk is worth the reward.\" "
+success_text = "The chamberlain proves to be a reliable and valuable asset. His steady stream of reports gives you a crucial advantage over your rival."
+failure_text = "He is a double agent! He feeds you false information for months before disappearing. Your rival now knows you were spying and is furious."
+skill_check = SubResource("Resource_my7g2")
+success_outcomes = Array[ExtResource("2_ka2b2")]([SubResource("Resource_bao6x"), SubResource("Resource_027dk"), SubResource("Resource_owj0v")])
+failure_outcomes = Array[ExtResource("2_ka2b2")]([SubResource("Resource_wepx2"), SubResource("Resource_knisp")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_rke5o"]
+script = ExtResource("2_ka2b2")
+type = "ChangeResource"
+target = "Manpower"
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_1nuwx"]
+script = ExtResource("2_ka2b2")
+type = "ChangeKingdomRelation"
+target = "{unfriendly_kingdom_id}"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ka2b2"]
+script = ExtResource("3_ctbf0")
+stat = "Martial"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_uviij"]
+script = ExtResource("2_ka2b2")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_u7olt"]
+script = ExtResource("2_ka2b2")
+type = "ChangeKingdomRelation"
+target = "{unfriendly_kingdom_id}"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ig7v1"]
+script = ExtResource("1_wpwok")
+text = "\"It's a trap. Arrest him.\" "
+success_text = "Your guards seize him. He is indeed a spy sent to test your intelligence. You have foiled their plot."
+failure_text = "He was prepared for this. He fights his way free, killing a guard as he escapes."
+skill_check = SubResource("Resource_ka2b2")
+success_outcomes = Array[ExtResource("2_ka2b2")]([SubResource("Resource_uviij"), SubResource("Resource_u7olt")])
+failure_outcomes = Array[ExtResource("2_ka2b2")]([SubResource("Resource_rke5o"), SubResource("Resource_1nuwx")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ctbf0"]
+script = ExtResource("3_ka2b2")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+requires_friendly_rival = false
+requires_unfriendly_rival = true
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_4wfxx")
+category = 7
+trigger_conditions = SubResource("Resource_ctbf0")
+event_id = "ML006"
+title = "The Defector"
+rarity = 1
+selection_cost = 50
+summary = "A chamberlain from a rival court offers to sell you his kingdom's secrets, but he could be a double agent."
+description = "Your spymaster arranges a secret meeting. A nervous, well-dressed man is ushered in. \"I am a chamberlain in the court of {unfriendly_ruler_name},\" he whispers. \"My master has wronged me, and I wish for revenge. I will be your eyes and ears within his court... for a price.\""
+options = Array[ExtResource("1_wpwok")]([SubResource("Resource_rj6uw"), SubResource("Resource_ig7v1")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

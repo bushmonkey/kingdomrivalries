@@ -1,0 +1,105 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://c8qjypvi6pghm"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_tlugx"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_wvw8l"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_0qaxp"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_tdm2j"]
+
+[sub_resource type="Resource" id="Resource_kjti8"]
+script = ExtResource("2_wvw8l")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 3
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sjr4h"]
+script = ExtResource("2_wvw8l")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_d51oe"]
+script = ExtResource("3_0qaxp")
+stat = "Martial"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_t14kx"]
+script = ExtResource("2_wvw8l")
+type = "CompleteStoryline"
+target = "SERPENT"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_vjdf0"]
+script = ExtResource("1_tlugx")
+text = "\"Arrest him for treason!\" "
+success_text = "Your command is swift and absolute. Before Valerius can even react to the news of his exposure, your royal guard storms his manor. He is dragged away in chains, his network of conspirators scattering like rats. The plot is severed at its head; the serpent has been defanged."
+failure_text = "Your captain of the guard hesitates for a fatal moment. Tipped off by a traitor within your own ranks, Valerius is gone before your soldiers arrive, his chambers empty save for a mocking letter. He has fled to the court of {rival_ruler_name}, where he is welcomed not as a guest, but as a righteous claimant to your throne."
+skill_check = SubResource("Resource_d51oe")
+success_outcomes = Array[ExtResource("2_wvw8l")]([SubResource("Resource_t14kx")])
+failure_outcomes = Array[ExtResource("2_wvw8l")]([SubResource("Resource_kjti8"), SubResource("Resource_sjr4h")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_8rqyt"]
+script = ExtResource("2_wvw8l")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ttqli"]
+script = ExtResource("2_wvw8l")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 3
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qvdwq"]
+script = ExtResource("3_0qaxp")
+stat = "Charisma"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_g53w7"]
+script = ExtResource("2_wvw8l")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2gf33"]
+script = ExtResource("1_tlugx")
+text = "Expose his plot to the court.	"
+success_text = "
+\"You convene the entire court and lay out the evidence of your uncle's treachery with cold, precise fury. The letters, the spy reports—the proof is undeniable. A wave of shock and horror ripples through the nobility as they see the depth of his betrayal. His supporters abandon him instantly, and Valerius is left utterly alone, a pariah in the very court he sought to rule."
+failure_text = "You present your evidence, but your words falter and your proof seems flimsy. Valerius, a master of deception, turns the accusation back on you, painting you as a paranoid tyrant hunting shadows. The nobles, already wary of your rule, murmur in agreement with him. You have not only failed to expose a traitor, you have made him a martyr and driven more of your own court into his waiting arms."
+skill_check = SubResource("Resource_qvdwq")
+success_outcomes = Array[ExtResource("2_wvw8l")]([SubResource("Resource_g53w7")])
+failure_outcomes = Array[ExtResource("2_wvw8l")]([SubResource("Resource_8rqyt"), SubResource("Resource_ttqli")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_tdm2j")
+category = 4
+event_id = "SERPENT_S2"
+title = "A Secret Pact"
+rarity = 0
+selection_cost = 0
+summary = ""
+description = "Your spies bring grave news. Your uncle, Lord Valerius, has secretly traveled to the court of your rival, {rival_ruler_name}! He has offered them his loyalty and the support of his faction within your court in exchange for their help in deposing you."
+options = Array[ExtResource("1_tlugx")]([SubResource("Resource_vjdf0"), SubResource("Resource_2gf33")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

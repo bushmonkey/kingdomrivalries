@@ -1,0 +1,136 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=17 format=3 uid="uid://ck3vlmmg6kmp5"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_6fd1g"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_uw8xc"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_1amsw"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_idaqr"]
+
+[sub_resource type="Resource" id="Resource_fcotl"]
+script = ExtResource("2_uw8xc")
+type = "ChangeResource"
+target = "Treasury"
+value = -500
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_douiy"]
+script = ExtResource("2_uw8xc")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_eyrhi"]
+script = ExtResource("3_1amsw")
+stat = "Stewardship"
+difficulty = 17
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mayfs"]
+script = ExtResource("2_uw8xc")
+type = "ChangeResource"
+target = "Treasury"
+value = -500
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_githn"]
+script = ExtResource("2_uw8xc")
+type = "AddModifier"
+target = "IndustrialMill"
+value = -1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hyc0s"]
+script = ExtResource("1_6fd1g")
+text = "\"A marvel of engineering! The crown will fund this project immediately.\""
+success_text = "The construction is a triumph of ingenuity and labor. The great wheel turns, and the rhythmic thud of the trip-hammers can be heard for miles. This new industrial mill dramatically increases the kingdom's production, creating a massive and permanent boost to your economy."
+failure_text = "A disaster of epic proportions. The main axle cracks during installation, and the resulting flood washes away half the construction site. The project is a ruin, and a vast fortune has been washed down the river with it. Your nobles are furious at this failed gamble."
+skill_check = SubResource("Resource_eyrhi")
+required_gold = 500
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_uw8xc")]([SubResource("Resource_mayfs"), SubResource("Resource_githn")])
+failure_outcomes = Array[ExtResource("2_uw8xc")]([SubResource("Resource_fcotl"), SubResource("Resource_douiy")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_2uraj"]
+script = ExtResource("2_uw8xc")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mpi8h"]
+script = ExtResource("2_uw8xc")
+type = "ChangeOpinion"
+target = "Public"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a0fba"]
+script = ExtResource("2_uw8xc")
+type = "AddModifier"
+target = "GuildRunMill"
+value = -1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3rcju"]
+script = ExtResource("1_6fd1g")
+text = "\"A project for the guilds. Grant them a charter to build and run it.\""
+success_text = "You offer the charter to a consortium of the blacksmiths' and weavers' guilds. They eagerly pool their resources to fund the project. The new mill enriches the guilds, and the crown profits from the greatly increased trade and taxation. Your public sees you as a champion of the common craftsman."
+failure_text = "Even the small tourney is bungled. The turnout is poor and the competitions are uninspired. The event is seen as a half-hearted gesture and does little to improve the mood."
+required_gold = 100
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_uw8xc")]([SubResource("Resource_2uraj"), SubResource("Resource_mpi8h"), SubResource("Resource_a0fba")])
+failure_outcomes = Array[ExtResource("2_uw8xc")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_gy5y4"]
+script = ExtResource("2_uw8xc")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ct1u0"]
+script = ExtResource("1_6fd1g")
+text = "\"This is a madman's dream. We will not waste a fortune on it.\""
+success_text = "You dismiss the engineer and his fantastical designs. Your treasurer breathes a sigh of relief. The kingdom's economy remains as it was, built on the backs of men, not machines."
+failure_text = "You dismiss the engineer and his fantastical designs. Your treasurer breathes a sigh of relief. The kingdom's economy remains as it was, built on the backs of men, not machines."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_uw8xc")]([SubResource("Resource_gy5y4")])
+failure_outcomes = Array[ExtResource("2_uw8xc")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_idaqr")
+category = 3
+event_id = "MF001"
+title = "Harnessing the River"
+unlocked_at_start = false
+rarity = 2
+cooldown_years = 0
+selection_cost = 150
+summary = "An engineer has a revolutionary design for a water-powered trip-hammer mill that can mass-produce goods."
+description = "An ambitious engineer, inspired by designs from the old Roman Empire, presents you with a set of complex schematics. \"My Liege,\" he explains excitedly, \"we can build a massive water wheel on the river to power a series of trip-hammers. This 'factory' could work iron, full cloth, or mill grain at a rate ten times faster than any man. It would be the industrial heart of our kingdom, but the construction will be a monumental and costly endeavor.\""
+vignette_texture = ""
+options = Array[ExtResource("1_6fd1g")]([SubResource("Resource_hyc0s"), SubResource("Resource_3rcju"), SubResource("Resource_ct1u0")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

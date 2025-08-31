@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://s3t75ie4gfw4"]
+
+[ext_resource type="Script" uid="uid://21eng73rs5ky" path="res://scenes/ui/end_of_actions_panel.gd" id="1_5gpld"]
+[ext_resource type="Texture2D" uid="uid://ck6b17gesvjmm" path="res://assets/wheel_season2.png" id="2_xck2e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mr362"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iirnf"]
+bg_color = Color(0.067, 0.212, 0.082, 0.858)
+
+[node name="EndOfActionsPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mr362")
+script = ExtResource("1_5gpld")
+
+[node name="VignetteDisplay" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_xck2e")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(600, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_iirnf")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="InfoLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+text = "You have completed all your actions for the season.
+The winds of change approach..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Face the Consequences"

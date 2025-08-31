@@ -1,0 +1,105 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=17 format=3 uid="uid://bn0kx3tevksj7"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_qj50c"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_tuydi"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_y02wv"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_eaorr"]
+
+[sub_resource type="Resource" id="Resource_hntbr"]
+script = ExtResource("2_tuydi")
+type = "ChangeResource"
+target = "treasury"
+value = -200
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5jdho"]
+script = ExtResource("2_tuydi")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sgeqb"]
+script = ExtResource("3_y02wv")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_nic3o"]
+script = ExtResource("2_tuydi")
+type = "ChangeResource"
+target = "treasury"
+value = -200
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_1u2kl"]
+script = ExtResource("2_tuydi")
+type = "AddModifier"
+target = "CelestialKnowledge"
+value = 1
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_i22og"]
+script = ExtResource("1_qj50c")
+text = "Purchase it! Knowledge is worth any price."
+success_text = "Your court scholars are enthralled. After months of study, they master the device. Their newfound understanding of celestial navigation and timekeeping allows your merchants to sail more daring routes and your farmers to plant with greater precision. The investment has paid off handsomely."
+failure_text = "The device proves too complex for your scholars. Despite their best efforts, they can make no sense of the foreign markings. It becomes an expensive curiosity, a testament to your ambition but also your wasted gold."
+skill_check = SubResource("Resource_sgeqb")
+success_outcomes = Array[ExtResource("2_tuydi")]([SubResource("Resource_nic3o"), SubResource("Resource_1u2kl")])
+failure_outcomes = Array[ExtResource("2_tuydi")]([SubResource("Resource_hntbr"), SubResource("Resource_5jdho")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_pvjnq"]
+script = ExtResource("2_tuydi")
+type = "ChangeOpinion"
+target = "Church"
+value = 5
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_gb6sp"]
+script = ExtResource("2_tuydi")
+type = "ChangeOpinion"
+target = "Traders"
+value = -5
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2nav6"]
+script = ExtResource("3_y02wv")
+stat = "Diplomacy"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_6xktp"]
+script = ExtResource("2_tuydi")
+type = "ChangeOpinion"
+target = "Church"
+value = 20
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_t7wkv"]
+script = ExtResource("1_qj50c")
+text = "This smells of heresy. Seize and destroy this profane object!"
+success_text = "You make a grand spectacle of shattering the device before the cathedral. The bishop praises your piety and wisdom, holding a sermon on the dangers of pagan star-gazing. The Church's faith in your rule is unshakable."
+failure_text = "Your guards destroy the device, but the act is seen as brutish and ignorant by the court's more learned members. The merchant loudly protests his mistreatment, and foreign traders may be wary of visiting your kingdom for some time."
+skill_check = SubResource("Resource_2nav6")
+success_outcomes = Array[ExtResource("2_tuydi")]([SubResource("Resource_6xktp")])
+failure_outcomes = Array[ExtResource("2_tuydi")]([SubResource("Resource_pvjnq"), SubResource("Resource_gb6sp")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_a6j8k"]
+script = ExtResource("1_qj50c")
+text = "I have no gold for such trinkets. Send him away."
+success_text = "The merchant seems disappointed but understands the realities of statecraft. He packs up his strange device and leaves your court. An opportunity was perhaps lost, but your treasury is no lighter for it. The status quo remains."
+failure_text = "The merchant seems disappointed but understands the realities of statecraft. He packs up his strange device and leaves your court. An opportunity was perhaps lost, but your treasury is no lighter for it. The status quo remains."
+success_outcomes = Array[ExtResource("2_tuydi")]([])
+failure_outcomes = Array[ExtResource("2_tuydi")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_eaorr")
+category = 0
+event_id = "RD004"
+title = "The Star-Charting Device"
+description = "A merchant who has traveled the great southern seas arrives at your court with a marvel of engineering: an intricate brass device of interlocking rings and dials covered in strange, precise markings. He calls it an 'astrolabe' and claims it can be used to chart the very movements of the heavens. He offers to sell it to you for a significant price, but the court priest eyes the object with deep suspicion."
+options = Array[ExtResource("1_qj50c")]([SubResource("Resource_i22og"), SubResource("Resource_t7wkv"), SubResource("Resource_a6j8k")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

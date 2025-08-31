@@ -1,0 +1,98 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=12 format=3 uid="uid://dkxjw2k62qvrs"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_nedty"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_adlnv"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_mpmd3"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="3_mpmd3"]
+
+[sub_resource type="Resource" id="Resource_ufpo7"]
+script = ExtResource("2_adlnv")
+type = "ChangeResource"
+target = "Manpower"
+value = 1500
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5q740"]
+script = ExtResource("1_nedty")
+text = "\"With such spirit, men will flock to our banner. Call for volunteers.\""
+success_text = "The response is overwhelming. So great is the love for you that thousands of able-bodied men volunteer for military service, eager to defend the ruler who has given them so much. Your manpower reserves swell to a size not seen in generations."
+failure_text = "The response is overwhelming. So great is the love for you that thousands of able-bodied men volunteer for military service, eager to defend the ruler who has given them so much. Your manpower reserves swell to a size not seen in generations."
+success_outcomes = Array[ExtResource("2_adlnv")]([SubResource("Resource_ufpo7")])
+failure_outcomes = Array[ExtResource("2_adlnv")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_pj3mm"]
+script = ExtResource("2_adlnv")
+type = "AddModifier"
+target = "GreatProject"
+value = 10
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rlv63"]
+script = ExtResource("1_nedty")
+text = "\"Their willingness to work is a resource. Announce a grand project.\""
+success_text = "You announce the construction of a new royal project, and the people respond with fervent enthusiasm. Thousands volunteer their labor, working for little more than food and pride in their kingdom. The project is completed in record time and at a fraction of the normal cost."
+failure_text = "You announce the construction of a new royal project, and the people respond with fervent enthusiasm. Thousands volunteer their labor, working for little more than food and pride in their kingdom. The project is completed in record time and at a fraction of the normal cost."
+success_outcomes = Array[ExtResource("2_adlnv")]([SubResource("Resource_pj3mm")])
+failure_outcomes = Array[ExtResource("2_adlnv")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_0hf34"]
+script = ExtResource("2_adlnv")
+type = "AddModifier"
+target = "GoldenAge"
+value = 10
+duration = 60
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_362vn"]
+script = ExtResource("1_nedty")
+text = "\"Let them enjoy this peace and prosperity. Their happiness is its own reward.\""
+success_text = "You do nothing to exploit their goodwill, instead allowing the era of good feeling to flourish on its own. The stability and happiness of the realm leads to a surge in births and a new generation of loyal subjects. The dynasty is secure."
+failure_text = "You do nothing to exploit their goodwill, instead allowing the era of good feeling to flourish on its own. The stability and happiness of the realm leads to a surge in births and a new generation of loyal subjects. The dynasty is secure."
+success_outcomes = Array[ExtResource("2_adlnv")]([SubResource("Resource_0hf34")])
+failure_outcomes = Array[ExtResource("2_adlnv")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_adlnv"]
+script = ExtResource("3_mpmd3")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 90
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_mpmd3")
+category = 4
+trigger_conditions = SubResource("Resource_adlnv")
+event_id = "SP002"
+title = "An Adored Ruler"
+rarity = 0
+selection_cost = 0
+summary = "Your popularity with the common folk is at an all-time high, allowing you to enact a powerful, kingdom-wide project."
+description = "Your steward enters, his face beaming with pride. \"My Liege, your popularity among the common folk has reached unprecedented heights. They are calling this a golden age for the common man!\"
+
+\"Songs are sung of your generosity, and mothers name their children after you. The people are not merely loyal; they adore you. This overwhelming goodwill is a resource in itself. How shall we focus this monumental support for the good of the realm?\""
+options = Array[ExtResource("1_nedty")]([SubResource("Resource_5q740"), SubResource("Resource_rlv63"), SubResource("Resource_362vn")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

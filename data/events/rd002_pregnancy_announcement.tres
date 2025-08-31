@@ -1,0 +1,156 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=20 format=3 uid="uid://cu5bip3bkh6ho"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_chp3f"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_4fpqs"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_7po0e"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_sstdx"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="5_sstdx"]
+
+[sub_resource type="Resource" id="Resource_4ey8a"]
+script = ExtResource("2_4fpqs")
+type = "ChangeCharacterOpinion"
+target = "{wife_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_f325u"]
+script = ExtResource("3_sstdx")
+stat = "Diplomacy"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_lhjjs"]
+script = ExtResource("2_4fpqs")
+type = "ChangeCharacterOpinion"
+target = "{wife_id}"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ybccs"]
+script = ExtResource("1_chp3f")
+text = "This is the happiest day of my life!"
+success_text = "You embrace her joyfully. She beams, her happiness mirroring your own. In this quiet moment, you are not just a ruler and his queen, but a husband and wife sharing in the profound miracle of new life. Your bond deepens."
+failure_text = "You try to express your joy, but your words come out clumsily. She seems a little worried by your muted reaction, though she tries to hide it. The moment is more awkward than it should have been."
+skill_check = SubResource("Resource_f325u")
+success_outcomes = Array[ExtResource("2_4fpqs")]([SubResource("Resource_lhjjs")])
+failure_outcomes = Array[ExtResource("2_4fpqs")]([SubResource("Resource_4ey8a")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_awi63"]
+script = ExtResource("2_4fpqs")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q13ri"]
+script = ExtResource("2_4fpqs")
+type = "ChangeCharacterOpinion"
+target = "{wife_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_e14xh"]
+script = ExtResource("3_sstdx")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_fop75"]
+script = ExtResource("2_4fpqs")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4uwou"]
+script = ExtResource("2_4fpqs")
+type = "ChangeCharacterOpinion"
+target = "{wife_id}"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_tm83k"]
+script = ExtResource("1_chp3f")
+text = "Excellent. The succession is secure. The realm will be pleased."
+success_text = "She nods, understanding the weight of your duties. Your reaction is that of a king, and she is your queen. The news is not just personal, but political. Your nobles will be heartened to know the line of succession is assured."
+failure_text = "She flinches slightly at your cold, political assessment of this deeply personal news. \"Is that all this is to you? Securing the realm?\" she asks quietly. You have made her feel like a means to an end."
+skill_check = SubResource("Resource_e14xh")
+success_outcomes = Array[ExtResource("2_4fpqs")]([SubResource("Resource_fop75"), SubResource("Resource_4uwou")])
+failure_outcomes = Array[ExtResource("2_4fpqs")]([SubResource("Resource_awi63"), SubResource("Resource_q13ri")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_yct4f"]
+script = ExtResource("2_4fpqs")
+type = "ChangeOpinion"
+target = "Church"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_miiih"]
+script = ExtResource("2_4fpqs")
+type = "ChangeCharacterOpinion"
+target = "{wife_id}"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_f5gqq"]
+script = ExtResource("1_chp3f")
+text = "A gift from God! We must give thanks at the chapel."
+success_text = "Her smile brightens. \"I was hoping you would say that.\" You spend an hour in quiet prayer together, your hands joined in thanks for the blessing bestowed upon your house. The court's bishop is greatly pleased to hear of your devout reaction."
+failure_text = "Her smile brightens. \"I was hoping you would say that.\" You spend an hour in quiet prayer together, your hands joined in thanks for the blessing bestowed upon your house. The court's bishop is greatly pleased to hear of your devout reaction."
+success_outcomes = Array[ExtResource("2_4fpqs")]([SubResource("Resource_yct4f"), SubResource("Resource_miiih")])
+failure_outcomes = Array[ExtResource("2_4fpqs")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ayhmj"]
+script = ExtResource("5_sstdx")
+requires_player_is_married = true
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = true
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_7po0e")
+category = 0
+trigger_conditions = SubResource("Resource_ayhmj")
+event_id = "RD002"
+title = "Joyful News"
+rarity = 0
+selection_cost = 0
+summary = "Your wife has joyous news to share in private: she is with child, and an heir is on the way."
+description = "Your wife, {wife_name}, approaches you in the privacy of your chambers, a nervous but radiant smile gracing her lips. She takes your hand and tells you the joyous news: she is with child. Your heart swells with pride. How do you react to the news of your coming heir?"
+options = Array[ExtResource("1_chp3f")]([SubResource("Resource_ybccs"), SubResource("Resource_tm83k"), SubResource("Resource_f5gqq")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

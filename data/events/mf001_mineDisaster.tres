@@ -1,0 +1,171 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=21 format=3 uid="uid://bcywpnnkwe4hv"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_y7uj4"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_soo3l"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_r6ek5"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_7j14t"]
+
+[sub_resource type="Resource" id="Resource_fcotl"]
+script = ExtResource("2_soo3l")
+type = "ChangeResource"
+target = "Treasury"
+value = -250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_douiy"]
+script = ExtResource("2_soo3l")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dhrtv"]
+script = ExtResource("2_soo3l")
+type = "ChangeResource"
+target = "Manpower"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_eyrhi"]
+script = ExtResource("3_r6ek5")
+stat = "Stewardship"
+difficulty = 16
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mayfs"]
+script = ExtResource("2_soo3l")
+type = "ChangeResource"
+target = "Treasury"
+value = -250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_githn"]
+script = ExtResource("2_soo3l")
+type = "ChangeOpinion"
+target = "Public"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hyc0s"]
+script = ExtResource("1_y7uj4")
+text = "Spare no expense! Get those men out of there!"
+success_text = "You fund a massive, round-the-clock rescue effort. Your steward expertly manages the logistics, and against all odds, a new shaft is dug just in time. The trapped miners emerge, weak but alive, into the arms of their weeping families. You are hailed as a hero of the people.
+"
+failure_text = "Despite the vast sums of gold and manpower you pour into the rescue, a secondary collapse occurs, larger than the first. The rescue attempt is abandoned, the trapped men are lost, and several brave rescuers are killed as well. Your treasury is lighter, and morale is at an all-time low."
+skill_check = SubResource("Resource_eyrhi")
+required_gold = 250
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_soo3l")]([SubResource("Resource_mayfs"), SubResource("Resource_githn")])
+failure_outcomes = Array[ExtResource("2_soo3l")]([SubResource("Resource_fcotl"), SubResource("Resource_douiy"), SubResource("Resource_dhrtv")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_2uraj"]
+script = ExtResource("2_soo3l")
+type = "ChangeResource"
+target = "Manpower"
+value = -12
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mpi8h"]
+script = ExtResource("2_soo3l")
+type = "ChangeOpinion"
+target = "Public"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3rcju"]
+script = ExtResource("1_y7uj4")
+text = "The mine is more important. Seal that section and count the losses."
+success_text = "It is a grim, cold-hearted decision, but a practical one. The collapsed tunnel is sealed off, preventing further instability in the rest of the mine. Production resumes within a week. The miners' families mourn, but the kingdom's supply of iron is secure."
+failure_text = "It is a grim, cold-hearted decision, but a practical one. The collapsed tunnel is sealed off, preventing further instability in the rest of the mine. Production resumes within a week. The miners' families mourn, but the kingdom's supply of iron is secure."
+required_gold = 0
+required_manpower = 12
+required_food = 0
+success_outcomes = Array[ExtResource("2_soo3l")]([SubResource("Resource_2uraj"), SubResource("Resource_mpi8h")])
+failure_outcomes = Array[ExtResource("2_soo3l")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_aj6a4"]
+script = ExtResource("2_soo3l")
+type = "ChangeResource"
+target = "Manpower"
+value = -30
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_n28kc"]
+script = ExtResource("2_soo3l")
+type = "ChangeOpinion"
+target = "Public"
+value = -35
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_anby3"]
+script = ExtResource("3_r6ek5")
+stat = "Martial"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_gy5y4"]
+script = ExtResource("2_soo3l")
+type = "ChangeResource"
+target = "Manpower"
+value = -2
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0cyxj"]
+script = ExtResource("2_soo3l")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ct1u0"]
+script = ExtResource("1_y7uj4")
+text = "Send soldiers to force other miners to dig. They know the tunnels."
+success_text = "Under the watchful eyes of your soldiers, the terrified miners are forced back into the unstable mine. Their fear drives them to work with desperate speed, and they manage to clear a path to their trapped comrades, saving most of them. It was brutal, but it worked."
+failure_text = "Forcing the panicked miners back to work is a catastrophic mistake. Their fear leads to errors, and a second cave-in occurs, trapping the rescue party as well. The screams from below the earth will haunt your soldiers for years. You have only made the tragedy worse."
+skill_check = SubResource("Resource_anby3")
+required_gold = 0
+required_manpower = 2
+required_food = 0
+success_outcomes = Array[ExtResource("2_soo3l")]([SubResource("Resource_gy5y4"), SubResource("Resource_0cyxj")])
+failure_outcomes = Array[ExtResource("2_soo3l")]([SubResource("Resource_aj6a4"), SubResource("Resource_n28kc")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_7j14t")
+category = 3
+event_id = "MF002"
+title = "Disaster at the Iron Mine"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A tunnel in the royal mine has collapsed, trapping over a dozen miners and requiring a difficult decision."
+description = "A runner, his face pale with dust and panic, bursts into your throne room. There has been a major collapse in the Deepvein iron mine! A support timber gave way, and an entire section of the tunnels has caved in. At least a dozen miners are trapped deep underground. Their families are gathering at the mine entrance, weeping and praying."
+vignette_texture = ""
+options = Array[ExtResource("1_y7uj4")]([SubResource("Resource_hyc0s"), SubResource("Resource_3rcju"), SubResource("Resource_ct1u0")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

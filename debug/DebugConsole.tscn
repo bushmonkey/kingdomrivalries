@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://ek2gjcjh1rkl"]
+
+[ext_resource type="Script" uid="uid://bdv4sih03njdw" path="res://debug/debug_console.gd" id="1_lxjfd"]
+
+[node name="DebugConsole" type="CanvasLayer"]
+script = ExtResource("1_lxjfd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -210.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="LogOutput" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonGrid" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 6
+
+[node name="ForceWarButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Force War"
+
+[node name="EndWarButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "End War"
+
+[node name="AddManpowerButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+1000 ManPower"
+
+[node name="AddGoldButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+1000 gold"
+
+[node name="WinBattleButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+20 war score"
+
+[node name="LoseBattleButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 2
+text = "-20 war score"
+
+[node name="AnnexEmptyButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Annex Empty Neighbor"
+
+[node name="KillPlayerButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Kill the player"
+
+[node name="DebugHoverButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ButtonGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Toggle Hover Debug"

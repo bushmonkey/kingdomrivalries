@@ -1,0 +1,127 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvhw0frf6r7is"]
+
+[ext_resource type="Script" uid="uid://fmitvys7fy0h" path="res://scenes/map/map_popup.gd" id="1_bwx87"]
+[ext_resource type="PackedScene" uid="uid://bdljwqj2vc8s3" path="res://scenes/map/map_view.tscn" id="2_41t23"]
+
+[node name="MapPopup" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 135.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_bwx87")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+offset_right = 1286.0
+offset_bottom = 726.0
+mouse_filter = 2
+color = Color(0.141, 0.376, 0.169, 1)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -490.0
+offset_top = -325.0
+offset_right = 490.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleBar" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/TitleBar"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TitleBar/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = " World Map"
+
+[node name="HoverInfoLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/TitleBar/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hover over a province to see details"
+
+[node name="CloseButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/TitleBar/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 0
+text = "X"
+
+[node name="MapViewContainer" type="SubViewportContainer" parent="Panel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1000, 600)
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Panel/MarginContainer/VBoxContainer/MapViewContainer"]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1000, 600)
+render_target_update_mode = 4
+
+[node name="MapView" parent="Panel/MarginContainer/VBoxContainer/MapViewContainer/SubViewport" instance=ExtResource("2_41t23")]
+unique_name_in_owner = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Zoom control "
+vertical_alignment = 1
+
+[node name="ZoominButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "+"
+
+[node name="ZoomoutButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+text = "-"

@@ -1,0 +1,170 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=21 format=3 uid="uid://qrhshxen2irx"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_kxuiu"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_84ocj"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_kqs7c"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_dmt5p"]
+
+[sub_resource type="Resource" id="Resource_84ocj"]
+script = ExtResource("2_84ocj")
+type = "ChangeResource"
+target = "Treasury"
+value = -300
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dmt5p"]
+script = ExtResource("2_84ocj")
+type = "AddModifier"
+target = "NewFarmlands"
+value = 1
+duration = -1
+stackable = true
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_66ddp"]
+script = ExtResource("3_dmt5p")
+stat = "Stewardship"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_qbeg2"]
+script = ExtResource("2_84ocj")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_stfvg"]
+script = ExtResource("2_84ocj")
+type = "AddModifier"
+target = "NewFarmlands"
+value = 1
+duration = -1
+stackable = true
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_7md4g"]
+script = ExtResource("2_84ocj")
+type = "ChangeOpinion"
+target = "Public"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_m5mbe"]
+script = ExtResource("1_kxuiu")
+text = "A worthy investment. Hire woodsmen and laborers, provide proper tools."
+success_text = "Your steward's plan unfolds perfectly. The hired professionals work efficiently, clearing the land in record time. New farmsteads are drawn up, and eager families begin to till the fresh soil. The kingdom's future bounty is secured."
+failure_text = "The project is plagued by problems. The lead woodsman is a drunkard, the tools are shoddy, and the budget spirals out of control. The land is eventually cleared, but it costs far more gold and goodwill than you anticipated."
+skill_check = SubResource("Resource_66ddp")
+required_gold = 200
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_84ocj")]([SubResource("Resource_qbeg2"), SubResource("Resource_stfvg"), SubResource("Resource_7md4g")])
+failure_outcomes = Array[ExtResource("2_84ocj")]([SubResource("Resource_84ocj"), SubResource("Resource_dmt5p")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_xa2x5"]
+script = ExtResource("2_84ocj")
+type = "ChangeResource"
+target = "Treasury"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xotpe"]
+script = ExtResource("2_84ocj")
+type = "ChangeOpinion"
+target = "Public"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wcodd"]
+script = ExtResource("3_dmt5p")
+stat = "Martial"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_qndpk"]
+script = ExtResource("2_84ocj")
+type = "ChangeResource"
+target = "Treasury"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ld8om"]
+script = ExtResource("2_84ocj")
+type = "AddModifier"
+target = "NewFarmlands"
+value = 1
+duration = -1
+stackable = true
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_i3mc5"]
+script = ExtResource("2_84ocj")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_lxd58"]
+script = ExtResource("1_kxuiu")
+text = "Use peasant levies. Their labor belongs to the crown."
+success_text = "Under the firm supervision of your soldiers, the conscripted peasants get the job done. They grumble at the hard, unpaid labor, but the land is cleared all the same. A new breadbasket for the kingdom, built on the backs of your people."
+failure_text = "The conscripted peasants are sullen and inefficient. They work slowly, break tools, and some desert in the night. The project is a disaster, achieving little while fostering deep resentment among the common folk. The effort is abandoned."
+skill_check = SubResource("Resource_wcodd")
+required_gold = 50
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_84ocj")]([SubResource("Resource_qndpk"), SubResource("Resource_ld8om"), SubResource("Resource_i3mc5")])
+failure_outcomes = Array[ExtResource("2_84ocj")]([SubResource("Resource_xa2x5"), SubResource("Resource_xotpe")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_671b0"]
+script = ExtResource("2_84ocj")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_o6s06"]
+script = ExtResource("1_kxuiu")
+text = "We cannot afford such a grand project at this time."
+success_text = "You shelve the plans for now. Your steward seems disappointed, but understands the need for caution. The kingdom's resources remain secure, though a potential opportunity for growth has been set aside."
+failure_text = "You shelve the plans for now. Your steward seems disappointed, but understands the need for caution. The kingdom's resources remain secure, though a potential opportunity for growth has been set aside."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_84ocj")]([SubResource("Resource_671b0")])
+failure_outcomes = Array[ExtResource("2_84ocj")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_kqs7c")
+category = 2
+event_id = "AG002"
+title = "Clearing New Farmland"
+unlocked_at_start = true
+rarity = 2
+cooldown_years = 0
+selection_cost = 50
+summary = "A tract of fertile wilderness could be cleared to establish new, productive farms for the kingdom."
+description = "Your steward points to a map, indicating a large tract of lightly forested land near a river. \"My Liege,\" he says, \"this land is fertile but unused. If we were to clear the trees and prepare the soil, we could establish dozens of new farms. This would increase our food production for generations to come, though the initial effort will require significant resources.\""
+vignette_texture = ""
+options = Array[ExtResource("1_kxuiu")]([SubResource("Resource_m5mbe"), SubResource("Resource_lxd58"), SubResource("Resource_o6s06")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -1,0 +1,153 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=19 format=3 uid="uid://dwn5fikbjug7n"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_0rpn1"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_2xgey"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_kg20g"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_3y423"]
+
+[sub_resource type="Resource" id="Resource_b1pgd"]
+script = ExtResource("2_2xgey")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qvq0o"]
+script = ExtResource("2_2xgey")
+type = "ChangeOpinion"
+target = "Church"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pi13s"]
+script = ExtResource("3_3y423")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_5rj2s"]
+script = ExtResource("2_2xgey")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_byw7f"]
+script = ExtResource("2_2xgey")
+type = "ChangeStat"
+target = "Stewardship"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_vd0rs"]
+script = ExtResource("2_2xgey")
+type = "UnlockEvent"
+target = "MF002"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_o04pb"]
+script = ExtResource("1_0rpn1")
+text = "\"Give him whatever he needs. Progress must be pursued!\""
+success_text = "You provide the funds. The workshop buzzes with activity for months, filled with strange diagrams and whirring wooden models. Finally, the scholar returns, presenting you with a portfolio of perfected schematics, including a revolutionary design for a water-powered factory mill. You have unlocked a new era of industry."
+failure_text = "The scholar's ambition outstrips his ability. After months of costly experiments that yield nothing but smoke and broken gears, he admits defeat. The theories were too complex to replicate. The gold is lost, and the court's traditionalists mock your failed investment in \"progress.\""
+skill_check = SubResource("Resource_pi13s")
+required_gold = 150
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_2xgey")]([SubResource("Resource_5rj2s"), SubResource("Resource_byw7f"), SubResource("Resource_vd0rs")])
+failure_outcomes = Array[ExtResource("2_2xgey")]([SubResource("Resource_b1pgd"), SubResource("Resource_qvq0o")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_afau6"]
+script = ExtResource("2_2xgey")
+type = "ChangeResource"
+target = "Treasury"
+value = -75
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_s8xf2"]
+script = ExtResource("3_3y423")
+stat = "Stewardship"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_8e2u6"]
+script = ExtResource("2_2xgey")
+type = "ChangeResource"
+target = "Treasury"
+value = -75
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bb3to"]
+script = ExtResource("2_2xgey")
+type = "AddModifier"
+target = "MinorInnovations"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cwfa1"]
+script = ExtResource("1_0rpn1")
+text = "You give him a smaller grant. 
+\"Let him prove his theories before we commit a fortune.\""
+success_text = "With the limited funds, the scholar makes slow but steady progress. He manages to perfect several smaller innovations, such as a more efficient crane and a better designed aqueduct, but lacks the resources for the truly revolutionary factory mill. You have gained a modest benefit with minimal risk."
+failure_text = "The small grant is simply not enough. The scholar's work stalls due to a lack of materials and assistants. He abandons the project in frustration. Your caution has ensured the venture's failure."
+skill_check = SubResource("Resource_s8xf2")
+required_gold = 75
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_2xgey")]([SubResource("Resource_8e2u6"), SubResource("Resource_bb3to")])
+failure_outcomes = Array[ExtResource("2_2xgey")]([SubResource("Resource_afau6")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_2xgey"]
+script = ExtResource("2_2xgey")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3y423"]
+script = ExtResource("1_0rpn1")
+text = "\"Such things are best left alone. The old ways are reliable.\""
+success_text = "You dismiss the scholar and his strange diagrams. The Church is pleased by your adherence to tradition and your skepticism of worldly knowledge that does not come from scripture."
+failure_text = "You dismiss the scholar and his strange diagrams. The Church is pleased by your adherence to tradition and your skepticism of worldly knowledge that does not come from scripture."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_2xgey")]([SubResource("Resource_2xgey")])
+failure_outcomes = Array[ExtResource("2_2xgey")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_kg20g")
+category = 3
+event_id = "MF006"
+title = "A Scientific Breakthrough"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = "A scholar at court believes he is on the verge of rediscovering ancient principles of engineering and mathematics."
+description = "A scholar you patronize requests an audience, his eyes wide with excitement. \"My Liege, my studies of old Roman texts have revealed wonders! Principles of leverage, hydraulics, and complex gear ratios... knowledge lost for centuries! With a proper grant to fund a workshop and hire assistants, I believe I can turn these theories into practical applications that could revolutionize our kingdom's industry.\""
+vignette_texture = ""
+options = Array[ExtResource("1_0rpn1")]([SubResource("Resource_o04pb"), SubResource("Resource_cwfa1"), SubResource("Resource_3y423")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

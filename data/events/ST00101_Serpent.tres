@@ -1,0 +1,122 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=16 format=3 uid="uid://0efh5pf18t6r"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_gg2sf"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_jpd0q"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_qvdwq"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_g53w7"]
+
+[sub_resource type="Resource" id="Resource_kjti8"]
+script = ExtResource("2_qvdwq")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 2
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sjr4h"]
+script = ExtResource("2_qvdwq")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_d51oe"]
+script = ExtResource("3_g53w7")
+stat = "Diplomacy"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_t14kx"]
+script = ExtResource("2_qvdwq")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 2
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_vjdf0"]
+script = ExtResource("1_gg2sf")
+text = "\"He is family. It's nothing.\""
+success_text = "You dismiss the warnings."
+failure_text = "Your dismissal is seen as naive."
+skill_check = SubResource("Resource_d51oe")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_qvdwq")]([SubResource("Resource_t14kx")])
+failure_outcomes = Array[ExtResource("2_qvdwq")]([SubResource("Resource_kjti8"), SubResource("Resource_sjr4h")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_8rqyt"]
+script = ExtResource("2_qvdwq")
+type = "AddModifier"
+target = "Valerius_Cautious"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ttqli"]
+script = ExtResource("2_qvdwq")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 2
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qvdwq"]
+script = ExtResource("3_g53w7")
+stat = "Intrigue"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_g53w7"]
+script = ExtResource("2_qvdwq")
+type = "AddModifier"
+target = "Counter-Espionage"
+value = 1
+duration = 8
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nud7i"]
+script = ExtResource("2_qvdwq")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 2
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2gf33"]
+script = ExtResource("1_gg2sf")
+text = "\"Have him watched.\" "
+success_text = "Your spies are effective. You gain a temporary bonus against his schemes."
+failure_text = "Valerius spots your spies and becomes more cautious."
+skill_check = SubResource("Resource_qvdwq")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_qvdwq")]([SubResource("Resource_g53w7"), SubResource("Resource_nud7i")])
+failure_outcomes = Array[ExtResource("2_qvdwq")]([SubResource("Resource_8rqyt"), SubResource("Resource_ttqli")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_jpd0q")
+category = 4
+event_id = "SERPENT_S1"
+title = "Troubling Whispers"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = ""
+description = "Your spymaster reports that your uncle, Lord Valerius, has been holding secret meetings. \"He speaks often of your father's reign and hints that the line of succession was... complicated,\" the spymaster warns. \"He is either a nostalgic old fool or a dangerous man.\""
+vignette_texture = ""
+options = Array[ExtResource("1_gg2sf")]([SubResource("Resource_vjdf0"), SubResource("Resource_2gf33")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

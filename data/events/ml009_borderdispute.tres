@@ -1,0 +1,89 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=11 format=3 uid="uid://b6fmxh2j37alh"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_72hvs"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_vo5l4"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_yi6q2"]
+
+[sub_resource type="Resource" id="Resource_vo5l4"]
+script = ExtResource("2_vo5l4")
+type = "DeclareWar"
+target = "{weak_neighbor_kingdom_id}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_8dtbs"]
+script = ExtResource("2_vo5l4")
+type = "AddProvince"
+target = "{weak_neighbor_province_name}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q4mbq"]
+script = ExtResource("2_vo5l4")
+type = "ChangeResource"
+target = "Manpower"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_du3nl"]
+script = ExtResource("2_vo5l4")
+type = "ChangeKingdomRelation"
+target = "{weak_neighbor_kingdom_id}"
+value = -60
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_u15i5"]
+script = ExtResource("1_72hvs")
+text = "\"The land is ours by right. I will press the claim.\""
+success_text = "Your ultimatum is delivered. Seeing your superior military might and the conviction in your claim, {weak_neighbor_ruler_name} reluctantly cedes the province! It is a stunning diplomatic and military victory, though it has severely damaged your relationship."
+failure_text = "Your demand is met with scorn. \"If you want this land, you will have to take it from our cold, dead hands,\" comes the reply. Your bluff has been called. You have provoked a war!"
+required_gold = 0
+required_manpower = 200
+required_food = 0
+success_outcomes = Array[ExtResource("2_vo5l4")]([SubResource("Resource_8dtbs"), SubResource("Resource_q4mbq"), SubResource("Resource_du3nl")])
+failure_outcomes = Array[ExtResource("2_vo5l4")]([SubResource("Resource_vo5l4")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_vgwf0"]
+script = ExtResource("2_vo5l4")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rpiqd"]
+script = ExtResource("1_72hvs")
+text = "\"No, the risk of war is too great. Let the claim lie dormant.\""
+success_text = "You choose peace over conquest. The opportunity is lost, and your more aggressive nobles see it as a sign of weakness."
+failure_text = "You choose peace over conquest. The opportunity is lost, and your more aggressive nobles see it as a sign of weakness."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_vo5l4")]([SubResource("Resource_vgwf0")])
+failure_outcomes = Array[ExtResource("2_vo5l4")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_yi6q2")
+category = 7
+event_id = "ML009"
+title = "A Border Dispute"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 150
+summary = "With no empty land to expand into, your Marshal suggests pressing an ancient claim on a neighbor's province."
+description = "With no unclaimed lands to expand into, your Marshal points to the map again, this time at the province of {weak_neighbor_province_name}, currently held by the {weak_neighbor_kingdom_name}. \"My Liege,\" he says grimly, \"this land was ours in ages past, our claim is ancient but just. Their hold on it is weak. We could press our claim and seize it. It is a bold move that could lead to war, but the prize is a rich and developed province.\""
+vignette_texture = ""
+options = Array[ExtResource("1_72hvs")]([SubResource("Resource_u15i5"), SubResource("Resource_rpiqd")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

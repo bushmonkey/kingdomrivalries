@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://lx266btw18dn"]
+
+[ext_resource type="Script" uid="uid://ckwywfae0op5y" path="res://scenes/ui/action_selector_panel.gd" id="1_m3lid"]
+
+[node name="ActionSelectorPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_m3lid")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "What should we focus on next, my lord?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EconomyBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Economy"
+
+[node name="AgricultureBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Agriculture"
+
+[node name="CultureBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Culture"
+
+[node name="ManufacturingBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Manufacturing"
+
+[node name="ScienceBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Science"
+
+[node name="ExpeditionBtn" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "Expedition
+"

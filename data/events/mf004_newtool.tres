@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=10 format=3 uid="uid://bk2ne4foi4nxd"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_xnce5"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_bu3ew"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_eq2xc"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_8xyto"]
+
+[sub_resource type="Resource" id="Resource_xojlq"]
+script = ExtResource("3_8xyto")
+stat = "Stewardship"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_buouh"]
+script = ExtResource("2_bu3ew")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mphfg"]
+script = ExtResource("2_bu3ew")
+type = "AddModifier"
+target = "ImprovedTools"
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_b8u0l"]
+script = ExtResource("1_xnce5")
+text = "\"Order the royal blacksmiths to produce this new design for the realm.\" "
+success_text = "Your investment pays off. The new heavy plows allow farmers to work more land more effectively. The harvest surplus grows."
+failure_text = "The blacksmiths struggle with the new design, producing plows that are brittle and unwieldy. The project is a costly failure."
+skill_check = SubResource("Resource_xojlq")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_bu3ew")]([SubResource("Resource_buouh"), SubResource("Resource_mphfg")])
+failure_outcomes = Array[ExtResource("2_bu3ew")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_3o5kj"]
+script = ExtResource("1_xnce5")
+text = "\"Too expensive. The old ways have served us well enough.\" "
+success_text = "You send the craftsman away. Your farmers continue to use their traditional tools."
+failure_text = "You send the craftsman away. Your farmers continue to use their traditional tools."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_bu3ew")]([])
+failure_outcomes = Array[ExtResource("2_bu3ew")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_eq2xc")
+category = 3
+event_id = "MF004"
+title = "The Heavy Plow"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = "A Crafstman has a new tool he wants to demonstrate to the court."
+description = "A craftsman from the continent demonstrates a new type of plow. It has a mouldboard to turn the soil, allowing for the cultivation of heavier, richer clay soils that were previously unusable. Equipping the kingdom's farmers with this device would be expensive, but could revolutionize our agriculture."
+vignette_texture = ""
+options = Array[ExtResource("1_xnce5")]([SubResource("Resource_b8u0l"), SubResource("Resource_3o5kj")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

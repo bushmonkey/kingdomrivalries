@@ -1,0 +1,103 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://dpxmuxri4gkvm"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_eej40"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_lfisp"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_serg6"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_x30ob"]
+
+[sub_resource type="Resource" id="Resource_serg6"]
+script = ExtResource("2_serg6")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_x30ob"]
+script = ExtResource("2_serg6")
+type = "AddModifier"
+target = "MinorInjury"
+value = 3
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hvtvu"]
+script = ExtResource("3_x30ob")
+stat = "Martial"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_chl76"]
+script = ExtResource("2_serg6")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_kbxe1"]
+script = ExtResource("2_serg6")
+type = "ChangeStat"
+target = "Vigor"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0yi68"]
+script = ExtResource("1_eej40")
+text = "\"I will lead the charge myself!\" "
+success_text = "You lead the hunt with skill and courage, felling a massive boar with a single, well-placed spear thrust. The nobles are deeply impressed by your prowess."
+failure_text = "The boar turns at the last second! It gores your leg before your hounds can pull it down. You are carried back to the castle in shame."
+skill_check = SubResource("Resource_hvtvu")
+success_outcomes = Array[ExtResource("2_serg6")]([SubResource("Resource_chl76"), SubResource("Resource_kbxe1")])
+failure_outcomes = Array[ExtResource("2_serg6")]([SubResource("Resource_serg6"), SubResource("Resource_x30ob")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_87h8b"]
+script = ExtResource("2_serg6")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5slhx"]
+script = ExtResource("3_x30ob")
+stat = "Charisma"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_hniyh"]
+script = ExtResource("2_serg6")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_tdu3d"]
+script = ExtResource("1_eej40")
+text = "I will join, but let another take the first spear.\" "
+success_text = "You enjoy the hunt from a safe distance, making pleasant conversation with your nobles. The day is a fine social success."
+failure_text = "The hunt does not go very well without you and your presence is missed at the front. The conversations at a safe distance with the nobles is stilted and boring."
+skill_check = SubResource("Resource_5slhx")
+success_outcomes = Array[ExtResource("2_serg6")]([SubResource("Resource_hniyh")])
+failure_outcomes = Array[ExtResource("2_serg6")]([SubResource("Resource_87h8b")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_lfisp")
+category = 6
+event_id = "PG006"
+title = "The Boar Hunt"
+rarity = 0
+selection_cost = 0
+description = "A group of your most influential nobles have organized a grand boar hunt in the royal woods and have invited you to take the honorary first spear. It is a dangerous but prestigious affair."
+options = Array[ExtResource("1_eej40")]([SubResource("Resource_0yi68"), SubResource("Resource_tdu3d")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

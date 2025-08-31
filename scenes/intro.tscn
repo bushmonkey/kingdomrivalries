@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bey4ej5b7e74t"]
+
+[ext_resource type="Texture2D" uid="uid://c3wb7uhhwan0p" path="res://assets/rivalKingdoms.icon.png" id="1_ioskq"]
+[ext_resource type="Script" uid="uid://1oymjtlraw4q" path="res://scenes/intro.gd" id="1_yjqpq"]
+[ext_resource type="AudioStream" uid="uid://bnqikl33ydk8o" path="res://assets/medieval-tune.mp3" id="3_4bx60"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_yjqpq")
+
+[node name="RivalKingdoms_icon" type="Sprite2D" parent="."]
+position = Vector2(567, 320)
+scale = Vector2(0.437494, 0.458509)
+texture = ExtResource("1_ioskq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4bx60")
+volume_db = -9.33
+autoplay = true
+parameters/looping = false

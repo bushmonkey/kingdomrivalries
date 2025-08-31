@@ -1,0 +1,134 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=17 format=3 uid="uid://bpf52imarruvg"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_tpi3y"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_ky14f"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_s84bp"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_1k4ig"]
+
+[sub_resource type="Resource" id="Resource_3aa17"]
+script = ExtResource("2_ky14f")
+type = "ChangeResource"
+target = "treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2o1n0"]
+script = ExtResource("2_ky14f")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ur1rr"]
+script = ExtResource("3_s84bp")
+stat = "Stewardship"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mp2ua"]
+script = ExtResource("2_ky14f")
+type = "ChangeResource"
+target = "treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wbuwq"]
+script = ExtResource("2_ky14f")
+type = "ChangeOpinion"
+target = "Public"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rb7fj"]
+script = ExtResource("1_tpi3y")
+text = "Organize relief efforts."
+success_text = "Thanks to your brilliant organization, the relief effort is a resounding success! The people sing your praises, though the treasury is much lighter."
+failure_text = "Despite your efforts, mismanagement and corruption plague the relief effort. Much of the gold is wasted, and the people grumble that you have failed them."
+skill_check = SubResource("Resource_ur1rr")
+required_gold = 100
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_ky14f")]([SubResource("Resource_mp2ua"), SubResource("Resource_wbuwq")])
+failure_outcomes = Array[ExtResource("2_ky14f")]([SubResource("Resource_3aa17"), SubResource("Resource_2o1n0")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_sl7aa"]
+script = ExtResource("2_ky14f")
+type = "ChangeOpinion"
+target = "Church"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4d5fo"]
+script = ExtResource("3_s84bp")
+stat = "Diplomacy"
+difficulty = 10
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_c0xxe"]
+script = ExtResource("2_ky14f")
+type = "ChangeOpinion"
+target = "Church"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0fpm3"]
+script = ExtResource("1_tpi3y")
+text = "Pray for deliverance."
+success_text = "Your fervent prayers are heard! The rains cease, and the church proclaims it a sign of your divine favor."
+failure_text = "The heavens remain silent. The floodwaters continue to rise, and the clergy whispers that your faith is weak."
+skill_check = SubResource("Resource_4d5fo")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_ky14f")]([SubResource("Resource_c0xxe")])
+failure_outcomes = Array[ExtResource("2_ky14f")]([SubResource("Resource_sl7aa")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_xi3ax"]
+script = ExtResource("2_ky14f")
+type = "ChangeOpinion"
+target = "Public"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nggbm"]
+script = ExtResource("1_tpi3y")
+text = "Do nothing and save the money."
+success_text = "You have weathered the storm by hoarding your resources. The treasury is safe, but the people will not soon forget your callousness as they bury their dead."
+failure_text = "You have weathered the storm by hoarding your resources. The treasury is safe, but the people will not soon forget your callousness as they bury their dead."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_ky14f")]([SubResource("Resource_xi3ax")])
+failure_outcomes = Array[ExtResource("2_ky14f")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_1k4ig")
+category = 2
+event_id = "AG001"
+title = "A Terrible Flood"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 1
+selection_cost = 0
+summary = "The river has burst its banks, flooding the fertile lands of your capital province! Your people look to you for guidance."
+description = "The river has burst its banks, flooding the fertile lands of your capital province! Your people look to you for guidance."
+vignette_texture = ""
+options = Array[ExtResource("1_tpi3y")]([SubResource("Resource_rb7fj"), SubResource("Resource_0fpm3"), SubResource("Resource_nggbm")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -1,0 +1,158 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=21 format=3 uid="uid://4s4skk8ub3yp"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_jt6wd"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_lb5ck"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_vijce"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_4vwe1"]
+
+[sub_resource type="Resource" id="Resource_al2va"]
+script = ExtResource("2_vijce")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a4xnt"]
+script = ExtResource("2_vijce")
+type = "ChangeOpinion"
+target = "Church"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_k5oy2"]
+script = ExtResource("3_4vwe1")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_dpes6"]
+script = ExtResource("2_vijce")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_by6f7"]
+script = ExtResource("2_vijce")
+type = "AddModifier"
+target = "AgeOfReason"
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_eip4n"]
+script = ExtResource("2_vijce")
+type = "ChangeOpinion"
+target = "Church"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_r0xln"]
+script = ExtResource("1_jt6wd")
+text = "\"Fund a scriptorium. I want these books translated and studied.\""
+success_text = "You defy the Bishop. Your investment in the new scriptorium pays off as your scholars diligently translate the ancient works. The rediscovery of classical logic and advanced mathematics sparks a small renaissance at your court, leading to more efficient administration and engineering."
+failure_text = "Your scholars are unequal to the task. The translations are flawed and nonsensical, and the project descends into academic squabbling. You have spent a great deal of gold and angered the Church for nothing."
+skill_check = SubResource("Resource_k5oy2")
+success_outcomes = Array[ExtResource("2_vijce")]([SubResource("Resource_dpes6"), SubResource("Resource_by6f7"), SubResource("Resource_eip4n")])
+failure_outcomes = Array[ExtResource("2_vijce")]([SubResource("Resource_al2va"), SubResource("Resource_a4xnt")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_vijce"]
+script = ExtResource("2_vijce")
+type = "ChangeOpinion"
+target = "Church"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4vwe1"]
+script = ExtResource("2_vijce")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_8t0vn"]
+script = ExtResource("1_jt6wd")
+text = "\"The Bishop is right. Burn these dangerous books for all to see!\""
+success_text = "You make a grand public spectacle of the book burning. The Bishop praises your piety from his pulpit, declaring you a true defender of the faith. The Church's support for your rule is absolute, though some of your more learned courtiers shake their heads in private."
+failure_text = "You make a grand public spectacle of the book burning. The Bishop praises your piety from his pulpit, declaring you a true defender of the faith. The Church's support for your rule is absolute, though some of your more learned courtiers shake their heads in private."
+success_outcomes = Array[ExtResource("2_vijce")]([SubResource("Resource_vijce"), SubResource("Resource_4vwe1")])
+failure_outcomes = Array[ExtResource("2_vijce")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_4pfgf"]
+script = ExtResource("2_vijce")
+type = "ChangeOpinion"
+target = "Church"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hwwdy"]
+script = ExtResource("2_vijce")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ag24b"]
+script = ExtResource("3_4vwe1")
+stat = "Intrigue"
+difficulty = 17
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_wjygo"]
+script = ExtResource("2_vijce")
+type = "AddModifier"
+target = "AgeOfReason"
+value = 2
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_7r8go"]
+script = ExtResource("2_vijce")
+type = "ChangeOpinion"
+target = "Church"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_7fq5k"]
+script = ExtResource("1_jt6wd")
+text = "(Lie) Publicly burn a collection of old tax records. Study the real books in secret."
+success_text = "A masterstroke of cunning! The public burning satisfies the Bishop, who praises your piety. Meanwhile, in a hidden chamber, your most trusted scholars secretly translate the forbidden texts, granting you their benefits without the political fallout. You have played the game and won."
+failure_text = "Your deception is discovered! An informant reveals the switch to the Bishop, who is incandescent with rage. He denounces you as a deceitful heretic from every pulpit in the land. You are condemned by the Church and seen as untrustworthy by your own court."
+skill_check = SubResource("Resource_ag24b")
+success_outcomes = Array[ExtResource("2_vijce")]([SubResource("Resource_wjygo"), SubResource("Resource_7r8go")])
+failure_outcomes = Array[ExtResource("2_vijce")]([SubResource("Resource_4pfgf"), SubResource("Resource_hwwdy")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_lb5ck")
+category = 0
+event_id = "RD006"
+title = "Heretical Texts"
+rarity = 0
+selection_cost = 0
+summary = ""
+description = "A monk who has spent years traveling in the learned courts of Moorish Spain has returned to your kingdom. He has brought with him a trunk full of books, not of scripture, but of ancient Greek philosophy and strange Arabic mathematics. Your local Bishop has heard of this and is furious, declaring the texts to be dangerous, godless heresies that promote reason over faith. He demands you seize the books and burn them publicly."
+options = Array[ExtResource("1_jt6wd")]([SubResource("Resource_r0xln"), SubResource("Resource_8t0vn"), SubResource("Resource_7fq5k")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -1,0 +1,104 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://bbklgv45i531n"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_jb8v7"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_2yj42"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_l0s6y"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_jni6q"]
+
+[sub_resource type="Resource" id="Resource_wap5d"]
+script = ExtResource("2_2yj42")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_tg5mv"]
+script = ExtResource("3_jni6q")
+stat = "Vigor"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_762be"]
+script = ExtResource("2_2yj42")
+type = "ChangeStat"
+target = "Martial"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_gqba5"]
+script = ExtResource("1_jb8v7")
+text = "\"Draw your steel, old friend. Let us see if I have forgotten my lessons.\"
+"
+success_text = "You spend the next few weeks in the yard, your days filled with the ring of steel and the ache of honest work. Your Master-at-Arms pushes you hard, and you feel the old instincts returning. You are faster, stronger, and more confident in your martial prowess."
+failure_text = "Despite your best efforts, the training is a frustrating ordeal. You are clumsy and slow, and the Master-at-Arms easily outmaneuvers you at every turn. He tries to hide his disappointment, but you can see it in his eyes. You have gained nothing but bruises."
+skill_check = SubResource("Resource_tg5mv")
+success_outcomes = Array[ExtResource("2_2yj42")]([SubResource("Resource_762be")])
+failure_outcomes = Array[ExtResource("2_2yj42")]([SubResource("Resource_wap5d")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_mtrif"]
+script = ExtResource("2_2yj42")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_k4ve7"]
+script = ExtResource("3_jni6q")
+stat = "Martial"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_q5s5i"]
+script = ExtResource("2_2yj42")
+type = "ChangeStat"
+target = "Martial"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_b5ceq"]
+script = ExtResource("2_2yj42")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_si4ks"]
+script = ExtResource("1_jb8v7")
+text = "A better test! Assemble my knights for a grand melee!"
+success_text = "You hold a \"passage of arms,\" a grand melee where you and your best knights compete in a thrilling, chaotic mock battle. You fight with honor and surprising skill, earning the genuine respect of your vassals who see you not just as a ruler, but as a true warrior among them."
+failure_text = "The melee is a humiliating experience. You are unhorsed early and easily bested by several of your own knights. While they are polite in their victory, you can sense their private scorn. They do not see a warrior king, merely a man playing at war."
+skill_check = SubResource("Resource_k4ve7")
+success_outcomes = Array[ExtResource("2_2yj42")]([SubResource("Resource_q5s5i"), SubResource("Resource_b5ceq")])
+failure_outcomes = Array[ExtResource("2_2yj42")]([SubResource("Resource_mtrif")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_4xi3n"]
+script = ExtResource("1_jb8v7")
+text = "\"I have more important matters to attend to than swinging a sword.\""
+success_text = "You dismiss your Master-at-Arms to focus on matters of state. He bows, though you see a flicker of disapproval in his eyes. Your skills with a blade remain as they are, for better or worse."
+failure_text = "You dismiss your Master-at-Arms to focus on matters of state. He bows, though you see a flicker of disapproval in his eyes. Your skills with a blade remain as they are, for better or worse."
+success_outcomes = Array[ExtResource("2_2yj42")]([])
+failure_outcomes = Array[ExtResource("2_2yj42")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_l0s6y")
+category = 6
+event_id = "PG005"
+title = "The Training Yard"
+rarity = 0
+selection_cost = 0
+description = "Lately, you feel your skills with a blade have grown dull from the long days spent at court. Your Master-at-Arms, a grizzled veteran with a network of scars, stands ready in the training yard. He gestures to the weapon rack. \"A ruler who cannot fight is a ruler who cannot command respect, my Liege. Shall we spar? A few weeks of hard training will see your edge returned.\""
+options = Array[ExtResource("1_jb8v7")]([SubResource("Resource_gqba5"), SubResource("Resource_si4ks"), SubResource("Resource_4xi3n")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

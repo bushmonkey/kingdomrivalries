@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="EventOption" load_steps=10 format=3 uid="uid://b715bpi2qwb6c"]
+
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="1_qysr4"]
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="2_a7c10"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_a7c10"]
+
+[sub_resource type="Resource" id="Resource_a7c10"]
+script = ExtResource("1_qysr4")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_lhc3e"]
+script = ExtResource("1_qysr4")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_l3vf0"]
+script = ExtResource("3_a7c10")
+stat = "Charisma"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_n1tqx"]
+script = ExtResource("1_qysr4")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_icd8l"]
+script = ExtResource("1_qysr4")
+type = "StartCourting"
+target = "{lady_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bikit"]
+script = ExtResource("1_qysr4")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[resource]
+script = ExtResource("2_a7c10")
+text = "I will focus my attention on the {lady_personality} {lady_name}."
+success_text = "You spend the evening dancing with {lady_name}, showering her with attention and witty compliments. By the end of the night, she is clearly smitten. You have laid the foundation for a promising courtship."
+failure_text = "Your attempts to woo {lady_name} are a disaster. You step on her feet while dancing and your conversation is dull. She spends the rest of the evening avoiding you. You have made a fool of yourself."
+skill_check = SubResource("Resource_l3vf0")
+success_outcomes = Array[ExtResource("1_qysr4")]([SubResource("Resource_n1tqx"), SubResource("Resource_icd8l"), SubResource("Resource_bikit")])
+failure_outcomes = Array[ExtResource("1_qysr4")]([SubResource("Resource_a7c10"), SubResource("Resource_lhc3e")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"

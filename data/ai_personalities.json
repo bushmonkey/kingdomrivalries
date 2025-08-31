@@ -1,0 +1,18 @@
+{
+  "personalities": [
+	{
+	  "id": "WARLORD",
+	  "decisionWeights": {
+		"military": { "DeclareWar": 70, "InvestArmy": 25, "MakePeace": 5 },
+		"economic": { "RaiseTaxes": 60, "InvestInfrastructure": 40 }
+	  }
+	},
+	{
+	  "id": "BUILDER",
+	  "decisionWeights": {
+		"military": { "DeclareWar": 5, "InvestArmy": 45, "MakePeace": 50 },
+		"economic": { "RaiseTaxes": 10, "InvestInfrastructure": 90 }
+	  }
+	}
+  ]
+}

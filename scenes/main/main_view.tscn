@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=3 uid="uid://bdx6q15q7qr7j"]
+
+[ext_resource type="Shader" uid="uid://xrh2dm5tkgl2" path="res://Shaders/scanlines.gdshader" id="1_45iqt"]
+[ext_resource type="Script" uid="uid://b7dnt75ccrrc0" path="res://scenes/main/main_view.gd" id="1_dwj5p"]
+[ext_resource type="PackedScene" uid="uid://djttfs2uw14ri" path="res://scenes/ui/council_view.tscn" id="3_1vjn4"]
+[ext_resource type="AudioStream" uid="uid://cb41bp71q4pmp" path="res://assets/kingdom-music.mp3" id="3_kl6ts"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kl6ts"]
+shader = ExtResource("1_45iqt")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 0.5
+shader_parameter/warp_amount = 0.05
+shader_parameter/vignette_amount = 0.5
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/grille_amount = 0.05
+shader_parameter/brightness_boost = 1.2
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_dwj5p"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1vjn4"]
+
+[sub_resource type="Theme" id="Theme_mm1o8"]
+
+[node name="MainView" type="Control" groups=["main_view"]]
+material = SubResource("ShaderMaterial_kl6ts")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_dwj5p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141208, 0.377947, 0.167027, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="StatsDisplay" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/StatsDisplay"]
+layout_mode = 2
+
+[node name="DateLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "01-01-1600"
+
+[node name="GoldLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "gold: 500 (+50)"
+
+[node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "| Food: 500 (+20)"
+
+[node name="ManpowerLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "| Manpower: 500"
+
+[node name="PublicLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "| Public +50"
+
+[node name="NobilityLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "| Nobility +50"
+
+[node name="ChurchLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "| Church +50"
+
+[node name="Separator" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2
+
+[node name="KingdomLabel" type="Label" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+layout_mode = 2
+text = "Eric of Bovia"
+
+[node name="KingdomButton" type="MenuButton" parent="MarginContainer/VBoxContainer/StatsDisplay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+button_group = SubResource("ButtonGroup_dwj5p")
+text = "World Map"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1vjn4")
+
+[node name="CenterStage" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer" groups=["main_view"]]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme = SubResource("Theme_mm1o8")
+
+[node name="CouncilView" parent="MarginContainer/VBoxContainer/PanelContainer/CenterStage" instance=ExtResource("3_1vjn4")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 549.0
+offset_top = 255.0
+offset_right = 549.0
+offset_bottom = 255.0
+
+[node name="FooterTooltip" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+vertical_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kl6ts")
+volume_db = -16.739
+autoplay = true

@@ -1,0 +1,76 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=11 format=3 uid="uid://b8lrtvxcau2fv"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_4ljsu"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_rdw7y"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_xbrrk"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_y4f6b"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="5_y4f6b"]
+
+[sub_resource type="Resource" id="Resource_xbrrk"]
+script = ExtResource("2_xbrrk")
+type = "PlayerDiesByExecution"
+target = "PlayerRuler"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_krurg"]
+script = ExtResource("3_y4f6b")
+stat = "Vigor"
+difficulty = 1000
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_y4f6b"]
+script = ExtResource("2_xbrrk")
+type = "PlayerDiesByExecution"
+target = "PlayerRuler"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ibru7"]
+script = ExtResource("1_4ljsu")
+text = "There is nothing I can do."
+success_text = "You are dragged from your throne as your personal guard is overwhelmed. The nobles do not grant you the mercy of exile. In the cold light of the courtyard, a traitor's sword ends your reign and your life. The realm is in chaos."
+failure_text = "You are dragged from your throne as your personal guard is overwhelmed. The nobles do not grant you the mercy of exile. In the cold light of the courtyard, a traitor's sword ends your reign and your life. The realm is in chaos."
+skill_check = SubResource("Resource_krurg")
+success_outcomes = Array[ExtResource("2_xbrrk")]([SubResource("Resource_y4f6b")])
+failure_outcomes = Array[ExtResource("2_xbrrk")]([SubResource("Resource_xbrrk")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ok4yc"]
+script = ExtResource("5_y4f6b")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 1
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_rdw7y")
+category = 4
+trigger_conditions = SubResource("Resource_ok4yc")
+event_id = "SP001"
+title = "The Coffers are Empty"
+description = "Your treasurer throws the empty coin chests open at your feet. The gold is gone. Word of the crown's bankruptcy spreads through the castle like wildfire. Your nobles, who you have failed to pay and whose lands you have overtaxed, see their moment.
+
+Led by a grim-faced baron, they storm the throne room. \"Your mismanagement has beggared the realm and dishonored us all,\" he declares, his hand on his sword. \"Your reign is over.\""
+options = Array[ExtResource("1_4ljsu")]([SubResource("Resource_ibru7")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

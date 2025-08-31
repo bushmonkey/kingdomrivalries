@@ -1,0 +1,181 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=23 format=3 uid="uid://ct4aphwcis7fy"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_pm1pf"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_64gua"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_k0wkm"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_fsd3n"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="5_fsd3n"]
+
+[sub_resource type="Resource" id="Resource_jslen"]
+script = ExtResource("2_64gua")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_tcwhq"]
+script = ExtResource("2_64gua")
+type = "ChangeCharacterOpinion"
+target = "{friendly_ruler_id}"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_njsrg"]
+script = ExtResource("2_64gua")
+type = "FormAlliance"
+target = "{friendly_kingdom_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_i0kgy"]
+script = ExtResource("3_fsd3n")
+stat = "Diplomacy"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_2t1pg"]
+script = ExtResource("2_64gua")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qqwun"]
+script = ExtResource("2_64gua")
+type = "FormAlliance"
+target = "{friendly_kingdom_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2yb4i"]
+script = ExtResource("2_64gua")
+type = "ChangeCharacterOpinion"
+target = "{friendly_ruler_id}"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_21cwq"]
+script = ExtResource("1_pm1pf")
+text = "An alliance will bring strength to both our realms! Prepare a feast in their honor."
+success_text = "The feast is a legendary success! Songs are sung, bonds are forged over fine wine, and your guest is thoroughly impressed by your hospitality. A formal alliance is sealed, promising mutual defense and friendship for years to come."
+failure_text = "The feast is an awkward affair. The wine is sour, the boar is overcooked, and your attempts at witty conversation fall flat. While an alliance is grudgingly agreed to, your new ally seems to have second thoughts about your competence."
+skill_check = SubResource("Resource_i0kgy")
+success_outcomes = Array[ExtResource("2_64gua")]([SubResource("Resource_2t1pg"), SubResource("Resource_qqwun"), SubResource("Resource_2yb4i")])
+failure_outcomes = Array[ExtResource("2_64gua")]([SubResource("Resource_jslen"), SubResource("Resource_tcwhq"), SubResource("Resource_njsrg")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_0oy67"]
+script = ExtResource("2_64gua")
+type = "ChangeCharacterOpinion"
+target = "{friendly_ruler_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_v8wj0"]
+script = ExtResource("3_fsd3n")
+stat = "Diplomacy"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_c2jui"]
+script = ExtResource("2_64gua")
+type = "ChangeCharacterOpinion"
+target = "{friendly_ruler_id}"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_oto3h"]
+script = ExtResource("1_pm1pf")
+text = "Our kingdom must stand on its own for now, but we value their friendship."
+success_text = "You meet with the visiting ruler and explain your position with grace and tact. They seem to understand, if a little disappointed. They accept your reasoning, leaving the door open for future cooperation. The friendship, though not strengthened, is preserved."
+failure_text = "Your refusal, though you meant it to be polite, comes across as a cold and thinly veiled insult. Your guest's face hardens, and they depart your court the next morning with only the barest of courtesies. You have damaged a valuable friendship."
+skill_check = SubResource("Resource_v8wj0")
+success_outcomes = Array[ExtResource("2_64gua")]([SubResource("Resource_c2jui")])
+failure_outcomes = Array[ExtResource("2_64gua")]([SubResource("Resource_0oy67")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_64gua"]
+script = ExtResource("3_fsd3n")
+stat = ""
+difficulty = 10
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_fsd3n"]
+script = ExtResource("2_64gua")
+type = "ChangeCharacterOpinion"
+target = "{friendly_ruler_id}"
+value = -75
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_iuvsm"]
+script = ExtResource("2_64gua")
+type = "AddRival"
+target = "{friendly_ruler_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_b20s0"]
+script = ExtResource("1_pm1pf")
+text = "An alliance? With *them*? I have no time for such trivialities. Send them away."
+success_text = "Your dismissive reply is seen as the ultimate insult. The envoy leaves in a fury, and word of your arrogance spreads. You have not just refused an alliance; you have made a bitter enemy who will not soon forget this slight."
+failure_text = "Your dismissive reply is seen as the ultimate insult. The envoy leaves in a fury, and word of your arrogance spreads. You have not just refused an alliance; you have made a bitter enemy who will not soon forget this slight."
+skill_check = SubResource("Resource_64gua")
+success_outcomes = Array[ExtResource("2_64gua")]([SubResource("Resource_fsd3n"), SubResource("Resource_iuvsm")])
+failure_outcomes = Array[ExtResource("2_64gua")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_7th68"]
+script = ExtResource("5_fsd3n")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+requires_friendly_rival = true
+requires_unfriendly_rival = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_k0wkm")
+category = 0
+trigger_conditions = SubResource("Resource_7th68")
+event_id = "RD007"
+title = "A Royal Visit"
+rarity = 0
+selection_cost = 0
+summary = "The friendly ruler of a neighboring kingdom is visiting, presenting a clear opportunity to forge an alliance."
+description = "A messenger bearing the sigil of the [b]{friendly_kingdom_name}[/b] arrives. He announces that his ruler, [b]{friendly_ruler_name}[/b], is traveling through your lands and requests an audience at your court. Given the warm relations between your realms, this is clearly more than a social call; it is an overture."
+options = Array[ExtResource("1_pm1pf")]([SubResource("Resource_21cwq"), SubResource("Resource_oto3h"), SubResource("Resource_b20s0")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

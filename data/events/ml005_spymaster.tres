@@ -1,0 +1,156 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=20 format=3 uid="uid://b1uu0ngx2o6ft"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_31fy2"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_0g7qp"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_mx6x0"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_fm0jw"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="5_8q40a"]
+
+[sub_resource type="Resource" id="Resource_tv7qh"]
+script = ExtResource("2_0g7qp")
+type = "ChangeOpinion"
+target = "{unfriendly_ruler_id}"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wna4l"]
+script = ExtResource("2_0g7qp")
+type = "GainRivalCasusBelli"
+target = "{unfriendly_kingdom_id}"
+value = 3
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_yyooo"]
+script = ExtResource("3_fm0jw")
+stat = "Intrigue"
+difficulty = 17
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_aurxu"]
+script = ExtResource("2_0g7qp")
+type = "AddModifier"
+target = "AgentInCourt_{unfriendly_kingdom_id}"
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_y8l2x"]
+script = ExtResource("1_31fy2")
+text = "A deep cover agent. I want someone on the inside, close to their ruler."
+success_text = "A masterstroke of espionage. After many months, your spymaster reports that his chosen agent, known only as 'The Nightingale', has successfully gained a position as a trusted servant within the rival court. They will be a priceless source of information for years to come."
+failure_text = "A complete disaster! Your agent was discovered almost immediately. They were tortured and revealed everything before being executed. Your neighbor is furious at this blatant act of espionage, and your spymaster has been thoroughly humiliated."
+skill_check = SubResource("Resource_yyooo")
+success_outcomes = Array[ExtResource("2_0g7qp")]([SubResource("Resource_aurxu")])
+failure_outcomes = Array[ExtResource("2_0g7qp")]([SubResource("Resource_tv7qh"), SubResource("Resource_wna4l")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_k67ac"]
+script = ExtResource("2_0g7qp")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wbbx5"]
+script = ExtResource("2_0g7qp")
+type = "ChangeOpinion"
+target = "{unfriendly_ruler_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3grvm"]
+script = ExtResource("3_fm0jw")
+stat = "Stewardship"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_4sfa6"]
+script = ExtResource("2_0g7qp")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a7cej"]
+script = ExtResource("2_0g7qp")
+type = "RevealIntel"
+target = "{unfriendly_kingdom_id}"
+value = 24
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_73c5c"]
+script = ExtResource("1_31fy2")
+text = "Focus on the common folk. Bribe stable hands, tavern wenches, and city guards."
+success_text = "Your spymaster's network of informants is established with impressive speed. A steady stream of coin keeps their lips loose. You now have a clear picture of the kingdom's troop movements and the state of their treasury. The information is fresh, but the network will require constant funding to maintain."
+failure_text = "Your spymaster's coin is spent poorly. The bribes go to unreliable drunks or loyal subjects who immediately report the attempt. You have wasted a significant sum of gold and learned nothing, only alerting them that someone is snooping around."
+skill_check = SubResource("Resource_3grvm")
+success_outcomes = Array[ExtResource("2_0g7qp")]([SubResource("Resource_4sfa6"), SubResource("Resource_a7cej")])
+failure_outcomes = Array[ExtResource("2_0g7qp")]([SubResource("Resource_k67ac"), SubResource("Resource_wbbx5")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_0g7qp"]
+script = ExtResource("2_0g7qp")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_fm0jw"]
+script = ExtResource("1_31fy2")
+text = "It's too risky. We will rely on our own strength, not on spies."
+success_text = "You call off the operation. Your spymaster seems disappointed by your lack of cunning but obeys. Your gold is safe, and no diplomatic incidents are risked. You remain in the dark, but you are secure."
+failure_text = "You call off the operation. Your spymaster seems disappointed by your lack of cunning but obeys. Your gold is safe, and no diplomatic incidents are risked. You remain in the dark, but you are secure."
+success_outcomes = Array[ExtResource("2_0g7qp")]([SubResource("Resource_0g7qp")])
+failure_outcomes = Array[ExtResource("2_0g7qp")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_k7450"]
+script = ExtResource("5_8q40a")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+requires_friendly_rival = false
+requires_unfriendly_rival = true
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_mx6x0")
+category = 7
+trigger_conditions = SubResource("Resource_k7450")
+event_id = "ML005"
+title = "A Web of Whispers"
+rarity = 2
+selection_cost = 150
+summary = "Your spymaster asks for resources to establish a network of informants in a neighboring rival's kingdom."
+description = "Your spymaster requests a private audience. \"My Liege,\" he begins, his voice low, \"our knowledge of our neighbors is dangerously thin. We operate in darkness. Give me the resources, and I will establish a network of informants in our rival court {unfriendly_kingdom_name}. We will turn their servants, listen to their soldiers, and read their correspondence. Do I have your blessing?\""
+options = Array[ExtResource("1_31fy2")]([SubResource("Resource_y8l2x"), SubResource("Resource_73c5c"), SubResource("Resource_fm0jw")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

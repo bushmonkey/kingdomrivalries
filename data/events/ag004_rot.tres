@@ -1,0 +1,190 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=23 format=3 uid="uid://brqlmx6y6pc2d"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_q64d3"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_4jb5b"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_vdd4i"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_vdd4i"]
+
+[sub_resource type="Resource" id="Resource_7w2qf"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "Food"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dwfbc"]
+script = ExtResource("2_vdd4i")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_niq6o"]
+script = ExtResource("1_q64d3")
+text = "\"Burn it. Burn it all. I will not risk poisoning my people.\""
+success_text = "A grim smoke hangs over the capital for a day as the contents of the royal granaries are put to the torch. A season's worth of food is lost, a terrible blow to your security. But the sickness is contained, and the people, though fearful of the coming winter, are safe from the immediate threat."
+failure_text = "A grim smoke hangs over the capital for a day as the contents of the royal granaries are put to the torch. A season's worth of food is lost, a terrible blow to your security. But the sickness is contained, and the people, though fearful of the coming winter, are safe from the immediate threat."
+required_gold = 0
+required_manpower = 0
+required_food = 50
+success_outcomes = Array[ExtResource("2_vdd4i")]([SubResource("Resource_7w2qf"), SubResource("Resource_dwfbc")])
+failure_outcomes = Array[ExtResource("2_vdd4i")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_jwp8q"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_s43qg"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "Food"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_h4nry"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "Manpower"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_yoymw"]
+script = ExtResource("3_vdd4i")
+stat = "Stewardship"
+difficulty = 16
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_h8w78"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_fxwbs"]
+script = ExtResource("2_vdd4i")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0grau"]
+script = ExtResource("1_q64d3")
+text = "\"Attempt to salvage it. We cannot afford to lose the entire store.\""
+success_text = "A masterful effort! Your steward organizes a massive operation to sift and wash the grain. It is a painstaking and expensive process, but a significant portion of the food is saved. You have averted a total disaster through clever management."
+failure_text = "A catastrophe! The attempt to sort the grain only spreads the tainted dust, causing more workers to fall ill. The effort is a failure, and in the end, the remaining grain must be burned anyway. You have lost both the food and the gold you spent trying to save it."
+skill_check = SubResource("Resource_yoymw")
+required_gold = 100
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_vdd4i")]([SubResource("Resource_h8w78"), SubResource("Resource_fxwbs")])
+failure_outcomes = Array[ExtResource("2_vdd4i")]([SubResource("Resource_jwp8q"), SubResource("Resource_s43qg"), SubResource("Resource_h4nry")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_vdd4i"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "Food"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mvk02"]
+script = ExtResource("2_vdd4i")
+type = "ChangeCharacterOpinion"
+target = "{unfriendly_ruler_id}"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hrjbr"]
+script = ExtResource("3_vdd4i")
+stat = "Intrigue"
+difficulty = 17
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_8odyu"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "food"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_v6dim"]
+script = ExtResource("2_vdd4i")
+type = "ChangeResource"
+target = "Treasury"
+value = 250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_yk1s3"]
+script = ExtResource("2_vdd4i")
+type = "Plague"
+target = "{unfriendly_kingdom_id}"
+value = 24
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0adv7"]
+script = ExtResource("2_vdd4i")
+type = "ChangeOpinion"
+target = "Church"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rn6nt"]
+script = ExtResource("1_q64d3")
+text = "(Lie) \"Sell this 'surplus' grain to {unfriendly_kingdom_name}. Their troubles are not my concern.\""
+success_text = "A truly diabolical and successful scheme. Your merchants, feigning desperation for coin, sell the entire tainted stock to your unsuspecting rival. Your treasury swells, and soon, reports of a strange 'burning sickness' and madness begin to trickle back from their lands. You have turned a disaster into a weapon."
+failure_text = "Your deception is uncovered! Their steward is no fool and identifies the rot immediately. Your merchants are thrown out, and word of your treacherous attempt to poison their people spreads like fire. You have made a bitter and implacable enemy."
+skill_check = SubResource("Resource_hrjbr")
+required_gold = 0
+required_manpower = 0
+required_food = 50
+success_outcomes = Array[ExtResource("2_vdd4i")]([SubResource("Resource_8odyu"), SubResource("Resource_v6dim"), SubResource("Resource_yk1s3"), SubResource("Resource_0adv7")])
+failure_outcomes = Array[ExtResource("2_vdd4i")]([SubResource("Resource_vdd4i"), SubResource("Resource_mvk02")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_4jb5b")
+category = 2
+event_id = "AG004"
+title = "The Tainted Grain"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A strange fungus has poisoned the royal granaries, threatening both your food supply and your people."
+description = "Your steward requests an urgent, private audience, his face pale with worry. \"My Liege, a creeping rot has taken hold in the royal granaries. The grain is tainted with a strange, dark fungus. People in the capital who have received their ration have fallen ill with a terrible burning sickness and fits of madness.\"
+
+\"Your entire emergency food reserve, the kingdom's shield against famine, is now a source of poison.\""
+vignette_texture = ""
+options = Array[ExtResource("1_q64d3")]([SubResource("Resource_niq6o"), SubResource("Resource_0grau"), SubResource("Resource_rn6nt")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

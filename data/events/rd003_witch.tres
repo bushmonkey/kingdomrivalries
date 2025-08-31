@@ -1,0 +1,194 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=25 format=3 uid="uid://bhkeynrnk0y7t"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_2si0m"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_6wnbs"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_mdms6"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_g47n0"]
+
+[sub_resource type="Resource" id="Resource_dclj0"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Church"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hdr1n"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Public"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_l8hgx"]
+script = ExtResource("1_2si0m")
+text = "The testimony is clear. The Church forbids witchcraft. Burn her."
+success_text = "You deliver the swift, harsh judgment the Church demands. The woman is executed in a public burning. The peasants return to their village, satisfied that the evil has been purged, and the Bishop praises your firm hand in defending the faith."
+failure_text = "You deliver the swift, harsh judgment the Church demands. The woman is executed in a public burning. The peasants return to their village, satisfied that the evil has been purged, and the Bishop praises your firm hand in defending the faith."
+success_outcomes = Array[ExtResource("2_mdms6")]([SubResource("Resource_dclj0"), SubResource("Resource_hdr1n")])
+failure_outcomes = Array[ExtResource("2_mdms6")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ta171"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_chjd1"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pd6j6"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Church"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ih25y"]
+script = ExtResource("3_g47n0")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_eip72"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wvuqp"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3ao42"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Church"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2sie0"]
+script = ExtResource("2_mdms6")
+type = "ChangeStat"
+target = "Stewardship"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hta8t"]
+script = ExtResource("1_2si0m")
+text = "I will not sentence on fear alone. Investigate these claims properly."
+success_text = "Your steward conducts a thorough investigation. He discovers the well was poisoned by a dead animal upstream and the cattle sickness is a common blight from the marshlands. The old woman is merely a herbalist. You expose the peasants' ignorance and release the woman. Your more enlightened nobles are impressed by your reason."
+failure_text = "Your investigation turns up nothing conclusive. The peasants grumble that you are dragging your feet, and the \"witch\" disappears from her cell one night. The situation resolves with no one satisfied, and you are seen as indecisive."
+skill_check = SubResource("Resource_ih25y")
+success_outcomes = Array[ExtResource("2_mdms6")]([SubResource("Resource_eip72"), SubResource("Resource_wvuqp"), SubResource("Resource_3ao42"), SubResource("Resource_2sie0")])
+failure_outcomes = Array[ExtResource("2_mdms6")]([SubResource("Resource_ta171"), SubResource("Resource_chjd1"), SubResource("Resource_pd6j6")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_41eec"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pe2lm"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2j2dh"]
+script = ExtResource("2_mdms6")
+type = "ChangeStat"
+target = "Charisma"
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mdms6"]
+script = ExtResource("3_g47n0")
+stat = "Intrigue"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_g47n0"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Church"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_g6hj2"]
+script = ExtResource("2_mdms6")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_t6p2d"]
+script = ExtResource("2_mdms6")
+type = "ChangeStat"
+target = "Intrigue"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5y13x"]
+script = ExtResource("1_2si0m")
+text = "You lie to the villagers and proclaim: \"Let God decide. We will use trial by ordeal.\""
+success_text = "You declare a trial by water. The woman is bound and thrown into the river. To everyone's shock, she sinks like a stone, proving her innocence in the eyes of God and man. Your men pull her out, sputtering but alive. The peasants are humbled, and you are seen as both pious and wise for letting God reveal the truth."
+failure_text = "You declare a trial by water. The woman is bound and thrown into the river. Horrifyingly, her simple wool dress traps enough air to make her float for a few moments - \"proof\" of her guilt. The mob, their fears confirmed, drag her from the water and carry out their own justice before your guards can intervene. Your attempt at a clever solution has backfired into brutal chaos."
+skill_check = SubResource("Resource_mdms6")
+success_outcomes = Array[ExtResource("2_mdms6")]([SubResource("Resource_g47n0"), SubResource("Resource_g6hj2"), SubResource("Resource_t6p2d")])
+failure_outcomes = Array[ExtResource("2_mdms6")]([SubResource("Resource_41eec"), SubResource("Resource_pe2lm"), SubResource("Resource_2j2dh")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_6wnbs")
+category = 0
+event_id = "rd003"
+title = "An Accusation of Witchcraft"
+rarity = 0
+selection_cost = 0
+summary = "Peasants have brought a woman from the woods to your court, accusing her of witchcraft and demanding justice."
+description = "A frantic delegation from a rural village arrives at your court, dragging with them an old, defiant woman who lives as a hermit in the nearby woods. \"She is a witch!\" their leader proclaims. \"Our cattle have sickened, our well has turned sour, and a child was born with a defect! It is her dark magic! We demand the king's justice!\" The old woman simply glares, saying nothing."
+options = Array[ExtResource("1_2si0m")]([SubResource("Resource_l8hgx"), SubResource("Resource_hta8t"), SubResource("Resource_5y13x")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

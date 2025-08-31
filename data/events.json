@@ -1,0 +1,51 @@
+{
+  "events": [
+	{
+	  "eventId": "FLOOD_01",
+	  "title": "A Terrible Flood",
+	  "description": "The river has burst its banks, flooding the fertile lands of your capital province! Your people look to you for guidance.",
+	  "triggerConditions": {
+		"minGold": 50,
+		"isAtWar": false
+	  },
+	  "options": [
+		{
+		  "text": "Organize relief efforts.",
+		  "successText": "Thanks to your brilliant organization, the relief effort is a resounding success! The people sing your praises, though the treasury is much lighter.",
+		  "failureText": "Despite your efforts, mismanagement and corruption plague the relief effort. Much of the gold is wasted, and the people grumble that you have failed them.",
+		  "skillCheck": { "stat": "Stewardship", "difficulty": 12 },
+		  "successOutcomes": [
+			{ "type": "ChangeResource", "target": "Gold", "value": -100 },
+			{ "type": "ChangeOpinion", "target": "Public", "value": 20 }
+		  ],
+		  "failureOutcomes": [
+			{ "type": "ChangeResource", "target": "Gold", "value": -100 },
+			{ "type": "ChangeOpinion", "target": "Public", "value": -10 }
+		  ]
+		},
+		{
+		  "text": "Pray for deliverance.",
+		  "successText": "Your fervent prayers are heard! The rains cease, and the church proclaims it a sign of your divine favor.",
+		  "failureText": "The heavens remain silent. The floodwaters continue to rise, and the clergy whispers that your faith is weak.",
+		  "skillCheck": { "stat": "Diplomacy", "difficulty": 10 },
+		  "successOutcomes": [
+			{ "type": "ChangeOpinion", "target": "Church", "value": 15 }
+		  ],
+		  "failureOutcomes": [
+			{ "type": "ChangeOpinion", "target": "Church", "value": -5 }
+		  ]
+		},
+		{
+		  "text": "Do nothing and save the money.",
+		  "successText": "You have weathered the storm by hoarding your resources. The treasury is safe, but the people will not soon forget your callousness as they bury their dead.",
+		  "failureText": "You have weathered the storm by hoarding your resources. The treasury is safe, but the people will not soon forget your callousness as they bury their dead.",
+		  "skillCheck": null,
+		  "successOutcomes": [
+			{ "type": "ChangeOpinion", "target": "Public", "value": -25 }
+		  ],
+		  "failureOutcomes": []
+		}
+	  ]
+	}
+  ]
+}

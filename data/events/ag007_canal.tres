@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=12 format=3 uid="uid://3ci3keiyc6wd"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_xe78e"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_c5sfe"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_svqlu"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_hl4v2"]
+
+[sub_resource type="Resource" id="Resource_roucg"]
+script = ExtResource("2_c5sfe")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4uojh"]
+script = ExtResource("2_c5sfe")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4h7a2"]
+script = ExtResource("3_hl4v2")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_qfm0g"]
+script = ExtResource("2_c5sfe")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pmmt5"]
+script = ExtResource("2_c5sfe")
+type = "AddModifier"
+target = "IrrigationCanals"
+value = 1
+duration = -1
+stackable = true
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_kva41"]
+script = ExtResource("1_xe78e")
+text = "\"A wise investment in our future. Begin digging at once.\""
+success_text = "The project is a marvel of engineering. Thousands of laborers toil under the sun, and within a season, a network of life-giving canals crisscrosses the plains. The land becomes more fertile, and your kingdom's food supply is more secure than ever before."
+failure_text = "The project is a disaster. The engineers bungle the survey, and the main canal runs uphill, refusing to flow. The entire effort is a costly embarrassment, and the fields remain as dry as they were before."
+skill_check = SubResource("Resource_4h7a2")
+required_gold = 200
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_c5sfe")]([SubResource("Resource_qfm0g"), SubResource("Resource_pmmt5")])
+failure_outcomes = Array[ExtResource("2_c5sfe")]([SubResource("Resource_roucg"), SubResource("Resource_4uojh")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_xgj5e"]
+script = ExtResource("1_xe78e")
+text = "\"The cost is too great. The farmers must continue to pray for rain.\""
+success_text = "You decide against the project, preserving the crown's treasury. Your steward seems disappointed, but the kingdom's finances are secure. The fields remain dependent on the whims of the weather."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_c5sfe")]([])
+failure_outcomes = Array[ExtResource("2_c5sfe")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_svqlu")
+category = 2
+event_id = "AG007"
+title = "Irrigation Canals"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = "Your steward proposes digging a network of irrigation canals from the main river to improve crop yields."
+description = "During a council meeting, your steward points to the fertile but dry plains far from the river. \"My Liege,\" he explains, \"our harvests are too dependent on the mercy of the rains. If we were to dig a network of irrigation canals, we could bring water to these fields, making them productive even in dry seasons. It would be a major undertaking, but would permanently increase our food supply.\""
+vignette_texture = ""
+options = Array[ExtResource("1_xe78e")]([SubResource("Resource_kva41"), SubResource("Resource_xgj5e")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -1,0 +1,82 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=10 format=3 uid="uid://mx5pjr15jqyl"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_4kqmh"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_2cw6b"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_j6n6d"]
+
+[sub_resource type="Resource" id="Resource_h1q47"]
+script = ExtResource("2_j6n6d")
+type = "AddProvince"
+target = "{target_province_name}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sqiag"]
+script = ExtResource("2_j6n6d")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_6tys4"]
+script = ExtResource("2_j6n6d")
+type = "ChangeResource"
+target = "Manpower"
+value = -500
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2cw6b"]
+script = ExtResource("2_j6n6d")
+type = "DeclareWar"
+target = "{target_kingdom_id}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_v50al"]
+script = ExtResource("1_4kqmh")
+text = "\"Proceed. The land is ours.\""
+success_text = "The expedition is a resounding success. Your soldiers march into {target_province_name}, meeting no organized resistance. Your banner is raised over the central settlement, a new fort is established, and the local populace formally swears fealty to you, their new rightful ruler. The call to arms echoes across both kingdoms. "
+failure_text = "Failure!"
+required_gold = 150
+required_manpower = 500
+required_food = 0
+success_outcomes = Array[ExtResource("2_j6n6d")]([SubResource("Resource_h1q47"), SubResource("Resource_sqiag"), SubResource("Resource_6tys4"), SubResource("Resource_2cw6b")])
+failure_outcomes = Array[ExtResource("2_j6n6d")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_1jr6f"]
+script = ExtResource("1_4kqmh")
+text = "\"On second thought, no. The cost is too high.\""
+success_text = "You reconsider at the last moment, choosing to preserve your resources. The Marshal cancels the expedition. The opportunity is lost, but your treasury and barracks are no weaker for it and peace continues,"
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_j6n6d")]([])
+failure_outcomes = Array[ExtResource("2_j6n6d")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_2cw6b")
+category = 4
+event_id = "INTERNAL_EXECUTE_BORDER_DISPUTE"
+title = "Raise the Banners"
+unlocked_at_start = false
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = ""
+description = "The scouts have returned and the plans are laid. The You have chosen to press your claim on {target_province_name}, currently held by the {target_kingdom_name}. This action is a direct challenge to their sovereignty and will lead to war. 
+
+Once given, the order cannot be recalled. Shall we proceed?"
+vignette_texture = ""
+options = Array[ExtResource("1_4kqmh")]([SubResource("Resource_v50al"), SubResource("Resource_1jr6f")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

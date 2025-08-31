@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=13 format=3 uid="uid://bt2cbwxgepobd"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_3tjyg"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_cf2hf"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_tyypb"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_sd6tl"]
+
+[sub_resource type="Resource" id="Resource_tyypb"]
+script = ExtResource("2_tyypb")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sd6tl"]
+script = ExtResource("2_tyypb")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_8jg33"]
+script = ExtResource("3_sd6tl")
+stat = "Diplomacy"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_q8gge"]
+script = ExtResource("2_tyypb")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_8melk"]
+script = ExtResource("2_tyypb")
+type = "AddModifier"
+target = "AdvancedArchitecture"
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_juu60"]
+script = ExtResource("1_3tjyg")
+text = "\"An incredible opportunity. Give him what he needs.\""
+success_text = "The training is a revelation! Your architects and masons quickly grasp the new principles. New construction projects across the realm are now built stronger, faster, and with greater artistry. You have laid the foundation for a new golden age of architecture."
+failure_text = "The local guilds are stubborn and resistant to Delarus' \"foreign\" methods. The training devolves into arguments and wasted materials. While some minor improvements are made, the grand revolution in architecture fails to materialize."
+skill_check = SubResource("Resource_8jg33")
+required_gold = 200
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_tyypb")]([SubResource("Resource_q8gge"), SubResource("Resource_8melk")])
+failure_outcomes = Array[ExtResource("2_tyypb")]([SubResource("Resource_tyypb"), SubResource("Resource_sd6tl")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_nvgq3"]
+script = ExtResource("2_tyypb")
+type = "ChangeStat"
+target = "Intrigue"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_vwxsu"]
+script = ExtResource("1_3tjyg")
+text = "\"His knowledge may be a Trojan Horse. I don't trust him.\""
+success_text = "You refuse the offer, your suspicion overriding the potential reward. Delarus seems saddened but not surprised. \"A pity,\" he says, \"another kingdom will surely see the value.\" He departs your court the next day, taking his secrets with him."
+failure_text = "You refuse the offer, your suspicion overriding the potential reward. Delarus seems saddened but not surprised. \"A pity,\" he says, \"another kingdom will surely see the value.\" He departs your court the next day, taking his secrets with him."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_tyypb")]([SubResource("Resource_nvgq3")])
+failure_outcomes = Array[ExtResource("2_tyypb")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_cf2hf")
+category = 3
+event_id = "MF007"
+title = "Delarus' Proposal"
+unlocked_at_start = false
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = "The foreign scholar Delarus, impressed by your hospitality, offers to teach your architects advanced construction techniques."
+description = "The mysterious scholar, Delarus, has requested another audience. \"My Liege,\" he begins, bowing respectfully, \"your court is a beacon of civility in these harsh lands. I wish to repay your kindness. I can teach your master builders the principles of the Roman arch and the flying buttress. We can build structures that will stand for a thousand years—stronger walls, grander cathedrals, more efficient aqueducts. All I ask is a modest grant to fund the training and materials.\""
+vignette_texture = ""
+options = Array[ExtResource("1_3tjyg")]([SubResource("Resource_juu60"), SubResource("Resource_vwxsu")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

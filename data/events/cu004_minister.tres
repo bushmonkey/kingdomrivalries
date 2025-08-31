@@ -1,0 +1,142 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=19 format=3 uid="uid://cel2tppx7615u"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_680u5"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_kcxdh"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_nj5wx"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_nj5wx"]
+
+[sub_resource type="Resource" id="Resource_u76mn"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Public"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xk3ou"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Church"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pydhn"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_oq7cm"]
+script = ExtResource("1_680u5")
+text = "\"He speaks of piety and faith. Let us support his good work.\""
+success_text = "You publicly endorse the preacher's message. The common folk are thrilled to see their king championing a man of the people. The Church is placated by your support of religion, but the nobles are deeply unhappy with this rabble-rouser."
+failure_text = "You publicly endorse the preacher's message. The common folk are thrilled to see their king championing a man of the people. The Church is placated by your support of religion, but the nobles are deeply unhappy with this rabble-rouser."
+success_outcomes = Array[ExtResource("2_nj5wx")]([SubResource("Resource_u76mn"), SubResource("Resource_xk3ou"), SubResource("Resource_pydhn")])
+failure_outcomes = Array[ExtResource("2_nj5wx")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_kcxdh"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nj5wx"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bpgh5"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_iisim"]
+script = ExtResource("1_680u5")
+text = "\"He is a nuisance and a threat to order. Arrest him.\""
+success_text = "Your guards quietly arrest the preacher in the night and escort him from the city. The crowds disperse, and order is restored. Your nobles are pleased that the threat to their status is gone, and the Bishop is relieved. The common folk, however, whisper of tyranny."
+failure_text = "Your guards quietly arrest the preacher in the night and escort him from the city. The crowds disperse, and order is restored. Your nobles are pleased that the threat to their status is gone, and the Bishop is relieved. The common folk, however, whisper of tyranny."
+success_outcomes = Array[ExtResource("2_nj5wx")]([SubResource("Resource_kcxdh"), SubResource("Resource_nj5wx"), SubResource("Resource_bpgh5")])
+failure_outcomes = Array[ExtResource("2_nj5wx")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_nkdlt"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_gpjsi"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_gpewi"]
+script = ExtResource("3_nj5wx")
+stat = "Diplomacy"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_38xfm"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_um3j2"]
+script = ExtResource("2_nj5wx")
+type = "ChangeOpinion"
+target = "Public"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cvf3b"]
+script = ExtResource("1_680u5")
+text = "\"I will speak with him. Perhaps his zeal can be... guided.\""
+success_text = "You meet with the preacher in private. With a mix of flattery and veiled threats, you manage to persuade him to tone down his anti-noble rhetoric and focus his sermons on loyalty to the crown and Church. A masterful handling of a delicate situation."
+failure_text = "Your attempt to reason with the preacher fails. He is a true zealot and sees your intervention as a test from God. He redoubles his efforts, now openly criticizing your own court's decadence. You have only made him more popular."
+skill_check = SubResource("Resource_gpewi")
+success_outcomes = Array[ExtResource("2_nj5wx")]([SubResource("Resource_38xfm"), SubResource("Resource_um3j2")])
+failure_outcomes = Array[ExtResource("2_nj5wx")]([SubResource("Resource_nkdlt"), SubResource("Resource_gpjsi")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_kcxdh")
+category = 5
+event_id = "CU004"
+title = "The Fervent Preacher"
+rarity = 0
+selection_cost = 0
+summary = "A charismatic preacher is drawing large crowds in the capital, and the local Bishop is concerned."
+description = "A fiery, itinerant preacher has set up in the capital's main square. His passionate sermons about piety and the sins of the wealthy are drawing huge crowds of common folk. Your local Bishop is worried this man's populism is undermining the Church's authority, while your nobles are annoyed by his tirades against them."
+options = Array[ExtResource("1_680u5")]([SubResource("Resource_oq7cm"), SubResource("Resource_iisim"), SubResource("Resource_cvf3b")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

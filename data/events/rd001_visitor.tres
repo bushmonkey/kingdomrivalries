@@ -1,0 +1,150 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=19 format=3 uid="uid://b2me4mlvm6v5u"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_4jl7y"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_a6jcq"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_fxebr"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_bamsw"]
+
+[sub_resource type="Resource" id="Resource_3aa17"]
+script = ExtResource("2_a6jcq")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ur1rr"]
+script = ExtResource("3_fxebr")
+stat = "Diplomacy"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mp2ua"]
+script = ExtResource("2_a6jcq")
+type = "AddModifier"
+target = "MinorInnovations"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rb7fj"]
+script = ExtResource("1_4jl7y")
+text = "Grant him an audience. Let us hear what he has to say."
+success_text = "You welcome the man with courtesy. He introduces himself as a scholar named 'Delarune' and, impressed by your civility, offers a fascinating insight into architectural techniques he has seen on his travels. Your own master builders learn a great deal."
+failure_text = "You welcome the man, but your attempts at conversation are clumsy. He seems to take offense at a poorly chosen word and becomes guarded. He leaves abruptly the next morning, having revealed nothing."
+skill_check = SubResource("Resource_ur1rr")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_a6jcq")]([SubResource("Resource_mp2ua")])
+failure_outcomes = Array[ExtResource("2_a6jcq")]([SubResource("Resource_3aa17")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_sl7aa"]
+script = ExtResource("2_a6jcq")
+type = "AddModifier"
+target = "RivalSchemePower"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4d5fo"]
+script = ExtResource("3_fxebr")
+stat = "Intrigue"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_c0xxe"]
+script = ExtResource("2_a6jcq")
+type = "GainIntel"
+target = "RivalKingdom_1"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4jl7y"]
+script = ExtResource("2_a6jcq")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0fpm3"]
+script = ExtResource("1_4jl7y")
+text = "Have him watched. I want to know his true purpose here."
+success_text = "Your spymaster is a true professional. The 'traveler' is tailed to a clandestine meeting with an agent from a rival kingdom! You have uncovered a plot to map your defenses. The spy is quietly captured and his maps are seized."
+failure_text = "Your spies are clumsy. The man spots their tail almost immediately. The next morning, he is gone, leaving behind only a single, mocking black feather on his pillow. You have no idea what he learned or who he was."
+skill_check = SubResource("Resource_4d5fo")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_a6jcq")]([SubResource("Resource_c0xxe"), SubResource("Resource_4jl7y")])
+failure_outcomes = Array[ExtResource("2_a6jcq")]([SubResource("Resource_sl7aa")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_a6jcq"]
+script = ExtResource("2_a6jcq")
+type = "ChangeResource"
+target = "Manpower"
+value = -2
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_fxebr"]
+script = ExtResource("2_a6jcq")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bamsw"]
+script = ExtResource("3_fxebr")
+stat = "Martial"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_xi3ax"]
+script = ExtResource("2_a6jcq")
+type = "UnlockDecision"
+target = "Hire_Valerius_Mercenaries"
+value = 36
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nggbm"]
+script = ExtResource("1_4jl7y")
+text = "Arrest and interrogate him. We will have the truth by any means necessary."
+success_text = "Your guards seize the man before he can react. Under... intense questioning, he admits he is a scout for a mercenary company looking for work. You now know their numbers and their price, valuable information should you ever need them."
+failure_text = "The man does not go quietly! He is a trained warrior and fights back with surprising ferocity, killing two guards before he is finally cut down. You learn nothing, and your barracks is two good men short."
+skill_check = SubResource("Resource_bamsw")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_a6jcq")]([SubResource("Resource_xi3ax")])
+failure_outcomes = Array[ExtResource("2_a6jcq")]([SubResource("Resource_a6jcq"), SubResource("Resource_fxebr")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_bamsw")
+category = 0
+event_id = "RD001"
+title = "A Stranger at the gate"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A mysterious traveler from a foreign land has arrived at your castle, and his motives are unclear."
+description = "A guard captain reports a curious matter. A lone man, dressed in foreign clothes and speaking with a thick, unplaceable accent, has arrived at the gates. He claims to be a simple traveler but his eyes are sharp and he seems to be studying the castle's defenses. He requests an audience."
+vignette_texture = ""
+options = Array[ExtResource("1_4jl7y")]([SubResource("Resource_rb7fj"), SubResource("Resource_0fpm3"), SubResource("Resource_nggbm")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

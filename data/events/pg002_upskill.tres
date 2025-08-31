@@ -1,0 +1,169 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=21 format=3 uid="uid://cvkts78yv5ypt"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_wboox"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_xqybk"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_4r5qs"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_0aqih"]
+
+[sub_resource type="Resource" id="Resource_4xak1"]
+script = ExtResource("2_xqybk")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_fmnpl"]
+script = ExtResource("3_4r5qs")
+stat = "Vigor"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_g06hy"]
+script = ExtResource("2_xqybk")
+type = "ChangeStat"
+target = "Martial"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dyvpf"]
+script = ExtResource("1_wboox")
+text = "Spend weeks in the training yard"
+success_text = "The days are filled with the ring of steel and the ache of honest exertion. Your master-at-arms pushes you to your limits, and you feel your reflexes sharpen and your technique improve. You are a more formidable warrior."
+failure_text = "The training is a frustrating ordeal. You feel slow and clumsy, and your sparring partners easily best you. You have gained nothing but bruises and the quiet disappointment of your soldiers."
+skill_check = SubResource("Resource_fmnpl")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_g06hy")])
+failure_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_4xak1")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_xi8kx"]
+script = ExtResource("2_xqybk")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nqv4q"]
+script = ExtResource("3_4r5qs")
+stat = "Vigor"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_u8djn"]
+script = ExtResource("2_xqybk")
+type = "ChangeStat"
+target = "Stewardship"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hbk4f"]
+script = ExtResource("1_wboox")
+text = "Pour over the kingdom's ledgers and laws"
+success_text = "You spend long nights by candlelight, studying tax records, supply chains, and legal precedents. The complex web of your realm's economy becomes clearer. You feel better equipped to manage the kingdom's wealth."
+failure_text = "The endless columns of numbers and dry legal texts give you a splitting headache. You find your mind wandering, unable to focus. You have learned little, and your steward seems concerned by your lack of focus."
+skill_check = SubResource("Resource_nqv4q")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_u8djn")])
+failure_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_xi8kx")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_g4fyw"]
+script = ExtResource("2_xqybk")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_1787f"]
+script = ExtResource("3_4r5qs")
+stat = "Vigor"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_6rgrn"]
+script = ExtResource("2_xqybk")
+type = "ChangeStat"
+target = "Diplomacy"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_avis6"]
+script = ExtResource("1_wboox")
+text = "Practice oratory and host small, diplomatic dinners"
+success_text = "You focus on the art of conversation and persuasion. By hosting small dinners with difficult nobles and practicing speeches with your tutors, you find your words flow more easily. You are more charming and convincing than before."
+failure_text = "Your attempts at diplomacy are a mess. You cause an argument between two ladies at dinner and your prepared speeches sound hollow and uninspired. You may have done more harm than good."
+skill_check = SubResource("Resource_1787f")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_6rgrn")])
+failure_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_g4fyw")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_oio1s"]
+script = ExtResource("2_xqybk")
+type = "AddModifier"
+target = "MinorInjury"
+value = 3
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_6s8d4"]
+script = ExtResource("3_4r5qs")
+stat = "Vigor"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_cdrch"]
+script = ExtResource("2_xqybk")
+type = "ChangeStat"
+target = "Vigor"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pq3rr"]
+script = ExtResource("1_wboox")
+text = "Engage in strenuous hunts and long rides"
+success_text = "You push your physical limits, spending weeks on horseback, hunting in the deep woods, and running the castle walls. The hard exercise leaves you feeling healthier and more energetic than you have in years."
+failure_text = "You push yourself too hard. On a long ride, you pull a muscle in your back, leaving you sore and irritable for weeks. You have only succeeded in injuring yourself."
+skill_check = SubResource("Resource_6s8d4")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_cdrch")])
+failure_outcomes = Array[ExtResource("2_xqybk")]([SubResource("Resource_oio1s")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_0aqih")
+category = 6
+event_id = "PG002"
+title = "A Time for Self-Improvement"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = "A rare period of peace offers you the chance to train one of your core leadership skills."
+description = "The realm is stable for the moment, offering a rare opportunity for personal development. A ruler must constantly hone their skills to lead effectively. Which aspect of your leadership will you focus on improving?"
+vignette_texture = ""
+options = Array[ExtResource("1_wboox")]([SubResource("Resource_dyvpf"), SubResource("Resource_hbk4f"), SubResource("Resource_avis6"), SubResource("Resource_pq3rr")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

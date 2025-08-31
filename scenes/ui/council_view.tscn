@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://djttfs2uw14ri"]
+
+[ext_resource type="Script" uid="uid://crlpvyd2541qy" path="res://scenes/ui/council_view.gd" id="1_1ajhb"]
+[ext_resource type="Texture2D" uid="uid://d8lf50hmc6ab" path="res://assets/council_table.png" id="2_1ajhb"]
+
+[node name="CouncilView" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_1ajhb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -247.0
+offset_right = 506.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_1ajhb")
+
+[node name="MilitaryAdvisorArea" type="Area2D" parent="TextureRect"]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/MilitaryAdvisorArea"]
+position = Vector2(-12, -14)
+scale = Vector2(0.887688, 0.939815)
+polygon = PackedVector2Array(730, 354, 737, 296, 714, 257, 712, 208, 684, 175, 659, 183, 645, 206, 639, 255, 604, 279, 607, 323, 607, 366, 610, 381, 655, 391, 680, 372, 704, 370)
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/MilitaryAdvisorArea"]
+color = Color(0, 0, 0, 0.6)
+polygon = PackedVector2Array(509, 324, 509, 310, 510, 302, 518, 278, 520, 240, 540, 156, 601, 147, 648, 157, 653, 232, 658, 282, 665, 317, 659, 321, 645, 319, 633, 321, 627, 320, 608, 324, 588, 324, 577, 336, 571, 340, 561, 337, 556, 334, 550, 335, 541, 332, 539, 324, 533, 323, 530, 331)
+
+[node name="EconomicAdvisorArea" type="Area2D" parent="TextureRect"]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/EconomicAdvisorArea"]
+position = Vector2(-179, -20)
+scale = Vector2(0.924679, 0.9375)
+polygon = PackedVector2Array(740, 360, 743, 298, 714, 257, 712, 208, 684, 175, 659, 183, 645, 206, 639, 255, 604, 279, 595, 318, 587, 364, 610, 373, 653, 375, 680, 372, 716, 375)
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/EconomicAdvisorArea"]
+position = Vector2(-155, 3)
+color = Color(0, 0, 0, 0.6)
+polygon = PackedVector2Array(526, 313, 522, 308, 521, 297, 526, 272, 527, 243, 551, 153, 601, 147, 647, 156, 663, 247, 670, 273, 662, 317, 659, 321, 648, 327, 640, 329, 630, 328, 631, 320, 622, 315, 617, 320, 616, 327, 611, 327, 610, 322, 556, 322, 549, 321, 542, 321, 538, 322, 533, 320, 530, 318)
+
+[node name="AgricultureAdvisorArea" type="Area2D" parent="TextureRect"]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/AgricultureAdvisorArea"]
+position = Vector2(-339, 9.99999)
+scale = Vector2(0.914624, 0.946846)
+polygon = PackedVector2Array(753, 358, 769, 286, 714, 257, 739, 213, 684, 175, 659, 183, 616, 227, 639, 255, 622, 273, 626, 319, 633, 365, 651, 384, 682, 388, 718, 389, 734, 381)
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/AgricultureAdvisorArea"]
+position = Vector2(-309, 33)
+color = Color(0, 0, 0, 0.6)
+polygon = PackedVector2Array(521, 212, 507, 208, 507, 189, 505, 171, 519, 168, 540, 156, 579, 145, 596, 145, 601, 147, 629, 163, 639, 126, 638, 67, 696, 69, 689, 144, 677, 236, 677, 260, 675, 266, 671, 291, 655, 291, 629, 306, 612, 315, 629, 315, 636, 320, 641, 328, 641, 332, 622, 341, 615, 334, 602, 335, 594, 338, 582, 337, 571, 340, 563, 341, 557, 340, 554, 338, 550, 330, 542, 312, 537, 304, 532, 301, 521, 296, 523, 292, 522, 288, 524, 287, 526, 278, 526, 262, 528, 255, 530, 249, 530, 221)
+
+[node name="ManufacturingAdvisorArea" type="Area2D" parent="TextureRect"]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/ManufacturingAdvisorArea"]
+position = Vector2(-443, 61)
+scale = Vector2(0.934451, 0.956328)
+polygon = PackedVector2Array(759, 373, 724, 302, 706, 257, 706, 210, 684, 175, 659, 183, 645, 206, 639, 255, 604, 279, 595, 318, 597, 366, 606, 392, 627, 414, 669, 411, 714, 405)
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/ManufacturingAdvisorArea"]
+position = Vector2(-419, 108)
+color = Color(0, 0, 0, 0.6)
+polygon = PackedVector2Array(519, 379, 517, 323, 517, 311, 518, 278, 518, 241, 518, 156, 589, 131, 615, 132, 631, 137, 641, 148, 637, 154, 636, 187, 635, 201, 635, 212, 633, 214, 633, 217, 637, 218, 641, 221, 644, 222, 646, 228, 651, 235, 661, 256, 672, 272, 679, 289, 679, 305, 673, 315, 666, 318, 662, 318, 659, 321, 644, 333, 635, 331, 626, 330, 618, 335, 605, 335, 602, 337, 588, 338, 581, 340, 578, 342, 575, 344, 563, 351, 556, 356, 550, 360, 527, 374)
+
+[node name="CultureAdvisorArea" type="Area2D" parent="TextureRect"]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/CultureAdvisorArea"]
+position = Vector2(138, 22.1857)
+scale = Vector2(0.890163, 0.90928)
+polygon = PackedVector2Array(735, 346, 738, 266, 714, 257, 734, 167, 689, 159, 627, 162, 604, 200, 639, 255, 625, 285, 617, 320, 569, 337, 610, 381, 655, 391, 672, 385, 716, 375)
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/CultureAdvisorArea"]
+position = Vector2(148, 29)
+color = Color(0, 0, 0, 0.6)
+polygon = PackedVector2Array(503, 314, 502, 311, 492, 317, 489, 314, 485, 314, 476, 307, 477, 300, 480, 295, 487, 292, 492, 290, 513, 292, 525, 278, 523, 175, 540, 141, 571, 143, 584, 153, 591, 153, 606, 141, 649, 141, 673, 169, 672, 219, 667, 224, 661, 233, 657, 250, 657, 264, 655, 279, 653, 300, 641, 309, 633, 324, 633, 329, 625, 339, 614, 341, 594, 340, 580, 340, 571, 340, 563, 342, 554, 341, 547, 341, 542, 345, 538, 342, 534, 342, 533, 340, 530, 340, 528, 338, 525, 337, 525, 329, 531, 321, 537, 319, 552, 318, 556, 320, 561, 320, 563, 318, 560, 313, 548, 310, 546, 312, 522, 313, 514, 312, 508, 315, 502, 319, 499, 318)
+
+[node name="PersonalAdvisorArea" type="Area2D" parent="TextureRect"]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/PersonalAdvisorArea"]
+position = Vector2(171, 61.2592)
+scale = Vector2(1, 0.966912)
+polygon = PackedVector2Array(735, 340, 736, 294, 714, 257, 712, 208, 684, 175, 659, 183, 645, 206, 639, 255, 634, 276, 603, 321, 520, 382, 609, 418, 669, 401, 724, 430, 716, 375)
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/PersonalAdvisorArea"]
+position = Vector2(253, 134)
+color = Color(0, 0, 0, 0.6)
+polygon = PackedVector2Array(512, 318, 510, 318, 510, 315, 516, 305, 519, 302, 527, 297, 534, 297, 537, 295, 545, 295, 560, 290, 540, 278, 522, 267, 507, 272, 484, 279, 483, 282, 481, 286, 475, 291, 473, 295, 470, 295, 469, 293, 466, 293, 462, 300, 459, 301, 458, 299, 456, 298, 455, 301, 451, 301, 450, 299, 447, 297, 448, 291, 450, 285, 453, 282, 466, 273, 475, 268, 499, 253, 507, 251, 516, 241, 517, 237, 527, 224, 526, 217, 530, 212, 535, 204, 540, 201, 546, 193, 553, 164, 551, 153, 552, 139, 561, 120, 569, 111, 600, 102, 637, 131, 659, 136, 658, 207, 663, 276, 660, 315, 659, 321, 657, 330, 658, 352, 633, 336, 628, 332, 620, 327, 611, 322, 607, 319, 596, 313, 588, 306, 583, 305, 579, 307, 557, 307, 547, 313, 539, 314, 535, 317, 528, 323, 525, 321, 521, 323, 519, 323, 518, 320, 516, 321, 513, 320)
+
+[node name="KingArea" type="Area2D" parent="TextureRect"]
+unique_name_in_owner = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TextureRect/KingArea"]
+position = Vector2(-110, 245)
+scale = Vector2(1, 0.966912)
+polygon = PackedVector2Array(443, 330, 476, 266, 487, 253, 488, 251, 488, 237, 491, 234, 494, 233, 490, 231, 488, 225, 486, 225, 486, 213, 488, 212, 488, 209, 491, 206, 493, 204, 496, 202, 503, 201, 509, 202, 515, 206, 518, 209, 520, 214, 520, 225, 517, 225, 517, 228, 515, 230, 513, 231, 518, 234, 519, 236, 535, 229, 541, 224, 545, 217, 549, 209, 551, 204, 557, 184, 559, 176, 559, 155, 555, 150, 555, 144, 557, 142, 557, 133, 556, 132, 556, 107, 554, 106, 552, 104, 552, 101, 555, 97, 559, 97, 562, 100, 562, 104, 561, 106, 563, 108, 566, 108, 569, 106, 572, 103, 573, 101, 573, 96, 571, 95, 572, 87, 577, 82, 584, 85, 586, 87, 585, 93, 584, 96, 589, 101, 593, 102, 596, 99, 606, 99, 610, 102, 616, 102, 617, 101, 631, 101, 634, 101, 642, 93, 642, 88, 643, 87, 648, 88, 649, 90, 649, 94, 652, 103, 656, 106, 660, 107, 662, 105, 661, 103, 663, 99, 666, 98, 669, 100, 670, 103, 668, 105, 668, 128, 666, 162, 668, 187, 674, 209, 684, 224, 703, 236, 711, 231, 707, 227, 705, 225, 705, 214, 707, 208, 711, 204, 715, 202, 728, 202, 737, 209, 739, 213, 739, 225, 737, 226, 734, 231, 731, 232, 731, 234, 736, 237, 736, 252, 741, 255, 747, 264, 749, 266, 750, 271, 752, 273, 763, 294, 782, 331)
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/KingArea"]
+position = Vector2(-110, 236)
+color = Color(0, 0, 0, 0.6)
+polygon = PackedVector2Array(443, 330, 476, 266, 487, 253, 488, 251, 488, 237, 491, 234, 494, 233, 490, 231, 488, 225, 486, 225, 486, 213, 488, 212, 488, 209, 491, 206, 493, 204, 496, 202, 503, 201, 509, 202, 515, 206, 518, 209, 520, 214, 520, 225, 517, 225, 517, 228, 515, 230, 513, 231, 518, 234, 519, 236, 535, 229, 541, 224, 545, 217, 549, 209, 551, 204, 557, 184, 559, 176, 559, 155, 555, 150, 555, 144, 557, 142, 557, 133, 556, 132, 556, 107, 554, 106, 552, 104, 552, 101, 555, 97, 559, 97, 562, 100, 562, 104, 561, 106, 563, 108, 566, 108, 569, 106, 572, 103, 573, 101, 573, 96, 571, 95, 572, 87, 577, 82, 584, 85, 586, 87, 585, 93, 584, 96, 589, 101, 593, 102, 596, 99, 606, 99, 610, 102, 616, 102, 617, 101, 631, 101, 634, 101, 642, 93, 642, 88, 643, 87, 648, 88, 649, 90, 649, 94, 652, 103, 656, 106, 660, 107, 662, 105, 661, 103, 663, 99, 666, 98, 669, 100, 670, 103, 668, 105, 668, 128, 666, 162, 668, 187, 674, 209, 684, 224, 703, 236, 711, 231, 707, 227, 705, 225, 705, 214, 707, 208, 711, 204, 715, 202, 728, 202, 737, 209, 739, 213, 739, 225, 737, 226, 734, 231, 731, 232, 731, 234, 736, 237, 736, 252, 741, 255, 747, 264, 749, 266, 750, 271, 752, 273, 763, 294, 782, 331)

@@ -1,0 +1,163 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=18 format=3 uid="uid://drwutjbia0hq7"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_cylt3"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_06qei"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_rri7r"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="3_06qei"]
+
+[sub_resource type="Resource" id="Resource_8khb6"]
+script = ExtResource("2_rri7r")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ih3jo"]
+script = ExtResource("2_rri7r")
+type = "ChangeOpinion"
+target = "Public"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qwaqb"]
+script = ExtResource("2_rri7r")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_7q2kf"]
+script = ExtResource("2_rri7r")
+type = "AddModifier"
+target = "FestivalSpirit"
+value = 4
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2rrf5"]
+script = ExtResource("1_cylt3")
+text = "\"An excellent idea! The crown will sponsor the fair.\""
+success_text = "The Midwinter Fair is a heartwarming success. The warmth of the bonfires and the taste of hot spiced wine drive away the winter chill. The people are grateful for this joyful reprieve from the cold, and the Church is pleased with the focus on religious celebration."
+failure_text = "The Midwinter Fair is a heartwarming success. The warmth of the bonfires and the taste of hot spiced wine drive away the winter chill. The people are grateful for this joyful reprieve from the cold, and the Church is pleased with the focus on religious celebration."
+required_gold = 100
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_rri7r")]([SubResource("Resource_8khb6"), SubResource("Resource_ih3jo"), SubResource("Resource_qwaqb"), SubResource("Resource_7q2kf")])
+failure_outcomes = Array[ExtResource("2_rri7r")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_dxyrp"]
+script = ExtResource("2_rri7r")
+type = "ChangeResource"
+target = "Treasury"
+value = 50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ey3ff"]
+script = ExtResource("2_rri7r")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_flsji"]
+script = ExtResource("2_rri7r")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q1o4d"]
+script = ExtResource("1_cylt3")
+text = "\"They may hold their fair, but they will pay a tax for the privilege.\""
+success_text = "The merchants agree to the tax. The fair is a modest affair, and while the people enjoy it, the prices are slightly higher due to your levy. You gain a small amount of coin at the expense of some public goodwill."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_rri7r")]([SubResource("Resource_dxyrp"), SubResource("Resource_ey3ff"), SubResource("Resource_flsji")])
+failure_outcomes = Array[ExtResource("2_rri7r")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_orskd"]
+script = ExtResource("2_rri7r")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_84pdx"]
+script = ExtResource("2_rri7r")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ja0ip"]
+script = ExtResource("1_cylt3")
+text = "\"No. Midwinter is a time for solemn prayer, not frivolous celebration.\""
+success_text = "You forbid the fair. The merchants are disappointed, and the people are denied a welcome celebration during the bleakest time of year. The Bishop, however, quietly approves of your solemn and pious decree."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_rri7r")]([SubResource("Resource_orskd"), SubResource("Resource_84pdx")])
+failure_outcomes = Array[ExtResource("2_rri7r")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_rri7r"]
+script = ExtResource("3_06qei")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 8
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_06qei")
+category = 5
+trigger_conditions = SubResource("Resource_rri7r")
+event_id = "CU005"
+title = ""
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 25
+summary = "Following the success of the summer fair, the merchants propose a smaller, festive fair to celebrate the midwinter season."
+description = "Inspired by the success of the summer festivities, the merchant guilds have a new proposal. They wish to hold a \"Midwinter Fair\" in the capital's main square. It would be a smaller affair—roast chestnuts, mulled wine, puppet shows, and religious plays—meant to lift spirits during the darkest and coldest season of the year."
+vignette_texture = ""
+options = Array[ExtResource("1_cylt3")]([SubResource("Resource_2rrf5"), SubResource("Resource_q1o4d"), SubResource("Resource_ja0ip")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

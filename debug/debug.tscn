@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dtwgmghnxjf65"]
+
+[node name="Debug" type="SubViewportContainer"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+render_target_update_mode = 4

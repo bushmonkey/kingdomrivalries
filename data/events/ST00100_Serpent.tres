@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=10 format=3 uid="uid://dehdwlvkobmin"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_tmlk7"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_2g0u7"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_txftj"]
+
+[sub_resource type="Resource" id="Resource_jg50c"]
+script = ExtResource("2_2g0u7")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_txftj"]
+script = ExtResource("2_2g0u7")
+type = "AdvanceStoryline"
+target = "SERPENT"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rtfyo"]
+script = ExtResource("1_tmlk7")
+text = "\"Thank you, uncle. Your wisdom will be a great asset to my reign.\""
+success_text = "Valerius gives a thin smile. \"Of course, my boy. I am your loyal servant.\" He bows, but you can't shake the feeling that his eyes were measuring you, not respecting you. The court sees your reply as a sign of gracious and confident leadership."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_2g0u7")]([SubResource("Resource_jg50c"), SubResource("Resource_txftj")])
+failure_outcomes = Array[ExtResource("2_2g0u7")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ibxd1"]
+script = ExtResource("1_tmlk7")
+text = "\"I will remember your offer, but I will forge my own path.\""
+success_text = "A flicker of something—surprise? respect?—crosses your uncle's face before he masks it with a neutral expression. \"As you should, Your Majesty. As you should.\" He bows and retreats. You have established your independence, but also created a subtle distance between you."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_2g0u7")]([SubResource("Resource_txftj")])
+failure_outcomes = Array[ExtResource("2_2g0u7")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_hxsfy"]
+script = ExtResource("2_2g0u7")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ic1ct"]
+script = ExtResource("1_tmlk7")
+text = "\"My father's advisors serve me now. I will not need your... 'counsel'.\""
+success_text = "A hush falls over the court. Valerius's eyes narrow, and the friendly facade vanishes for a moment, revealing the cold, ambitious man beneath. \"A pity,\" he says, the word dripping with unspoken threat. \"May your reign be a long and prosperous one.\" He gives a mocking, shallow bow. You have made an enemy on your very first day."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_2g0u7")]([SubResource("Resource_hxsfy"), SubResource("Resource_txftj")])
+failure_outcomes = Array[ExtResource("2_2g0u7")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_txftj")
+category = 4
+event_id = "SERPENT_S0"
+title = "An Uncle's Counsel"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = ""
+description = "You are holding your first formal court as the new ruler. As the petitioners drone on, a familiar figure steps forward. It is your uncle, Lord Valerius, your late father's brother. He is a respected, if somewhat feared, man in the kingdom.
+
+\"Nephew,\" he says, his voice a low rumble that commands attention. \"It warms my heart to see you on the throne. Your father would be proud. Remember, the crown is heavy, and the wolves are always circling. If you ever need the counsel of one who has seen many seasons, my door is always open.\""
+vignette_texture = ""
+options = Array[ExtResource("1_tmlk7")]([SubResource("Resource_rtfyo"), SubResource("Resource_ibxd1"), SubResource("Resource_ic1ct")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"
