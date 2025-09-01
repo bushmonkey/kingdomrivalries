@@ -136,6 +136,6 @@ func _format_outcome_text(outcome: EventOutcome) -> String:
 		"AddProvince":
 			text="you annex %s, growing your kingdom" % outcome.target
 		_:	
-			text = "Unknown effect."
+			text = "You have changed your destiny."
 			
 	return text

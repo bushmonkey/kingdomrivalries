@@ -32,7 +32,7 @@
 	{ "provinceId": 26, "name": "Ostengard", "neighbors": [ 30,15,24,31,32] },
 	{ "provinceId": 27, "name": "Westmarch", "neighbors": [23, 24, 28,21,30] },
 	{ "provinceId": 28, "name": "Blackfen", "neighbors": [27, 29, 36,23,57,30] },
-	{ "provinceId": 29, "name": "The Sunken Isles", "neighbors": [28,57,23],"coastal": true },
+	{ "provinceId": 29, "name": "The Cinderlands", "neighbors": [28,57,23],"coastal": true },
 	{ "provinceId": 30, "name": "Kingsfall", "neighbors": [26, 31, 35,36,27,24,28] },
 	{ "provinceId": 31, "name": "Whisper wood", "neighbors": [30, 32,35,34,26] },
 	{ "provinceId": 32, "name": "The Verdant Valley", "neighbors": [31, 33, 34,26,15,0] },
@@ -71,7 +71,7 @@
 	{ "provinceId": 65, "name": "Shimmering Isles", "neighbors": [64,39],"coastal": true },
 	{ "provinceId": 66, "name": "The Howling Wastes", "neighbors": [3,11,67],"coastal": true },
 	{ "provinceId": 67, "name": "Dragon's Graveyard", "neighbors": [12,66,11,70] },
-	{ "provinceId": 68, "name": "The Cinderlands", "neighbors": [69] },
+	{ "provinceId": 68, "name": "The Sunken Isles", "neighbors": [69] },
 	{ "provinceId": 69, "name": "Obsidian Fields", "neighbors": [68, 4, 10, 1],"coastal": true },
 	{ "provinceId": 70, "name": "Rockside", "neighbors": [9, 11, 67],"coastal": true }
   ]

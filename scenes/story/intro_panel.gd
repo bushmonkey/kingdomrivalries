@@ -124,7 +124,7 @@ func _populate_kingdom_page(kingdom: Kingdom):
 		for neighbor_kingdom in neighbors:
 			page_text +="- [b]%s[/b], ruled by %s.\n" % [neighbor_kingdom.kingdom_name, neighbor_kingdom.ruler.full_name]
 			
-	page_text += "\nYour kingdom relies on you to make incisive decisions every month to flourish. You can either lead your court to Greatness or Misery. Their fate is in your hands."
+	page_text += "\nYour kingdom relies on you to make incisive decisions every season to flourish. \nYou can either lead your court to Greatness or Misery. Their fate is in your hands."
 	
 	kingdom_info_page.text = page_text
 	
@@ -134,7 +134,7 @@ func _populate_world_page(player_kingdom: Kingdom):
 	var neighbors = player_kingdom.get_neighboring_kingdoms()
 	var unowned_lands = player_kingdom.get_neighboring_unowned_provinces()
 	# Neighbors
-	world_info_page.append_text("\n[u]The continent is also home to other kingdoms vying to conquer the world:[/u]\n")
+	world_info_page.append_text("[u]The continent is also home to other kingdoms vying to conquer the world:[/u]\n\n")
 	
 	var other_realms_found = false
 	# Loop through every single kingdom in the world
@@ -148,7 +148,7 @@ func _populate_world_page(player_kingdom: Kingdom):
 		var personality_name = Character.CharacterPersonality.keys()[ruler.personality].capitalize()
 		
 		# Format the string with the kingdom, ruler, and their personality.
-		var kingdom_string = "- [b]%s[/b], ruled by the [i]%s[i] %s.\n" % [kingdom.kingdom_name, personality_name,ruler.full_name]
+		var kingdom_string = "- [b]%s[/b], ruled by the [i]%s[/i] %s.\n\n" % [kingdom.kingdom_name, personality_name,ruler.full_name]
 		world_info_page.append_text(kingdom_string)
 	
 func _on_next_button_pressed():
@@ -157,6 +157,12 @@ func _on_next_button_pressed():
 	if _current_page_index < info_pages.get_tab_count():
 		# If there's another page, go to it.
 		info_pages.current_tab = _current_page_index
+		
+		var current_tab_node = info_pages.get_child(info_pages.current_tab)
+		
+		if current_tab_node.get_child_count() > 0:
+			var rich_text_label = current_tab_node.get_child(0)
+			rich_text_label.show()
 		
 		# If it's the LAST page, change the button text.
 		if _current_page_index == info_pages.get_tab_count() - 1:

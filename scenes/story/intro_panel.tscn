@@ -36,33 +36,54 @@ custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="InfoPages" type="TabContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="InfoPages" type="TabContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 tabs_visible = false
 
-[node name="RulerInfoPage" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/InfoPages"]
-unique_name_in_owner = true
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoPages"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 metadata/_tab_index = 0
 
-[node name="KingdomInfoPage" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/InfoPages"]
+[node name="RulerInfoPage" type="RichTextLabel" parent="MarginContainer/VBoxContainer/InfoPages/MarginContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoPages"]
+visible = false
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 metadata/_tab_index = 1
 
-[node name="WorldInfoPage" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer/InfoPages"]
+[node name="KingdomInfoPage" type="RichTextLabel" parent="MarginContainer/VBoxContainer/InfoPages/MarginContainer2"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoPages"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 metadata/_tab_index = 2
+
+[node name="WorldInfoPage" type="RichTextLabel" parent="MarginContainer/VBoxContainer/InfoPages/MarginContainer3"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
 
 [node name="UnlockIconsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

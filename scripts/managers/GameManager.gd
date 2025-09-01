@@ -18,6 +18,8 @@ const FOOD_COST_PER_FAMILY = 1
 const INCOME_PER_COASTAL_PROVINCE = 1
 const TAX_PER_FAMILY = 2
 const ALL_STORYLINES = ["SERPENT"]
+const TRADE_DEAL_FOOD_AMOUNT = 25
+const TRADE_DEAL_GOLD_AMOUNT = 20
 
 enum TargetRelationshipType {
 	FRIENDLY_NON_ALLY,
@@ -1285,7 +1287,24 @@ func _calculate_monthly_economy():
 				"IrrigationCanals":
 					# Each stack of this modifier provides a flat food bonus.
 					flat_modifier_food_bonus += FOOD_BONUS_IRRIGATION
-				# Add other FLAT bonus modifiers here
+				#add other matches here	
+					
+			if modifier.id.begins_with("TradeDeal_"):
+				if modifier.id.begins_with("TradeDeal_FoodForGold"):
+					# We are selling food and getting gold
+					food_change -= TRADE_DEAL_FOOD_AMOUNT
+					gold_change += TRADE_DEAL_GOLD_AMOUNT
+				elif modifier.id.begins_with("TradeDeal_GoldForFood"):
+					# We are buying food with gold
+					gold_change -= TRADE_DEAL_GOLD_AMOUNT
+					food_change += TRADE_DEAL_FOOD_AMOUNT
+				
+				elif modifier.id.begins_with("TradeDeal_FoodForGold_Bad"):
+					food_change -= TRADE_DEAL_FOOD_AMOUNT
+					gold_change += 10 # A much worse rate
+				elif modifier.id.begins_with("TradeDeal_GoldForFood_Bad"):
+					gold_change -= 30 # A much worse rate
+					food_change += TRADE_DEAL_FOOD_AMOUNT
 		
 		# Add the flat bonuses to the base income
 		gold_change = base_gold_income + flat_modifier_gold_bonus
