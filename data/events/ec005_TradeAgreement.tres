@@ -1,0 +1,179 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=21 format=3 uid="uid://bc37fhc02tego"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_8v6mt"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_2r7no"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_lwlpn"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_8ylom"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="5_8ylom"]
+
+[sub_resource type="Resource" id="Resource_lwlpn"]
+script = ExtResource("2_lwlpn")
+type = "ChangeRelation"
+target = "{trade_partner_kingdom_id}"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_8ylom"]
+script = ExtResource("2_lwlpn")
+type = "AddModifier"
+target = "TradeDeal_FoodForGold_Bad_{trade_partner_kingdom_id}"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dthtf"]
+script = ExtResource("3_8ylom")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_j6vfk"]
+script = ExtResource("2_lwlpn")
+type = "ChangeRelation"
+target = "{trade_partner_kingdom_id}"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_682bb"]
+script = ExtResource("2_lwlpn")
+type = "AddModifier"
+target = "TradeDeal_FoodForGold_{trade_partner_kingdom_id}"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0s6uq"]
+script = ExtResource("1_8v6mt")
+text = "\"We have a surplus of food. We will sell our grain for their gold.\""
+success_text = "The agreement is signed! A new caravan route is established. Every season, a portion of our food surplus will be sold to {trade_partner_kingdom_name}, providing a steady and reliable stream of gold for our treasury."
+failure_text = "Your negotiators are outmaneuvered. The final terms are much less favorable than you hoped, providing a pittance of gold for a significant amount of food. The deal is done, but it feels like you've been taken for a fool."
+skill_check = SubResource("Resource_dthtf")
+required_gold = 0
+required_manpower = 0
+required_food = 25
+success_outcomes = Array[ExtResource("2_lwlpn")]([SubResource("Resource_j6vfk"), SubResource("Resource_682bb")])
+failure_outcomes = Array[ExtResource("2_lwlpn")]([SubResource("Resource_lwlpn"), SubResource("Resource_8ylom")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_bqlt0"]
+script = ExtResource("2_lwlpn")
+type = "ChangeRelation"
+target = "{trade_partner_kingdom_id}"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dr3l0"]
+script = ExtResource("2_lwlpn")
+type = "AddModifier"
+target = "TradeDeal_GoldForFood_Bad_{trade_partner_kingdom_id}"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_c4vrs"]
+script = ExtResource("3_8ylom")
+stat = "Diplomacy"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_2x8vq"]
+script = ExtResource("2_lwlpn")
+type = "ChangeRelation"
+target = "{trade_partner_kingdom_id}"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_viuf8"]
+script = ExtResource("2_lwlpn")
+type = "AddModifier"
+target = "TradeDeal_GoldForFood_{trade_partner_kingdom_id}"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mg6cb"]
+script = ExtResource("1_8v6mt")
+text = "\"Our people need more grain. We will buy their surplus with our gold.\""
+success_text = "The treaty is sealed. A steady supply of grain will now arrive from {trade_partner_kingdom_name} each season, ensuring our granaries remain full and our people are well-fed, all for a reasonable price."
+failure_text = "The envoy, sensing your need, drives a hard bargain. You are forced to agree to an exorbitant price for their grain. While your food supply is now secure, your treasury will feel the sting of this unfavorable deal for years to come."
+skill_check = SubResource("Resource_c4vrs")
+required_gold = 20
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_lwlpn")]([SubResource("Resource_2x8vq"), SubResource("Resource_viuf8")])
+failure_outcomes = Array[ExtResource("2_lwlpn")]([SubResource("Resource_bqlt0"), SubResource("Resource_dr3l0")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_6b8ev"]
+script = ExtResource("2_lwlpn")
+type = "ChangeRelation"
+target = "{trade_partner_kingdom_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_6gg8b"]
+script = ExtResource("1_8v6mt")
+text = "\"We must remain self-sufficient. We politely decline.\""
+success_text = "You refuse the offer, preferring economic independence over foreign entanglement. The envoy seems disappointed but respects your decision. Your relationship with {trade_partner_kingdom_name} remains unchanged."
+failure_text = "You refuse the offer, preferring economic independence over foreign entanglement. The envoy seems disappointed but respects your decision. Your relationship with {trade_partner_kingdom_name} remains unchanged."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_lwlpn")]([SubResource("Resource_6b8ev")])
+failure_outcomes = Array[ExtResource("2_lwlpn")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ehldu"]
+script = ExtResource("5_8ylom")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 15
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_valid_trade_partner = true
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_2r7no")
+category = 1
+trigger_conditions = SubResource("Resource_ehldu")
+event_id = "EC005"
+title = "A Trade Agreement"
+unlocked_at_start = true
+rarity = 2
+cooldown_years = 0
+selection_cost = 100
+summary = "An envoy from a nearby kingdom has arrived to propose a long-term, recurring trade agreement."
+description = "An envoy from the {trade_partner_kingdom_name} has arrived at your court. \"My Liege,\" she says with a respectful bow, \"our ruler, {trade_partner_ruler_name}, sees the mutual benefit in binding our economies more closely. Our lands are rich in grain, while yours are known for their wealthy markets. We propose a permanent trade agreement to the benefit of both our realms.\""
+vignette_texture = ""
+options = Array[ExtResource("1_8v6mt")]([SubResource("Resource_0s6uq"), SubResource("Resource_mg6cb"), SubResource("Resource_6gg8b")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

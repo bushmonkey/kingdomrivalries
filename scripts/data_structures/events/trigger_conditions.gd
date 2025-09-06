@@ -20,7 +20,7 @@ extends Resource
 #-----rival kingdoms triggers---
 @export var requires_friendly_rival: bool = false
 @export var requires_unfriendly_rival: bool = false
-
+@export var requires_valid_trade_partner: bool = false
 #------neighbouring kingdom triggers---
 @export var requires_empty_neighboring_province: bool = false
 @export var requires_coastal_province: bool = false

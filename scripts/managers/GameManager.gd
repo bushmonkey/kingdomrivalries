@@ -1290,20 +1290,20 @@ func _calculate_monthly_economy():
 				#add other matches here	
 					
 			if modifier.id.begins_with("TradeDeal_"):
-				if modifier.id.begins_with("TradeDeal_FoodForGold"):
+				print("DEBUG: trade deal:",modifier.id)
+				if modifier.id.begins_with("TradeDeal_FoodForGold_Bad"):
+					food_change -= TRADE_DEAL_FOOD_AMOUNT
+					gold_change += (TRADE_DEAL_GOLD_AMOUNT/2) # A much worse rate
+				elif modifier.id.begins_with("TradeDeal_GoldForFood_Bad"):
+					gold_change -= TRADE_DEAL_GOLD_AMOUNT # A much worse rate
+					food_change +=(TRADE_DEAL_FOOD_AMOUNT/2)
+				elif modifier.id.begins_with("TradeDeal_FoodForGold"):
 					# We are selling food and getting gold
 					food_change -= TRADE_DEAL_FOOD_AMOUNT
 					gold_change += TRADE_DEAL_GOLD_AMOUNT
 				elif modifier.id.begins_with("TradeDeal_GoldForFood"):
 					# We are buying food with gold
 					gold_change -= TRADE_DEAL_GOLD_AMOUNT
-					food_change += TRADE_DEAL_FOOD_AMOUNT
-				
-				elif modifier.id.begins_with("TradeDeal_FoodForGold_Bad"):
-					food_change -= TRADE_DEAL_FOOD_AMOUNT
-					gold_change += 10 # A much worse rate
-				elif modifier.id.begins_with("TradeDeal_GoldForFood_Bad"):
-					gold_change -= 30 # A much worse rate
 					food_change += TRADE_DEAL_FOOD_AMOUNT
 		
 		# Add the flat bonuses to the base income

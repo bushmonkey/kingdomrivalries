@@ -230,6 +230,14 @@ func _is_event_valid_for_kingdom(event: GameEvent, kingdom: Kingdom) -> bool:
 	if conditions.max_nobility_opinion<kingdom.nobility_opinion:
 		return false
 	return true
+	
+	
+	if conditions.requires_valid_trade_partner:
+			# We just need to know if a partner EXISTS. We don't need to store it here.
+			var partner = _find_valid_trade_partner()
+			if not is_instance_valid(partner):
+				# If no valid partner was found, the trigger fails.
+				return false
 
 func prepare_event_for_display(event_resource: GameEvent, context: Dictionary = {}) -> PreparedEvent:
 	# 1. Create the formatting arguments for this specific event.
@@ -319,7 +327,7 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 	var unfriendly_kingdom=GameManager.find_kingdom_by_relationship(GameManager.TargetRelationshipType.UNFRIENDLY_NON_RIVAL)
 	var empty_neighboring_provinces=GameManager.player_kingdom.get_neighboring_unowned_provinces()
 	var owned_provinces=GameManager.get_owned_provinces(GameManager.player_kingdom)
-	
+	var trade_partner = _find_valid_trade_partner()
 	var empty_neighboring_province=empty_neighboring_provinces.pick_random()
 	var owned_province=owned_provinces.pick_random()
 	
@@ -341,6 +349,11 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 		format_args["unfriendly_kingdom_id"] = unfriendly_kingdom.id
 		format_args["unfriendly_ruler_id"] = unfriendly_kingdom.ruler.id
 	
+	if is_instance_valid(trade_partner):
+				format_args["trade_partner_kingdom_name"] = trade_partner.kingdom_name
+				format_args["trade_partner_ruler_name"] = trade_partner.ruler.full_name
+				format_args["trade_partner_kingdom_id"] = trade_partner.id
+				
 	if empty_neighboring_province !=null:
 		format_args["empty_province_name"] = empty_neighboring_province.province_name
 	
@@ -385,7 +398,37 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
  
 		
 	return format_args
-	
+
+
+func _find_valid_trade_partner() -> Kingdom:
+	var player_kingdom = GameManager.player_kingdom
+	var potential_partners: Array[Kingdom] = []
+
+	# We loop through all other kingdoms
+	for kingdom in GameManager.all_kingdoms:
+		# --- Filter out invalid partners ---
+		if kingdom == player_kingdom: continue # Can't trade with yourself
+		if not is_instance_valid(kingdom.ruler): continue # Kingdom must have a ruler
+		
+			
+		# Condition: Must NOT be a rival
+		if player_kingdom.rivals.has(kingdom.id):
+			continue
+			
+		# Condition 3: Relations must be neutral or friendly (>= 0)
+		var relations = player_kingdom.relations.get(kingdom.id, -100)
+		if relations < 0:
+			continue
+			
+		# If all checks pass, they are a valid potential partner
+		potential_partners.append(kingdom)
+
+	if potential_partners.is_empty():
+		return null
+	else:
+		return potential_partners.pick_random()
+		
+
 func _find_weakest_neighbor_province() -> Province:
 	var player_kingdom = GameManager.player_kingdom
 	var best_target_province: Province = null
@@ -423,7 +466,7 @@ func _find_weakest_neighbor_province() -> Province:
 	
 func _prepare_border_dispute_event(event_template: GameEvent, target_province: Province) -> PreparedEvent:
 	var target_kingdom = target_province.owner
-	
+	print("border dispute with ",target_province.owner)
 	# 1. Create the formatting arguments dictionary.
 	# This holds all the dynamic data we need to inject into the text and outcomes.
 	var format_args = {

@@ -112,6 +112,7 @@ func _format_outcome_text(outcome: EventOutcome) -> String:
 					if outcome.value > 0:
 						text = "lady %s's affection of you grew" % GameManager.find_character_by_id(outcome.target.to_lower()).full_name
 					else:
+						print("Debug: lady's name:",outcome.target.to_lower())
 						text = "lady %s's affection of you has gone down" % GameManager.find_character_by_id(outcome.target.to_lower()).full_name
 				else:
 					if outcome.value > 0:

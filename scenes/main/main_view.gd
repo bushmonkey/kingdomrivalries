@@ -124,7 +124,8 @@ func _on_game_world_ready():
 	print("MainView received game_world_ready signal. Starting game loop.")
 	# The game world is guaranteed to exist now.
 	_update_stats_display()
-	
+	#get the chronicle initialised for the first turn
+	#GameManager.initialize_chronicle_for_new_turn()
 	current_panel = IntroPanelScn.instantiate()
 	center_stage.add_child(current_panel)
 	
@@ -145,6 +146,7 @@ func _start_game():
 	
 func _start_new_turn():
 	#action_hub.show()
+	print("new turn")
 	actions_remaining = 3
 	_used_categories_this_turn.clear()
 	
@@ -652,8 +654,10 @@ func _handle_event_resolution(choice_package: Dictionary, on_complete_callable: 
 
 	
 	if is_instance_valid(player_ruler.spouse):
+		print("player has a wife")
 		format_args["wife_name"] = player_ruler.spouse.full_name
 	if is_instance_valid(player_ruler.girlfriend):
+		print("player has a girlfriend")
 		format_args["girlfriend_name"] = player_ruler.girlfriend.full_name
 	
 	if is_success:
@@ -987,7 +991,7 @@ func _format_change_string(value) -> String:
 # --- NEW HELPER FUNCTION for the Border Dispute ---
 func _calculate_border_dispute_outcome(format_args: Dictionary) -> Dictionary:
 	var player = GameManager.player_kingdom
-	var target_kingdom = GameManager.find_kingdom_by_id(format_args.get("target_kingdom_id"))
+	var target_kingdom = GameManager.find_kingdom_by_id(format_args.get("weak_neighbor_kingdom_id"))
 
 	# 1. Base chance on Manpower difference (major factor)
 	var manpower_advantage = player.manpower - target_kingdom.manpower
