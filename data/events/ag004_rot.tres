@@ -174,7 +174,7 @@ metadata/_custom_type_script = "uid://cohvc8fiel25u"
 
 [resource]
 script = ExtResource("2_4jb5b")
-category = 2
+category = 0
 event_id = "AG004"
 title = "The Tainted Grain"
 unlocked_at_start = true

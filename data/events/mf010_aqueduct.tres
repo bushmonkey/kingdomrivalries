@@ -1,0 +1,182 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=22 format=3 uid="uid://cj5lkwwu61vqy"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_f3h7m"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_2c0rc"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_cs0me"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_fvskd"]
+
+[sub_resource type="Resource" id="Resource_14rxi"]
+script = ExtResource("2_2c0rc")
+type = "ChangeResource"
+target = "Treasury"
+value = -400
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_24u4x"]
+script = ExtResource("2_2c0rc")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2c0rc"]
+script = ExtResource("2_2c0rc")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wh46y"]
+script = ExtResource("3_fvskd")
+stat = "Stewardship"
+difficulty = 16
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mbm7r"]
+script = ExtResource("2_2c0rc")
+type = "AddModifier"
+target = "AqueductSystem"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5hoam"]
+script = ExtResource("2_2c0rc")
+type = "ChangeOpinion"
+target = "Public"
+value = 25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_m5xdv"]
+script = ExtResource("1_f3h7m")
+text = "\"We will build a true Roman marvel.\""
+success_text = "Using the principles of the arch and advanced engineering, your builders construct a magnificent aqueduct. It is a wonder to behold, a testament to your reign's vision. Clean, fresh water flows into the city, dramatically improving public health and sanitation. The people are healthier, happier, and more loyal than ever."
+failure_text = "Even with the advanced knowledge, a critical miscalculation in the gradient causes a section of the aqueduct to fail. The project is a costly and embarrassing setback, though some smaller channels are still functional."
+skill_check = SubResource("Resource_wh46y")
+required_gold = 400
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2c0rc")]([SubResource("Resource_14rxi"), SubResource("Resource_mbm7r"), SubResource("Resource_5hoam")])
+failure_outcomes = Array[ExtResource("2_2c0rc")]([SubResource("Resource_14rxi"), SubResource("Resource_24u4x"), SubResource("Resource_2c0rc")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_enuxs"]
+script = ExtResource("2_2c0rc")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3c2qj"]
+script = ExtResource("2_2c0rc")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_fvskd"]
+script = ExtResource("3_fvskd")
+stat = "Stewardship"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_rhwcd"]
+script = ExtResource("2_2c0rc")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qdf66"]
+script = ExtResource("2_2c0rc")
+type = "AddModifier"
+target = "WoodenAqueduct"
+value = 1
+duration = 10
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_to60q"]
+script = ExtResource("2_2c0rc")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3hisl"]
+script = ExtResource("1_f3h7m")
+text = "\"We lack the skill for stone. Build it from wood.\""
+success_text = "Your carpenters construct a long, raised wooden channel to bring water to the city. It is not as grand or permanent as a stone aqueduct, but it serves its purpose. The supply of clean water is improved, and the people are grateful."
+failure_text = "The wooden construction is plagued with leaks and rot from the start. It provides a mere trickle of water and is seen as a shoddy, half-hearted effort by the people."
+skill_check = SubResource("Resource_fvskd")
+required_gold = 150
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2c0rc")]([SubResource("Resource_rhwcd"), SubResource("Resource_qdf66"), SubResource("Resource_to60q")])
+failure_outcomes = Array[ExtResource("2_2c0rc")]([SubResource("Resource_enuxs"), SubResource("Resource_3c2qj")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_k4igt"]
+script = ExtResource("2_2c0rc")
+type = "ChangeResource"
+target = "Treasury"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_k0lej"]
+script = ExtResource("2_2c0rc")
+type = "ChangeOpinion"
+target = "Public"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cealr"]
+script = ExtResource("1_f3h7m")
+text = "\"Dig more wells. It is the cheaper solution.\""
+success_text = "You order new wells to be dug throughout the city. This provides some relief, but does not solve the underlying problem of sanitation. The people are placated for now, but the risk of sickness remains."
+failure_text = "You order new wells to be dug throughout the city. This provides some relief, but does not solve the underlying problem of sanitation. The people are placated for now, but the risk of sickness remains."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = "AdvancedArchitecture"
+success_outcomes = Array[ExtResource("2_2c0rc")]([SubResource("Resource_k4igt"), SubResource("Resource_k0lej")])
+failure_outcomes = Array[ExtResource("2_2c0rc")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_cs0me")
+category = 3
+event_id = "MF010"
+title = "Clean Water for the Capital"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 75
+summary = "Your steward reports that the capital's wells are unclean and proposes building an aqueduct to bring fresh water."
+description = "Your steward raises a serious issue. \"My Liege, the capital is growing crowded, and the wells are becoming fouled. Sickness spreads easily. The old Roman ruins nearby show us a solution: an aqueduct to carry clean water from the mountain springs directly into the city. It would be a great and difficult work, but it would ensure the health and happiness of your people.\""
+vignette_texture = ""
+options = Array[ExtResource("1_f3h7m")]([SubResource("Resource_m5xdv"), SubResource("Resource_3hisl"), SubResource("Resource_cealr")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -120,7 +120,7 @@ metadata/_custom_type_script = "uid://cohvc8fiel25u"
 
 [resource]
 script = ExtResource("4_1k4ig")
-category = 2
+category = 0
 event_id = "AG001"
 title = "A Terrible Flood"
 unlocked_at_start = true

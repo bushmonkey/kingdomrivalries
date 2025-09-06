@@ -141,6 +141,7 @@ requires_is_at_peace = false
 allowed_seasons = 2
 requires_friendly_rival = false
 requires_unfriendly_rival = false
+requires_valid_trade_partner = false
 requires_empty_neighboring_province = false
 requires_coastal_province = false
 max_nobility_opinion = 100

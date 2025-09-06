@@ -1,0 +1,165 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=19 format=3 uid="uid://cvpgxnfnicg1q"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_tu5yg"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_n4nvp"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_njw1q"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_bdpy3"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="3_njw1q"]
+
+[sub_resource type="Resource" id="Resource_s8n8c"]
+script = ExtResource("2_n4nvp")
+type = "ChangeResource"
+target = "Treasury"
+value = 150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hcrnp"]
+script = ExtResource("2_n4nvp")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ngkx1"]
+script = ExtResource("1_tu5yg")
+text = "\"Sell them the lumber at the offered price. Gold is always welcome.\""
+success_text = "The deal is struck. For the next season, your woodsmen work overtime to fell and transport the timber. A large caravan of gold arrives from your neighbor in payment. It is a simple and very profitable transaction."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_n4nvp")]([SubResource("Resource_s8n8c"), SubResource("Resource_hcrnp")])
+failure_outcomes = Array[ExtResource("2_n4nvp")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ly0hl"]
+script = ExtResource("2_n4nvp")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_sljwc"]
+script = ExtResource("3_bdpy3")
+stat = "Diplomacy"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_xoiv5"]
+script = ExtResource("2_n4nvp")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = 40
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hhvfi"]
+script = ExtResource("1_tu5yg")
+text = "\"Offer the timber as a gift, to foster goodwill and a future alliance.\""
+success_text = "Your neighbor is stunned by your incredible generosity. Their ruler, {trade_partner_ruler_name}, sends a personal letter expressing their profound gratitude, declaring you a true friend of their realm. You have sacrificed profit for a much more valuable diplomatic victory."
+failure_text = "Your gift is seen not as a gesture of friendship, but as the act of a pity that affronts your neighbor. They accept the timber, but their opinion of you plummets. You have given away a fortune for nothing."
+skill_check = SubResource("Resource_sljwc")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_n4nvp")]([SubResource("Resource_xoiv5")])
+failure_outcomes = Array[ExtResource("2_n4nvp")]([SubResource("Resource_ly0hl")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_n4nvp"]
+script = ExtResource("2_n4nvp")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bdpy3"]
+script = ExtResource("3_bdpy3")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_d5gvp"]
+script = ExtResource("2_n4nvp")
+type = "ChangeResource"
+target = "Treasury"
+value = 300
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nv2ux"]
+script = ExtResource("2_n4nvp")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bkk0f"]
+script = ExtResource("1_tu5yg")
+text = "\"They are desperate. Double the price.\""
+success_text = "Your neighbor, having no other choice, reluctantly agrees to your exorbitant price. A massive fortune in gold flows into your treasury, but your reputation as a ruthless and opportunistic ruler is cemented."
+failure_text = "Outraged by your greed, your neighbor refuses the deal entirely. They will suffer the shortage rather than submit to your extortion. Word of your dishonorable conduct spreads to other courts."
+skill_check = SubResource("Resource_bdpy3")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_n4nvp")]([SubResource("Resource_d5gvp"), SubResource("Resource_nv2ux")])
+failure_outcomes = Array[ExtResource("2_n4nvp")]([SubResource("Resource_n4nvp")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_jd54b"]
+script = ExtResource("3_njw1q")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 15
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_valid_trade_partner = true
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+requires_player_has_heir = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_njw1q")
+category = 1
+trigger_conditions = SubResource("Resource_jd54b")
+event_id = "EC005"
+title = "A Timber Shortage"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A neighboring kingdom is experiencing a timber shortage and has offered to buy a large quantity of wood from your forests."
+description = "An envoy from your neighbor, {trade_partner_kingdom_name}, has arrived with an urgent trade request. A series of forest fires has left their realm with a severe shortage of timber for construction and shipbuilding. They are offering a generous price for a massive shipment of lumber from your royal forests."
+vignette_texture = ""
+options = Array[ExtResource("1_tu5yg")]([SubResource("Resource_ngkx1"), SubResource("Resource_hhvfi"), SubResource("Resource_bkk0f")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

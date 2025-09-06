@@ -1,0 +1,119 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://cgicakko74syl"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_cjnjf"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_2f65i"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_bsrer"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_ofkxa"]
+
+[sub_resource type="Resource" id="Resource_8521c"]
+script = ExtResource("2_2f65i")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0qmnp"]
+script = ExtResource("3_ofkxa")
+stat = "Charisma"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_2mrl4"]
+script = ExtResource("2_2f65i")
+type = "ChangeOpinion"
+target = "Public"
+value = 30
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_n7fvp"]
+script = ExtResource("1_cjnjf")
+text = "\"I will speak to them myself. They will be reminded who I am.\""
+success_text = "You address the crowd from the steps of the great hall. Your voice, filled with conviction and empathy, rings through the square. You speak of shared sacrifice and a brighter future, and your powerful charisma wins them over. They listen, they believe, and they disperse with their faith in you restored. A masterful display of leadership."
+failure_text = "You attempt to speak, but your words are hollow and fail to connect. The crowd jeers, seeing you as a distant ruler offering empty platitudes. Your presence has only inflamed their anger."
+skill_check = SubResource("Resource_0qmnp")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2f65i")]([SubResource("Resource_2mrl4")])
+failure_outcomes = Array[ExtResource("2_2f65i")]([SubResource("Resource_8521c")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_2e77m"]
+script = ExtResource("2_2f65i")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2f65i"]
+script = ExtResource("2_2f65i")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_755f6"]
+script = ExtResource("3_ofkxa")
+stat = "Stewardship"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_8hdpf"]
+script = ExtResource("1_cjnjf")
+text = "\"Throw a small festival. Bread and circuses will placate them.\""
+success_text = "You organize a small festival, distributing free ale and roasted meats. The people's anger is forgotten, at least for a time, in a haze of drink and revelry. The underlying problems remain, but you have successfully bought yourself some peace."
+failure_text = "The festival is a paltry affair and is seen as a transparent and insulting attempt to buy the people's loyalty. They drink your ale and eat your meat, but their grumbling only grows louder."
+skill_check = SubResource("Resource_755f6")
+required_gold = 100
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2f65i")]([SubResource("Resource_2e77m"), SubResource("Resource_2f65i")])
+failure_outcomes = Array[ExtResource("2_2f65i")]([SubResource("Resource_2e77m"), SubResource("Resource_2f65i")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ofkxa"]
+script = ExtResource("2_2f65i")
+type = "ChangeOpinion"
+target = "Public"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cvf3g"]
+script = ExtResource("1_cjnjf")
+text = "\"Double the city guard patrols. Fear will keep them in line.\""
+success_text = "You order the city guard to crack down on dissent. The presence of armed men on every street corner silences the grumbling. The city is quiet, but it is the quiet of fear, not of contentment."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2f65i")]([SubResource("Resource_ofkxa")])
+failure_outcomes = Array[ExtResource("2_2f65i")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_bsrer")
+category = 0
+event_id = "RD009"
+title = "Grumbling in the Streets"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "Low-level unrest is brewing in the capital due to high taxes and food prices. Your personal intervention may be required."
+description = "Your steward reports a sour mood in the capital's markets. \"My Liege, the people are grumbling,\" he says nervously. \"Whispers of unfair taxes and the price of bread are turning to angry shouts. It is nothing organized, not yet, but the mood is turning against you. A spark could light a fire.\""
+vignette_texture = ""
+options = Array[ExtResource("1_cjnjf")]([SubResource("Resource_n7fvp"), SubResource("Resource_8hdpf"), SubResource("Resource_cvf3g")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

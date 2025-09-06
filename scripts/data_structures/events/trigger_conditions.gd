@@ -24,6 +24,7 @@ extends Resource
 #------neighbouring kingdom triggers---
 @export var requires_empty_neighboring_province: bool = false
 @export var requires_coastal_province: bool = false
+@export var requires_player_has_heir: bool = false
 
 # --- Opinion Triggers ---
 @export var max_nobility_opinion: int = 100 # e.g., for a rebellion event

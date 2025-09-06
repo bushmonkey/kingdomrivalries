@@ -157,7 +157,7 @@ metadata/_custom_type_script = "uid://cohvc8fiel25u"
 
 [resource]
 script = ExtResource("4_7j14t")
-category = 3
+category = 0
 event_id = "MF002"
 title = "Disaster at the Iron Mine"
 unlocked_at_start = true

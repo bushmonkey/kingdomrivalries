@@ -65,6 +65,11 @@ func display_event(prepared_event: PreparedEvent):
 		elif player_kingdom.food < option.required_food:
 			can_afford = false
 			reason = "Not enough Food (requires %d)" % option.required_food
+		
+		if not option.required_modifier.is_empty():
+			if not GameManager.player_kingdom.has_modifier(option.required_modifier):
+				can_afford = false
+				reason = "Requires Technology: %s" % option.required_modifier
 			
 		if not can_afford:
 			button.disabled = true

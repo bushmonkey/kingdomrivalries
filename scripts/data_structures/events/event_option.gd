@@ -12,6 +12,7 @@ extends Resource
 @export var required_gold: int = 0
 @export var required_manpower: int = 0
 @export var required_food: int = 0
+@export var required_modifier: String = ""
 
 # And here we define an array of our EventOutcome resources.
 @export var success_outcomes: Array[EventOutcome]

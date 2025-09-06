@@ -110,7 +110,7 @@ metadata/_custom_type_script = "uid://cohvc8fiel25u"
 
 [resource]
 script = ExtResource("2_fbycm")
-category = 3
+category = 5
 event_id = "MF_008"
 title = "A House for God"
 unlocked_at_start = false

@@ -180,6 +180,10 @@ func _is_event_valid_for_kingdom(event: GameEvent, kingdom: Kingdom) -> bool:
 	if conditions.requires_player_is_unmarried and is_instance_valid(ruler.spouse):
 		return false
 	
+	if conditions.requires_player_has_heir:
+		if ruler.children.is_empty():
+			return false
+			
 	# Assuming you have a 'courting_target' variable on your Character class
 	if conditions.requires_player_is_courting and not ruler.is_courting:
 		return false
@@ -347,7 +351,10 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 	if is_instance_valid(player_ruler.girlfriend):
 		format_args["girlfriend_name"] = player_ruler.girlfriend.full_name
 		format_args["girlfriend_id"] = player_ruler.girlfriend.id
-		
+	
+	if not player_ruler.children.is_empty():
+		var heir = player_ruler.children[0] # Simplistic heir selection
+		format_args["heir_name"] = heir.first_name
 	
 	if friendly_kingdom != null:
 		format_args["friendly_kingdom_name"] = friendly_kingdom.kingdom_name

@@ -163,7 +163,7 @@ metadata/_custom_type_script = "uid://cohvc8fiel25u"
 
 [resource]
 script = ExtResource("2_u1t1r")
-category = 2
+category = 0
 event_id = "AG003"
 title = "The Unforgiving Sun"
 unlocked_at_start = true
