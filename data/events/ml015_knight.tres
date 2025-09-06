@@ -1,0 +1,107 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=13 format=3 uid="uid://cly5rbq2pjpgu"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_trv1g"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_h76yq"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_rbwu0"]
+
+[sub_resource type="Resource" id="Resource_erig0"]
+script = ExtResource("2_h76yq")
+type = "ChangeResource"
+target = "Treasury"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xn1jy"]
+script = ExtResource("2_h76yq")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_drobb"]
+script = ExtResource("2_h76yq")
+type = "AddModifier"
+target = "RenownedKnight"
+value = 1
+duration = -1
+stackable = true
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rbwu0"]
+script = ExtResource("2_h76yq")
+type = "KnightCharacter"
+target = "{squire_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rsmwc"]
+script = ExtResource("1_trv1g")
+text = "Kneel, squire. Arise, Sir {squire_name}"
+success_text = "You tap the flat of your sword on the man's shoulders, knighting him before the entire court. The common soldiers cheer for one of their own, and even the nobles are impressed by your recognition of true merit. Sir Alaric, his eyes filled with fierce loyalty, joins your household guard. His expertise will be a great asset."
+failure_text = "You tap the flat of your sword on the man's shoulders, knighting him before the entire court. The common soldiers cheer for one of their own, and even the nobles are impressed by your recognition of true merit. Sir Alaric, his eyes filled with fierce loyalty, joins your household guard. His expertise will be a great asset."
+required_gold = 50
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_h76yq")]([SubResource("Resource_erig0"), SubResource("Resource_xn1jy"), SubResource("Resource_drobb"), SubResource("Resource_rbwu0")])
+failure_outcomes = Array[ExtResource("2_h76yq")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_nyicb"]
+script = ExtResource("2_h76yq")
+type = "ChangeResource"
+target = "Treasury"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xbr2j"]
+script = ExtResource("2_h76yq")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_tn4mg"]
+script = ExtResource("2_h76yq")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pydu6"]
+script = ExtResource("1_trv1g")
+text = "\"Knighthood is for the highborn only. He shall be rewarded with coin.\""
+success_text = "You deny the request, citing ancient tradition. The young warrior is given a pouch of silver for his service, but you can see the disappointment in his eyes. The nobles are pleased that you have upheld the social order, but the common soldiers see it as a snub."
+failure_text = "You deny the request, citing ancient tradition. The young warrior is given a pouch of silver for his service, but you can see the disappointment in his eyes. The nobles are pleased that you have upheld the social order, but the common soldiers see it as a snub."
+required_gold = 25
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_h76yq")]([SubResource("Resource_nyicb"), SubResource("Resource_xbr2j"), SubResource("Resource_tn4mg")])
+failure_outcomes = Array[ExtResource("2_h76yq")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_rbwu0")
+category = 7
+event_id = "ML015"
+title = "A Knight's Valor"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 1
+selection_cost = 0
+summary = "Your Marshal recommends knighting a lowborn but exceptionally skilled warrior for his service."
+description = "Your Marshal brings a young, grim-faced warrior before you. \"My Liege,\" the Marshal says, \"this is {squire_name}. This young man is lowborn, but I have never seen a man fight with more courage or skill. He distinguished himself in the last border skirmish and has the unwavering respect of the men. It is my recommendation that you raise him to the rank of knight. It would be a great boost to morale.\""
+vignette_texture = ""
+options = Array[ExtResource("1_trv1g")]([SubResource("Resource_rsmwc"), SubResource("Resource_pydu6")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

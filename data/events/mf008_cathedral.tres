@@ -1,0 +1,126 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=16 format=3 uid="uid://ooojp8ojj5ga"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_x4ljo"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_fbycm"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_qkxxi"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_qkxxi"]
+
+[sub_resource type="Resource" id="Resource_lx4ki"]
+script = ExtResource("2_qkxxi")
+type = "ChangeResource"
+target = "Treasury"
+value = -1000
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_88k72"]
+script = ExtResource("2_qkxxi")
+type = "ChangeOpinion"
+target = "Church"
+value = -30
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5v1tc"]
+script = ExtResource("3_qkxxi")
+stat = "Stewardship"
+difficulty = 18
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mnf0d"]
+script = ExtResource("2_qkxxi")
+type = "ChangeResource"
+target = "Treasury"
+value = -1000
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_tyndd"]
+script = ExtResource("2_qkxxi")
+type = "AddModifier"
+target = "GrandCathedral"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qkxxi"]
+script = ExtResource("2_qkxxi")
+type = "ChangeOpinion"
+target = "Church"
+value = 50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_kfgoo"]
+script = ExtResource("2_qkxxi")
+type = "ChangeOpinion"
+target = "Public"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5yej3"]
+script = ExtResource("2_qkxxi")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_02r8t"]
+script = ExtResource("1_x4ljo")
+text = "\"Let it be done. We shall raise a cathedral that touches the heavens!\""
+success_text = "The proclamation is met with cheers from the faithful. The finest stonemasons and architects in the world are summoned to your capital. The project will be long and arduous, but you have begun a legacy that will outlive you and all your descendants. The Church sees you as a living saint."
+failure_text = "Your ambition has been undone by corruption. The vast sums of gold you allocate are siphoned off by fraudulent contractors and greedy nobles. The project begins with shoddy materials and poor planning, destined to become a half-finished ruin and a monument to your failed piety."
+skill_check = SubResource("Resource_5v1tc")
+required_gold = 1000
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_qkxxi")]([SubResource("Resource_mnf0d"), SubResource("Resource_tyndd"), SubResource("Resource_qkxxi"), SubResource("Resource_kfgoo"), SubResource("Resource_5yej3")])
+failure_outcomes = Array[ExtResource("2_qkxxi")]([SubResource("Resource_lx4ki"), SubResource("Resource_88k72")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_7sj16"]
+script = ExtResource("2_qkxxi")
+type = "ChangeOpinion"
+target = "Church"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_v71tg"]
+script = ExtResource("1_x4ljo")
+text = "\"This is vanity. The kingdom's gold is for the living, not for stone.\""
+success_text = "You refuse the Bishop's grand proposal. He is deeply offended by your lack of vision and piety, seeing you as a worldly ruler concerned only with material gain. The opportunity for a grand legacy is lost."
+failure_text = "You refuse the Bishop's grand proposal. He is deeply offended by your lack of vision and piety, seeing you as a worldly ruler concerned only with material gain. The opportunity for a grand legacy is lost."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_qkxxi")]([SubResource("Resource_7sj16")])
+failure_outcomes = Array[ExtResource("2_qkxxi")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_fbycm")
+category = 3
+event_id = "MF_008"
+title = "A House for God"
+unlocked_at_start = false
+rarity = 2
+cooldown_years = 0
+selection_cost = 200
+summary = "The Bishop, impressed by your piety, proposes the construction of a grand cathedral in the capital."
+description = "The Bishop of your capital requests an audience, his eyes gleaming with ambition. \"My Liege, your piety is known throughout the land. The parish church you funded stands as a testament to your faith. But I say it is not enough! Let us build a monument that will echo through eternity—a Grand Cathedral!\"
+
+\"It will be the work of a generation, a project of immense cost and labor, but it will become the heart of our kingdom and a symbol of your divine right to rule for a thousand years.\""
+vignette_texture = ""
+options = Array[ExtResource("1_x4ljo")]([SubResource("Resource_02r8t"), SubResource("Resource_v71tg")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

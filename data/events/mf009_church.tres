@@ -1,0 +1,145 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=18 format=3 uid="uid://pkgfv8n7in5g"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_ifanr"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_eevsa"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_pdoqq"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_ip8pp"]
+
+[sub_resource type="Resource" id="Resource_pdoqq"]
+script = ExtResource("2_pdoqq")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ip8pp"]
+script = ExtResource("2_pdoqq")
+type = "ChangeOpinion"
+target = "Church"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mi6xy"]
+script = ExtResource("3_ip8pp")
+stat = "Stewardship"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_bsbg0"]
+script = ExtResource("2_pdoqq")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q0b71"]
+script = ExtResource("2_pdoqq")
+type = "ChangeOpinion"
+target = "Church"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3blws"]
+script = ExtResource("2_pdoqq")
+type = "UnlockEvent"
+target = "MF008"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0tyvh"]
+script = ExtResource("2_pdoqq")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dupmd"]
+script = ExtResource("1_ifanr")
+text = "\"A worthy cause. The crown will fund the construction.\""
+success_text = "The new church is built with surprising speed, the workers inspired by the divine task. It stands as a proud testament to your piety. The Bishop is overjoyed and speaks of your devotion in his sermons. He notes that with such a foundation, a truly grand project might one day be possible."
+failure_text = "The construction is a mess of corruption. The church tithes are skimmed by greedy overseers, and the final building is a squat, ugly affair. You have paid for a house of God but received a hovel. The Bishop is deeply disappointed."
+skill_check = SubResource("Resource_mi6xy")
+required_gold = 150
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_pdoqq")]([SubResource("Resource_bsbg0"), SubResource("Resource_q0b71"), SubResource("Resource_3blws"), SubResource("Resource_0tyvh")])
+failure_outcomes = Array[ExtResource("2_pdoqq")]([SubResource("Resource_pdoqq"), SubResource("Resource_ip8pp")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_67jo7"]
+script = ExtResource("2_pdoqq")
+type = "ChangeResource"
+target = "Treasury"
+value = -75
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3bnh6"]
+script = ExtResource("2_pdoqq")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2wgh4"]
+script = ExtResource("1_ifanr")
+text = "\"The crown will contribute, but the parish must raise the rest.\""
+success_text = "Your donation inspires the local parish to contribute their own funds and labor. A simple but respectable church is built. The Bishop appreciates your gesture, though he notes that a more significant royal patronage would have made a stronger statement."
+failure_text = "Your donation inspires the local parish to contribute their own funds and labor. A simple but respectable church is built. The Bishop appreciates your gesture, though he notes that a more significant royal patronage would have made a stronger statement."
+required_gold = 75
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_pdoqq")]([SubResource("Resource_67jo7"), SubResource("Resource_3bnh6")])
+failure_outcomes = Array[ExtResource("2_pdoqq")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_5bep3"]
+script = ExtResource("2_pdoqq")
+type = "ChangeOpinion"
+target = "Church"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5fiom"]
+script = ExtResource("1_ifanr")
+text = "\"The state has more pressing needs for its gold.\""
+success_text = "You refuse the Bishop's request, prioritizing the treasury over the Church's ambitions. He is clearly displeased, and your reputation for piety suffers."
+failure_text = "You refuse the Bishop's request, prioritizing the treasury over the Church's ambitions. He is clearly displeased, and your reputation for piety suffers."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+success_outcomes = Array[ExtResource("2_pdoqq")]([SubResource("Resource_5bep3")])
+failure_outcomes = Array[ExtResource("2_pdoqq")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_eevsa")
+category = 3
+event_id = "MF009"
+title = "A Parish Church"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "The Bishop requests funds to construct a new parish church for the growing population of the capital."
+description = "Your Bishop approaches you with a proposal. \"My Liege, the capital grows, and the souls of your subjects need tending. The old chapel is overflowing. We must build a new, larger parish church to serve the faithful. A modest investment from the crown would be a powerful symbol of your piety and devotion.\""
+vignette_texture = ""
+options = Array[ExtResource("1_ifanr")]([SubResource("Resource_dupmd"), SubResource("Resource_2wgh4"), SubResource("Resource_5fiom")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

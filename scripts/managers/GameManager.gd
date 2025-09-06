@@ -576,8 +576,21 @@ func apply_outcomes(target_kingdom: Kingdom, outcomes: Array[EventOutcome]):
 					unlocked_event_ids.append(event_id_to_unlock)
 					var log_msg = "A new opportunity has arisen..." # A hint to the player
 					monthly_event_log.append(log_msg)
+					monthly_chronicle.critical_events.append(log_msg)
 					print("EVENT UNLOCKED: ", event_id_to_unlock)
-
+						
+			"KnightCharacter":
+				var character_to_knight = find_character_by_id(outcome.target)
+				if is_instance_valid(character_to_knight):
+					character_to_knight.is_knight = true
+					print("Knighted: ", character_to_knight.full_name)
+					
+					# Now, we link the modifier to this specific character.
+					# We can do this by finding the most recently added modifier.
+					var knight_modifier = player_kingdom.active_modifiers.back()
+					if knight_modifier.id == "RenownedKnight":
+						knight_modifier.attached_character_id = character_to_knight.id
+						
 #Function to advance or end a storyline ---
 # A private helper to keep the logic clean.
 func _advance_storyline(storyline_id: String, new_stage: int):
@@ -591,6 +604,7 @@ func _advance_storyline(storyline_id: String, new_stage: int):
 		active_storylines.erase(storyline_id)
 		var log_msg = "The storyline '%s' has concluded." % storyline_id
 		monthly_event_log.append(log_msg)
+		monthly_chronicle.critical_events.append(log_msg)
 		GameManager.monthly_chronicle.critical_events.append(log_msg)
 		print("STORYLINE: ", log_msg)
 		match storyline_id:
@@ -607,6 +621,7 @@ func _advance_storyline(storyline_id: String, new_stage: int):
 		active_storylines[storyline_id] = new_stage
 		var log_msg = "The storyline '%s' has advanced to stage %d." % [storyline_id, new_stage]
 		monthly_event_log.append(log_msg)
+		monthly_chronicle.critical_events.append(log_msg)
 		print("STORYLINE: ", log_msg)
 		
 		
@@ -1129,6 +1144,7 @@ func _annex_province(province_name_raw: String):
 	print(log_message)
 	# Add this to the monthly log so the player sees it in the summary.
 	monthly_event_log.append(log_message)
+	monthly_chronicle.critical_events.append(log_message)
 	#GameManager.monthly_chronicle.kingdom_logs[player_kingdom].append(log_message)
 	
 	
@@ -1287,6 +1303,8 @@ func _calculate_monthly_economy():
 				"IrrigationCanals":
 					# Each stack of this modifier provides a flat food bonus.
 					flat_modifier_food_bonus += FOOD_BONUS_IRRIGATION
+				"GrandCathedral":
+					flat_modifier_gold_bonus += 25
 				#add other matches here	
 					
 			if modifier.id.begins_with("TradeDeal_"):

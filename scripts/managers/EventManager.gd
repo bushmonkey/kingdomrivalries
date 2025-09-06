@@ -141,6 +141,11 @@ func _is_event_valid_for_kingdom(event: GameEvent, kingdom: Kingdom) -> bool:
 			print('ML009 not valid')
 			return false
 			
+	if event.event_id == "ML015":
+		var squire=_find_squire_for_knighting()
+		if !is_instance_valid(squire):
+			print('ML015 not valid')
+			return false
 	# If an event has no conditions defined, it's always valid.
 	if not is_instance_valid(event.trigger_conditions):
 		return true
@@ -330,12 +335,19 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 	var trade_partner = _find_valid_trade_partner()
 	var empty_neighboring_province=empty_neighboring_provinces.pick_random()
 	var owned_province=owned_provinces.pick_random()
+	var squire: Character=_find_squire_for_knighting()
+	var unowned_lands = GameManager.player_kingdom.get_neighboring_unowned_provinces()
+	var weak_province = _find_weakest_neighbor_province()
+	var weak_province_kingdom = weak_province.owner if is_instance_valid(weak_province) else null
 	
 	print('DEBUG: owned province selected: %s' % owned_province.province_name)
 	if is_instance_valid(player_ruler.spouse):
 		format_args["wife_name"] = player_ruler.spouse.full_name
+		format_args["wife_id"] = player_ruler.spouse.id
 	if is_instance_valid(player_ruler.girlfriend):
 		format_args["girlfriend_name"] = player_ruler.girlfriend.full_name
+		format_args["girlfriend_id"] = player_ruler.girlfriend.id
+		
 	
 	if friendly_kingdom != null:
 		format_args["friendly_kingdom_name"] = friendly_kingdom.kingdom_name
@@ -356,26 +368,26 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 				
 	if empty_neighboring_province !=null:
 		format_args["empty_province_name"] = empty_neighboring_province.province_name
-	
-	var unowned_lands = GameManager.player_kingdom.get_neighboring_unowned_provinces()
-	if unowned_lands.is_empty():
-		var target_province = _find_weakest_neighbor_province()
-		var target_kingdom = target_province.owner
-		if is_instance_valid(target_province):
-			format_args["weak_neighbor_province_name"] =target_province.province_name
-			format_args["weak_neighbor_province_id"]= target_province.id
-			format_args["weak_neighbor_kingdom_name"]= target_kingdom.kingdom_name
-			format_args["weak_neighbor_kingdom_id"]= target_kingdom.id
-			format_args["weak_neighbor_ruler_name"]= target_kingdom.ruler.full_name
+
+	if is_instance_valid(squire):
+		format_args["squire_name"] = squire.full_name
+		format_args["squire_id"] = squire.id
+		
+	if is_instance_valid(weak_province):
+		format_args["weak_neighbor_province_name"] =weak_province.province_name
+		format_args["weak_neighbor_province_id"]= weak_province.id
+		format_args["weak_neighbor_kingdom_name"]= weak_province_kingdom.kingdom_name
+		format_args["weak_neighbor_kingdom_id"]= weak_province_kingdom.id
+		format_args["weak_neighbor_ruler_name"]= weak_province_kingdom.ruler.full_name
 				
 	if WarManager.is_player_at_war():
 			var enemy = WarManager.get_player_war_opponent() # New helper needed
-			var target_province = _find_best_wartime_target(enemy)
+			var wartarget_province = _find_best_wartime_target(enemy)
 			format_args["enemy_kingdom_name"]= enemy.kingdom_name
 			format_args["enemy_kingdom_id"]= enemy.id
-			if is_instance_valid(target_province):
-				format_args["target_province_name"]= target_province.province_name
-				format_args["target_province_id"]= target_province.id
+			if is_instance_valid(wartarget_province):
+				format_args["wartarget_province_name"]= wartarget_province.province_name
+				format_args["wartarget_province_id"]= wartarget_province.id
 		# We'll need these for the outcomes
 	
 	var eligible_ladies = GameManager.get_eligible_courting_targets(GameManager.player_kingdom.ruler)
@@ -581,3 +593,13 @@ func get_event_choices_for_category(category: GameEvent.EventCategory, kingdom: 
 		print(element.event_id)
 	
 	return choices
+
+func _find_squire_for_knighting() -> Character:
+	var player_court = GameManager.get_characters_in_court(GameManager.player_kingdom)
+	var candidates: Array[Character] = []
+	for char in player_court:
+		var age = char.get_age()
+		if char.is_alive and not char.is_knight and char.gender == Character.Gender.MALE and age >= 16 and age <= 22:
+			candidates.append(char)
+	
+	return candidates.pick_random() if not candidates.is_empty() else null

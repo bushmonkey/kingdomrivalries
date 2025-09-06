@@ -61,6 +61,7 @@ var is_pregnant: bool = false
 var pregnancy_term: int = 0  # in seasons
 
 var is_courting: bool = false
+var is_knight: bool = false
 
 var expansion_desire: int = 50
 
@@ -71,6 +72,7 @@ func get_age():
 func die(cause: String):
 	if not is_alive: return
 	
+	handle_character_death_consequences(self)
 	death_year = GameManager.current_year
 	is_alive = false
 	cause_of_death = cause
@@ -88,6 +90,8 @@ func die(cause: String):
 	var log_msg="DEATH: %s of the court of %s has %s at age %d." % [full_name, current_court.kingdom_name, cause, age]
 	GameManager.monthly_event_log.append(log_msg)
 	GameManager.monthly_chronicle.kingdom_logs[current_court].append(log_msg)
+	
+	
 func process_monthly_tick():
 	if not is_alive: return
 	if player_character: return
@@ -212,3 +216,20 @@ func _give_birth():
 func set_initial_age(age: int):
 	# We calculate the birth year based on the game's starting year.
 	self.birth_year = GameManager.current_year - age
+
+func handle_character_death_consequences(dead_character: Character):
+	if dead_character.is_knight:
+		var kingdom = dead_character.current_court
+		if is_instance_valid(kingdom):
+			# We need to find and remove the specific RenownedKnight modifier
+			# that was attached to this character.
+			for i in range(kingdom.active_modifiers.size() - 1, -1, -1):
+				var mod = kingdom.active_modifiers[i]
+				if mod.id == "RenownedKnight" and mod.attached_character_id == dead_character.id:
+					kingdom.active_modifiers.remove_at(i)
+					print("A renowned knight has fallen. %s's martial bonus has been reduced." % kingdom.kingdom_name)
+					# Add a special note to the chronicle
+					var log_msg = "[color=orange]A great knight, Sir %s, has passed away.[/color]" % dead_character.full_name
+					GameManager.monthly_chronicle.kingdom_logs[kingdom].append(log_msg)
+					break # Stop after finding the one we need
+	

@@ -524,20 +524,33 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 				modifier_penalty = min(modifier_penalty, -2) # A moderate penalty
 				if penalty_reason.is_empty(): # Only set the reason if one isn't already set
 					penalty_reason = "Diminished Authority"
-					
-	if parent_event.category == GameEvent.EventCategory.MANUFACTURING:
-		
-		# Check for the AdvancedArchitecture modifier.
-		if ruler_kingdom.has_modifier("AdvancedArchitecture"):
-			result.tech_bonus += 1
-			
-		# Check for the MinorInnovations modifier.
-		# Let's assume this is a one-time use modifier.
-		if ruler_kingdom.has_modifier("MinorInnovations"):
-			result.tech_bonus += 1
-			# Since it's one-time use, we should remove it after applying the bonus.
-			ruler_kingdom.remove_modifier("MinorInnovations") # We will need to create this function
+
+	result.tech_bonus = 0
 	
+	# We now loop through ALL active modifiers on the kingdom.
+	for modifier in ruler_kingdom.active_modifiers:
+				
+		if parent_event.category == GameEvent.EventCategory.MANUFACTURING:
+			
+			# Check for the AdvancedArchitecture modifier.
+			if ruler_kingdom.has_modifier("AdvancedArchitecture"):
+				result.tech_bonus += 2
+				
+			# Check for the MinorInnovations modifier.
+			# Let's assume this is a one-time use modifier.
+			if ruler_kingdom.has_modifier("MinorInnovations"):
+				result.tech_bonus += 1
+				# Since it's one-time use, we should remove it after applying the bonus.
+				ruler_kingdom.remove_modifier("MinorInnovations") # We will need to create this function
+
+
+		if ruler_kingdom.has_modifier("RenownedKnight"):
+				# This modifier should only affect MARTIAL skill checks.
+				if check.stat == "Martial":
+					result.tech_bonus += 1 # We can reuse the tech_bonus variable
+					# Add a reason for the outcome panel if you like
+					# result.tech_bonus_reason = "Renowned Knight"
+
 	result.modifier_penalty = modifier_penalty # Your calculated value
 	result.penalty_reason = penalty_reason   # Your calculated reason
 	
@@ -548,6 +561,8 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 	var print_string = "Skill Check: %s (%d) + Roll (%d)" % [check.stat, ruler_skill, roll]
 	if personality_bonus != 0:
 		print_string += " + Perso Bonus (%d)" % personality_bonus
+	if result.tech_bonus != 0:
+		print_string += " + Tech Bonus (%d)" % result.tech_bonus
 	if modifier_penalty != 0:
 		print_string += " + Mod Penalty (%d from %s)" % [modifier_penalty, penalty_reason]
 	print_string += " = %d. Target: %d" % [total_score, check.difficulty]

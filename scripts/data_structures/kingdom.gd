@@ -84,7 +84,7 @@ func get_neighboring_unowned_provinces() -> Array[Province]:
 	return unowned_neighbors
 	
 # A clean way to add a new modifier to the kingdom.
-func add_modifier(modifier_id: String, duration_in_months: int, value: Variant = 0,stackable: bool=false):
+func add_modifier(modifier_id: String, duration_in_months: int, value: Variant = 0,stackable: bool=false, char_id: String = ""):
 	if not stackable:
 			for mod in active_modifiers:
 				if mod.id == modifier_id:
@@ -95,7 +95,7 @@ func add_modifier(modifier_id: String, duration_in_months: int, value: Variant =
 					return
 			
 	# If we get here, the modifier doesn't exist yet, so we add a new one.
-	var new_modifier = Modifier.new(modifier_id, duration_in_months, value)
+	var new_modifier = Modifier.new(modifier_id, duration_in_months, value,char_id)
 	active_modifiers.append(new_modifier)
 	print("Added modifier '%s' to %s (Duration: %d, Value: %s)" % [modifier_id, kingdom_name, duration_in_months, str(value)])
 	
