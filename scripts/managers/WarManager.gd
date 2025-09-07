@@ -8,6 +8,15 @@ func declare_war(attacker: Kingdom, defender: Kingdom, target_province: Province
 	# ... check if neighbors ...
 	var new_war = War.new(attacker, defender, target_province) # Assuming War has an _init method
 	active_wars.append(new_war)
+	
+	if defender == GameManager.player_kingdom:
+		print("WAR DECLARED ON PLAYER! Setting notification flag.")
+		GameManager.player_war_declaration_pending = true
+		GameManager.pending_war_declaration_data = {
+			"attacker": attacker,
+			"defender": defender,
+			"war_goal": target_province
+		}
 	print("%s has declared war on %s!" % [attacker.kingdom_name, defender.kingdom_name])
 	
 func update_monthly_warfare():
@@ -250,3 +259,30 @@ func enact_surrender(loser: Kingdom, war: War):
 		
 	# Now, call our internal, private function to handle the details.
 	_handle_war_end_by_surrender(winner, loser, war)
+
+func find_active_ai_war() -> War:
+	var player_kingdom = GameManager.player_kingdom
+	if not is_instance_valid(player_kingdom):
+		return null
+
+	var ai_only_wars: Array[War] = []
+	
+	for war in active_wars:
+		if war.attacker != player_kingdom and war.defender != player_kingdom:
+			ai_only_wars.append(war)
+			
+	if ai_only_wars.is_empty():
+		return null
+	else:
+		return ai_only_wars.pick_random()
+		
+func find_potential_war_instigation_targets() -> Array[Kingdom]:
+	for k1 in GameManager.all_kingdoms:
+		if k1 == GameManager.player_kingdom: continue
+		for k2 in GameManager.all_kingdoms:
+			if k2 == GameManager.player_kingdom or k2 == k1: continue
+			
+			if k1.get_neighboring_kingdoms().has(k2) and not k1.allies.has(k2.id): 
+				# add and k1.relations.get(k2.id, 0) < -10 if we want Relations must be notably poor
+				return [k1, k2]
+	return []

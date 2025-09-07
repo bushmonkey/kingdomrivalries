@@ -120,15 +120,41 @@ func _handle_ai_war_declaration(kingdom: Kingdom):
 			if randf() < 0.10: will_declare_war = true # 10% chance each month
 		_:
 			# All other personalities will not start wars in this simple model
-			pass 
+			return 
+			
+	var rival_neighbors: Array[Kingdom] = []
+	for rival_id in kingdom.rivals:
+		var rival_kingdom = GameManager.find_kingdom_by_id(rival_id)
+		if is_instance_valid(rival_kingdom) and kingdom.get_neighboring_kingdoms().has(rival_kingdom):
+			rival_neighbors.append(rival_kingdom)
+			
+	# If a rival neighbor exists, there's a high chance of war.
+	if not rival_neighbors.is_empty():
+		# Let's say a 40% chance each season to declare war on a rival.
+		if randf() < 0.40:
+			# Pick one of the rival neighbors to attack.
+			var target = rival_neighbors.pick_random()
+			print("AI MOTIVATION: %s is declaring war on a rival!" % kingdom.kingdom_name)
+			_execute_war_declaration(kingdom, target)
+			# We declared a war, so we don't need to do any other checks.
+			return 
 			
 	if will_declare_war:
 		# Find a valid target (e.g., a weaker, non-allied neighbor)
 		var target = _find_weakest_neighbor(kingdom)
 		if is_instance_valid(target):
-			# WarManager.declare_war(kingdom, target, target_province_goal)
+			_execute_war_declaration(kingdom, target)
 			print("AI ACTION: %s (%s) has declared war on %s!" % [ruler.full_name, ruler.personality, target.kingdom_name])
 
+func _execute_war_declaration(attacker: Kingdom, defender: Kingdom):
+	# Find a valid war goal province (a border province owned by the defender).
+	var war_goal_province = GameManager.get_border_provinces(defender, attacker).pick_random()
+	
+	if is_instance_valid(war_goal_province):
+		WarManager.declare_war(attacker, defender, war_goal_province)
+		var log_msg = "WAR: The %s has declared war on the %s, seeking to conquer %s!" % [attacker.kingdom_name, defender.kingdom_name, war_goal_province.province_name]
+		GameManager.monthly_chronicle.critical_events.append(log_msg) # This is a critical event
+		print("AI ACTION: ", log_msg)
 
 func _find_weakest_neighbor(kingdom: Kingdom) -> Kingdom:
 	var best_target: Kingdom = null

@@ -7,6 +7,7 @@ const GameOverScreen = preload("res://scenes/main/game_over_screen.tscn")
 const EndOfActionsPanel = preload("res://scenes/ui/end_of_actions_panel.tscn")
 const InteractiveSummaryPanel = preload("res://scenes/ui/interactive_summary_panel.tscn")
 const CensusPanelScene = preload("res://scenes/ui/census_panel.tscn")
+const WarDeclaredPanel = preload("res://scenes/ui/war_declared_panel.tscn")
 
 # --- NEW STATE MANAGEMENT VARIABLES ---
 # A dictionary to link our category enums to the actual button nodes.
@@ -151,6 +152,12 @@ func _start_new_turn():
 	_used_categories_this_turn.clear()
 	
 	GameManager.initialize_chronicle_for_new_turn()
+	
+	if GameManager.player_war_declaration_pending:
+		# A war was declared on us! Show the notification and stop.
+		# The rest of the turn will start after the player acknowledges it.
+		_show_war_declaration_popup()
+		return # Halt the normal start of the turn.
 	
 	current_state = GameState.AWAITING_PLAYER_ACTION
 	_update_ui_for_state()
@@ -1085,3 +1092,31 @@ func _execute_succession_flow():
 		# Game Over. The _handle_succession function has already emitted the
 		# game_over signal. The _on_game_over handler will display the screen.
 		pass
+		
+
+func _show_war_declaration_popup():
+	# Set a state that indicates we're in a special popup.
+	current_state = GameState.IN_POPUP
+	_update_ui_for_state() # This will hide the council view
+	
+	var data = GameManager.pending_war_declaration_data
+	
+	# Instance the panel
+	current_panel = WarDeclaredPanel.instantiate()
+	center_stage.add_child(current_panel)
+	
+	# Populate it with the stored data
+	current_panel.set_war_declaration_info(data.attacker, data.defender, data.war_goal)
+	
+	# Connect its signal to a handler that will start the turn.
+	current_panel.acknowledged.connect(_on_war_declaration_acknowledged)
+	
+	# CRITICAL: Reset the flag so this doesn't fire again.
+	GameManager.player_war_declaration_pending = false
+	GameManager.pending_war_declaration_data = {}
+
+# --- NEW SIGNAL HANDLER for the popup's button ---
+func _on_war_declaration_acknowledged():
+	# The player has seen the declaration. Now we can start their turn for real.
+	# We simply call the main "start turn" function again.
+	_start_new_turn()

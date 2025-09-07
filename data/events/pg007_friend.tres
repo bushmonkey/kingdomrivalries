@@ -107,13 +107,15 @@ metadata/_custom_type_script = "uid://cohvc8fiel25u"
 script = ExtResource("4_xfqhv")
 category = 6
 event_id = "PG007"
-title = "A Friend in Need"
+title = "A Voice from the Past"
 unlocked_at_start = true
-rarity = 2
+rarity = 0
 cooldown_years = 0
 selection_cost = 0
-summary = "Your childhood friend, {friend_name}, has sent an urgent letter requesting your help."
-description = ""
+summary = "A dear friend from your childhood, whom you haven't seen in years, has arrived at court for a visit."
+description = "Amidst the endless procession of nobles and petitioners, a familiar face appears in the crowd. It is {friend_name}, your closest friend from your days as a youth, before the crown settled upon your head. They have traveled a long way to see you.
+
+Seeing them brings back a flood of memories of a simpler time. They greet you with a warm, if slightly hesitant, smile. \"It has been too long,\" they say. \"I hope the king still has time for an old friend.\""
 vignette_texture = ""
 options = Array[ExtResource("1_y0en5")]([SubResource("Resource_krqi7"), SubResource("Resource_ahuha"), SubResource("Resource_j0b8t")])
 metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

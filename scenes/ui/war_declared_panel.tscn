@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://e5qublntsyrt"]
+
+[ext_resource type="Script" uid="uid://cgd3lomseys3a" path="res://scenes/ui/war_declared_panel.gd" id="1_pego2"]
+
+[node name="WarDeclaredPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pego2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.999997, 0.108936, 0.0738777, 1)
+theme_override_font_sizes/font_size = 30
+text = "War Has Been Declared!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeclarationText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "To Arms!"

@@ -132,20 +132,45 @@ func get_event_by_id(event_id: String) -> GameEvent:
 func _is_event_valid_for_kingdom(event: GameEvent, kingdom: Kingdom) -> bool:
 	
 	#custom checks first:
-	if event.event_id == "ML009":
-		var target_province = _find_weakest_neighbor_province()
-		if is_instance_valid(target_province):
-			print('ML009 is valid, trying for ',target_province.province_name)
-			_prepare_border_dispute_event(event_resource, target_province)
-		else:
-			print('ML009 not valid')
-			return false
+	match event.event_id:
+		"ML009":
+			var target_province = _find_weakest_neighbor_province()
+			if is_instance_valid(target_province):
+				print('ML009 is valid, trying for ',target_province.province_name)
+				_prepare_border_dispute_event(event_resource, target_province)
+			else:
+				print('ML009 not valid')
+				return false
+		"ML015":
+			var squire=_find_squire_for_knighting()
+			if not is_instance_valid(squire):
+				print('ML015 not valid')
+				return false
+		"EC007":
+			if not is_instance_valid(WarManager.find_active_ai_war()):
+				return false
+		"EC008":
+			if WarManager.find_potential_war_instigation_targets().is_empty():
+				return false
+		"PG007":
+			if not is_instance_valid(kingdom.ruler.childhood_friend):
+				return false
 			
-	if event.event_id == "ML015":
-		var squire=_find_squire_for_knighting()
-		if !is_instance_valid(squire):
-			print('ML015 not valid')
-			return false
+		
+	#if event.event_id == "ML009":
+		#var target_province = _find_weakest_neighbor_province()
+		#if is_instance_valid(target_province):
+			#print('ML009 is valid, trying for ',target_province.province_name)
+			#_prepare_border_dispute_event(event_resource, target_province)
+		#else:
+			#print('ML009 not valid')
+			#return false
+			#
+	#if event.event_id == "ML015":
+		#var squire=_find_squire_for_knighting()
+		#if !is_instance_valid(squire):
+			#print('ML015 not valid')
+			#return false
 	# If an event has no conditions defined, it's always valid.
 	if not is_instance_valid(event.trigger_conditions):
 		return true
@@ -343,8 +368,19 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 	var unowned_lands = GameManager.player_kingdom.get_neighboring_unowned_provinces()
 	var weak_province = _find_weakest_neighbor_province()
 	var weak_province_kingdom = weak_province.owner if is_instance_valid(weak_province) else null
-	
-	print('DEBUG: owned province selected: %s' % owned_province.province_name)
+	var ai_war = WarManager.find_active_ai_war()
+	var targets = WarManager.find_potential_war_instigation_targets()
+		# --- END FIX ---
+		
+	if is_instance_valid(ai_war):
+		format_args["attacker_kingdom_name"] = ai_war.attacker.kingdom_name
+		format_args["attacker_kingdom_id"] = ai_war.attacker.id
+		format_args["defender_kingdom_name"] = ai_war.defender.kingdom_name
+		format_args["defender_kingdom_id"] = ai_war.defender.id
+	if not targets.is_empty():
+		format_args["target1_kingdom_id"] = targets[0].id
+		format_args["target2_kingdom_id"] = targets[1].id
+		
 	if is_instance_valid(player_ruler.spouse):
 		format_args["wife_name"] = player_ruler.spouse.full_name
 		format_args["wife_id"] = player_ruler.spouse.id

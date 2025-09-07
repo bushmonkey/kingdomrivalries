@@ -1,0 +1,185 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=21 format=3 uid="uid://dhmuh01qqnfbf"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_etbdb"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_1nwpc"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_rwocg"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_grndg"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="5_5xqfm"]
+
+[sub_resource type="Resource" id="Resource_1nwpc"]
+script = ExtResource("2_1nwpc")
+type = "GainRival"
+target = "{target1_kingdom_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rwocg"]
+script = ExtResource("2_1nwpc")
+type = "GainRival"
+target = "{target2_kingdom_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_etbdb"]
+script = ExtResource("3_rwocg")
+stat = "Intrigue"
+difficulty = 17
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_s8n8c"]
+script = ExtResource("2_1nwpc")
+type = "InstigateWar"
+target = "{target1_kingdom_id}_{target2_kingdom_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_grndg"]
+script = ExtResource("2_1nwpc")
+type = "ChangeStat"
+target = "Martial"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ngkx1"]
+script = ExtResource("1_etbdb")
+text = "\"Do it. Their bloodshed will be our gold.\""
+success_text = "Your spymaster's work is a masterpiece of deception. A series of carefully orchestrated incidents and forged letters turns the simmering hostility between your neighbors into a raging inferno. They declare war on each other, just as you planned. Now is the time to profit."
+failure_text = "Your plot is discovered! A clumsy agent is captured, and under torture, he reveals everything. You have made some powerful enemies today."
+skill_check = SubResource("Resource_etbdb")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_1nwpc")]([SubResource("Resource_s8n8c"), SubResource("Resource_grndg")])
+failure_outcomes = Array[ExtResource("2_1nwpc")]([SubResource("Resource_1nwpc"), SubResource("Resource_rwocg")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ly0hl"]
+script = ExtResource("2_1nwpc")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xoiv5"]
+script = ExtResource("2_1nwpc")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hhvfi"]
+script = ExtResource("1_etbdb")
+text = "\"No. I will not send men to die for the sake of coin.\""
+success_text = "You refuse to engage in such dishonorable statecraft. Your spymaster and steward seem disappointed by your lack of ambition, but your conscience is clear. The peace between your neighbors, however fragile, is preserved by your inaction."
+failure_text = ""
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_1nwpc")]([SubResource("Resource_xoiv5")])
+failure_outcomes = Array[ExtResource("2_1nwpc")]([SubResource("Resource_ly0hl")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_n4nvp"]
+script = ExtResource("2_1nwpc")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bdpy3"]
+script = ExtResource("3_rwocg")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_d5gvp"]
+script = ExtResource("2_1nwpc")
+type = "ChangeResource"
+target = "Treasury"
+value = 300
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nv2ux"]
+script = ExtResource("2_1nwpc")
+type = "ChangeRelation"
+target = "trade_partner_kingdom_id"
+value = -25
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bkk0f"]
+script = ExtResource("1_etbdb")
+text = "\"They are desperate. Double the price.\""
+success_text = "Your neighbor, having no other choice, reluctantly agrees to your exorbitant price. A massive fortune in gold flows into your treasury, but your reputation as a ruthless and opportunistic ruler is cemented."
+failure_text = "Outraged by your greed, your neighbor refuses the deal entirely. They will suffer the shortage rather than submit to your extortion. Word of your dishonorable conduct spreads to other courts."
+skill_check = SubResource("Resource_bdpy3")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_1nwpc")]([SubResource("Resource_d5gvp"), SubResource("Resource_nv2ux")])
+failure_outcomes = Array[ExtResource("2_1nwpc")]([SubResource("Resource_n4nvp")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_jd54b"]
+script = ExtResource("5_5xqfm")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 15
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_valid_trade_partner = true
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+requires_player_has_heir = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("4_grndg")
+category = 1
+trigger_conditions = SubResource("Resource_jd54b")
+event_id = "EC008"
+title = "Vultures Scheme"
+unlocked_at_start = true
+rarity = 2
+cooldown_years = 0
+selection_cost = 75
+summary = "Your steward has identified two neighboring kingdoms with simmering tensions. You could secretly push them into a war for your own profit."
+description = "Your steward and spymaster present you with a unique and dangerous opportunity. The kingdoms of {target1_kingdom_name} and {target2_kingdom_name} have a history of bad blood. Their relations are poor, and their rulers despise one another.
+
+\"My Liege,\" your spymaster whispers, \"a few well-placed rumors, a forged letter, a 'stray' border patrol... a small push is all that would be needed to ignite the flames of war between them. A war from which we could profit immensely.\""
+vignette_texture = ""
+options = Array[ExtResource("1_etbdb")]([SubResource("Resource_ngkx1"), SubResource("Resource_hhvfi"), SubResource("Resource_bkk0f")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

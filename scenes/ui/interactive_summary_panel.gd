@@ -12,11 +12,13 @@ signal view_census_for_kingdom(kingdom)
 @onready var critical_events_button = %CriticalEventsButton
 
 const CensusViewScene = preload("res://scenes/ui/census_panel.tscn")
+const RelationsViewScene = preload("res://scenes/ui/relations_view.tscn") 
 
 var _chronicle: Dictionary
 var _all_characters: Array[Character]
 var _current_kingdom_log_view: Kingdom = null # Memory for the back button
 var census_view
+var relations_view
 
 func _ready():
 	continue_button.pressed.connect(_on_continue_button_pressed)
@@ -64,6 +66,8 @@ func _display_critical_events():
 		child.queue_free()
 	if census_view:
 		census_view.hide()
+	if relations_view:
+		relations_view.hide()
 		
 	details_text_label.show()
 	
@@ -82,6 +86,9 @@ func _display_kingdom_log(kingdom: Kingdom):
 	
 	if census_view:
 		census_view.hide()
+	if relations_view:
+		relations_view.hide()
+		
 	details_text_label.show()
 	
 	#for child in details_scroll.get_children():
@@ -97,6 +104,11 @@ func _display_kingdom_log(kingdom: Kingdom):
 	census_button.pressed.connect(_on_view_census_button_pressed.bind(kingdom))
 	action_buttons_container.add_child(census_button)
 	
+	var relations_button = Button.new()
+	relations_button.text = "View Relations"
+	relations_button.pressed.connect(_on_view_relations_button_pressed.bind(kingdom))
+	action_buttons_container.add_child(relations_button)
+	
 	#details_text_label.newline()
 	
 	var kingdom_log = _chronicle.kingdom_logs[kingdom]
@@ -109,6 +121,35 @@ func _display_kingdom_log(kingdom: Kingdom):
 func _on_summary_census_button_pressed(kingdom: Kingdom):
 	emit_signal("view_census_for_kingdom", kingdom)
 	
+	
+func _on_view_relations_button_pressed(kingdom: Kingdom):
+	details_title_label.text = "Foreign Relations for %s" % kingdom.kingdom_name
+	
+	for child in action_buttons_container.get_children():
+		child.queue_free()
+	
+	# --- Hide the text label and show the census instance ---
+	if details_text_label:
+		details_text_label.hide() # Hide the main text display
+	if census_view:
+		census_view.hide()
+		
+	if relations_view:
+		relations_view.show()
+	else:
+		relations_view = RelationsViewScene.instantiate()
+	details_scroll.add_child(relations_view)
+	
+	var viewport_size = get_viewport_rect().size
+	relations_view.custom_minimum_size = viewport_size * 0.5
+	
+	relations_view.display_relations_for_kingdom(kingdom)
+	var back_button = Button.new()
+	back_button.text = "Back to Kingdom Events"
+	back_button.pressed.connect(_display_kingdom_log.bind(kingdom))
+	action_buttons_container.add_child(back_button)
+	# Listen for the back button signal from the census view.
+	relations_view.back_pressed.connect(_on_census_back_button_pressed)
 
 func _on_view_census_button_pressed(kingdom: Kingdom):
 	#details_title_label.text = "Census for %s" % kingdom.kingdom_name
@@ -122,6 +163,8 @@ func _on_view_census_button_pressed(kingdom: Kingdom):
 	# --- Hide the text label and show the census instance ---
 	if details_text_label:
 		details_text_label.hide() # Hide the main text display
+	if relations_view:
+		relations_view.hide()
 	
 	if census_view:
 		census_view.show()

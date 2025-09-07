@@ -59,14 +59,39 @@ func _on_close_button_pressed():
 
 # This function is called when the mouse ENTERS a province.
 func _on_province_hovered(province_data: Province):
-	# Update the "entered" state.
+	var type_name = Province.ProvinceType.keys()[province_data.type].capitalize()
+	var buildings_string = ""
+	var full_buildings_string=""
 	map_province_id_entered = province_data.id
 	print("entered",map_province_id_entered)
+	
+	var building_counts: Dictionary = {}
+	for building_enum in province_data.buildings:
+		# .get(key, 0) safely gets the current count, or 0 if it's not in the dictionary yet.
+		building_counts[building_enum] = building_counts.get(building_enum, 0) + 1
+		
+	if building_counts.is_empty():
+		full_buildings_string = ""
+	else:
+		var building_lines: Array[String] = []
+		# Loop through the dictionary we just created.
+		for building_enum in building_counts:
+			var count = building_counts[building_enum]
+			# Get the name of the building from the enum.
+			var building_name = Province.BuildingType.keys()[building_enum].capitalize()
+			# Add the formatted line to our temporary array.
+			building_lines.append("- %s (x%d)" % [building_name, count])
+		
+		# Join the lines with a newline character.
+		buildings_string = " ".join(building_lines)
+	# --- 3. Add the buildings list to the main tooltip text ---
+		full_buildings_string = " " + buildings_string
+	
 	# Update the label text.
 	if is_instance_valid(province_data.owner):
-		hover_info_label.text = "%s (Owned by: %s)" % [province_data.province_name, province_data.owner.kingdom_name]
+		hover_info_label.text = "%s (Owned by: %s) - %s %s" % [province_data.province_name, province_data.owner.kingdom_name, type_name,full_buildings_string]
 	else:
-		hover_info_label.text = "%s (Unclaimed)" % province_data.province_name
+		hover_info_label.text = "%s (Unclaimed) - %s %s" % [province_data.province_name,type_name,full_buildings_string]
 
 	
 # This function is called when the mouse LEAVES a province.

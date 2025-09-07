@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c616t7jrnphxk"]
+
+[ext_resource type="Script" uid="uid://cqpeu66pf78wa" path="res://scenes/ui/relations_view.gd" id="1_wbw7w"]
+
+[node name="RelationsView" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_wbw7w")
+
+[node name="RelationsText" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

@@ -10,8 +10,11 @@ const FOOD_COST_PER_10_PEOPLE = 0.5
 const FOOD_PER_FARM = 80
 const FOOD_PER_GRANARY = 150
 const FOOD_BONUS_IRRIGATION = 20
+const FOOD_BONUS_PLAINS = 20
 const FOOD_BONUS_BOUNTIFUL = 50
 const GOLD_BONUS_FOREST = 5
+const FOOD_BONUS_FOREST = 30
+const FOOD_BONUS_MOUNTAINOUS = 10
 const FOOD_BONUS_FISHING_VILLAGE = 25
 const COST_PER_100_MANPOWER = 10
 const FOOD_COST_PER_FAMILY = 1
@@ -48,7 +51,9 @@ var _player_ruler_at_turn_start: Character = null
 var player_succession_pending: bool = false # This is true only during the turn after the player ruler dies,
 var debug=true
 
-
+var player_war_declaration_pending: bool = false
+# A variable to store the details of the war for the popup.
+var pending_war_declaration_data: Dictionary = {}
 
 var current_year: int = 1040
 var current_season: Season = Season.SPRING # Start in Spring
@@ -188,6 +193,7 @@ func start_new_game(num_kingdoms: int):
 		var friend_home_court = distant_courts.pick_random() if not distant_courts.is_empty() else null
 		
 		var friend = Character.new()
+		friend.id=get_id()
 		friend.gender = Character.Gender.MALE if randi() % 2 == 0 else Character.Gender.FEMALE
 		friend.first_name = NameGenerator.get_random_first_name(friend.gender)
 		# Give them a minor family name.
@@ -276,6 +282,7 @@ func _setup_storyline(storyline_id: String):
 			
 			# 2. Create the antagonist: Lord Valerius, the player's uncle.
 			var uncle = Character.new()
+			uncle.id=get_id()
 			uncle.first_name = "Valerius"
 			uncle.dynasty_name = player_kingdom.ruler.dynasty_name # Same dynasty
 			uncle.gender = Character.Gender.MALE
@@ -527,6 +534,8 @@ func apply_outcomes(target_kingdom: Kingdom, outcomes: Array[EventOutcome]):
 				pass
 			"GainRivalCasusBelli":
 				pass
+			"GainRival":
+				pass
 			"StartCourting":
 				print("Courtship started")
 				player_kingdom.ruler.is_courting=true
@@ -555,7 +564,40 @@ func apply_outcomes(target_kingdom: Kingdom, outcomes: Array[EventOutcome]):
 				var province = find_province_by_id(int(outcome.target))
 				var building_type = outcome.value
 				province.buildings.append(building_type)
+			"InstigateWar":
+				# The outcome.target is now a string like "5_12"
+				var id_string = str(outcome.target)
 				
+				# --- 1. Parse the String ---
+				# We split the string by the '_' delimiter.
+				var id_parts = id_string.split("_")
+				
+				# --- 2. Validate the Parsed Data ---
+				# A crucial safety check to ensure the format is correct.
+				if id_parts.size() != 2:
+					printerr("INSTIGATE WAR FAILED: Target format is invalid. Expected 'ID_ID', but got '%s'." % id_string)
+					return # Stop processing this outcome
+					
+				# Convert the string parts to integers.
+				var k1_id = id_parts[0].to_int()
+				var k2_id = id_parts[1].to_int()
+				
+				# --- 3. Find the Kingdom Objects ---
+				var k1 = find_kingdom_by_id(k1_id)
+				var k2 = find_kingdom_by_id(k2_id)
+				
+				# --- 4. Execute the Logic (existing code) ---
+				if is_instance_valid(k1) and is_instance_valid(k2):
+					# Find a valid war goal (a border province)
+					var war_goal = get_border_provinces(k2, k1).pick_random()
+					if is_instance_valid(war_goal):
+						# k1 will be the attacker, k2 the defender
+						WarManager.declare_war(k1, k2, war_goal)
+					else:
+						printerr("INSTIGATE WAR FAILED: No valid border province found between %s and %s." % [k1.kingdom_name, k2.kingdom_name])
+				else:
+					printerr("INSTIGATE WAR FAILED: Could not find one or both kingdoms from IDs %d, %d." % [k1_id, k2_id])
+					
 			"ChangeWarScore":
 				var war = WarManager.get_player_war()
 				if is_instance_valid(war):
@@ -1308,8 +1350,14 @@ func _calculate_monthly_economy():
 					food_change += FOOD_BONUS_BOUNTIFUL
 				Province.ProvinceType.FOREST:
 					gold_change += GOLD_BONUS_FOREST
+					food_change += FOOD_BONUS_FOREST
 				Province.ProvinceType.COASTAL_FISHING_VILLAGE:
 					food_change += FOOD_BONUS_FISHING_VILLAGE
+				Province.ProvinceType.MOUNTAINOUS:
+					food_change += FOOD_BONUS_MOUNTAINOUS
+				Province.ProvinceType.PLAINS:
+					food_change += FOOD_BONUS_PLAINS
+
 			for building in province.buildings:
 				match building:
 					Province.BuildingType.FARM:
