@@ -1,0 +1,119 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://dnenlcc82i18d"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_y0en5"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_c7fr8"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_r0138"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_xfqhv"]
+
+[sub_resource type="Resource" id="Resource_6s03t"]
+script = ExtResource("2_c7fr8")
+type = "AddModifier"
+target = "Melancholy"
+value = 1
+duration = 4
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xhcdh"]
+script = ExtResource("3_r0138")
+stat = "Charisma"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_r4sgw"]
+script = ExtResource("2_c7fr8")
+type = "AddModifier"
+target = "Contented"
+value = 1
+duration = 4
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_krqi7"]
+script = ExtResource("1_y0en5")
+text = "\"Friend! Dismiss the court! We have years of catching up to do.\""
+success_text = "You spend the rest of the day in private conversation, sharing stories and laughing as if no time has passed at all. The weight of the crown feels a little lighter. Reconnecting with your past has reminded you of the person you are, not just the ruler you have become."
+failure_text = "You try to reconnect, but the gap between you is too great. You are a ruler and they are a commoner, and the old ease between you is gone, replaced by a polite but awkward distance. The past, it seems, is another country."
+skill_check = SubResource("Resource_xhcdh")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_c7fr8")]([SubResource("Resource_r4sgw")])
+failure_outcomes = Array[ExtResource("2_c7fr8")]([SubResource("Resource_6s03t")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_t40t5"]
+script = ExtResource("2_c7fr8")
+type = "AddModifier"
+target = "MinorInjury"
+value = 0
+duration = 4
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2h5hy"]
+script = ExtResource("3_r0138")
+stat = "Vigor"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_nn5ky"]
+script = ExtResource("2_c7fr8")
+type = "ChangeStat"
+target = "Martial"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ahuha"]
+script = ExtResource("1_y0en5")
+text = "\"To the training yard! Let's see if you've gotten any slower.\""
+success_text = "The clash of blunted steel echoes in the training yard. The spar is exhilarating, a fierce but friendly contest of skill that reminds you both of your younger days. The exercise invigorates you, sharpening both your body and your mind."
+failure_text = "The spar is a clumsy affair. You are both rusty, and an accidental, painful blow brings the match to an awkward and early end. You are left feeling old and out of practice."
+skill_check = SubResource("Resource_2h5hy")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_c7fr8")]([SubResource("Resource_nn5ky")])
+failure_outcomes = Array[ExtResource("2_c7fr8")]([SubResource("Resource_t40t5")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ypceb"]
+script = ExtResource("2_c7fr8")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_j0b8t"]
+script = ExtResource("1_y0en5")
+text = "\"Welcome. Grant them a formal audience, as befits their station.\""
+success_text = "You receive your friend with all the formality of the court. The conversation is polite, but brief and impersonal. You have shown the court that you are a king first and a man second. Your friend leaves the next day, the unspoken distance between you now a vast chasm."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_c7fr8")]([SubResource("Resource_ypceb")])
+failure_outcomes = Array[ExtResource("2_c7fr8")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_xfqhv")
+category = 6
+event_id = "PG007"
+title = "A Friend in Need"
+unlocked_at_start = true
+rarity = 2
+cooldown_years = 0
+selection_cost = 0
+summary = "Your childhood friend, {friend_name}, has sent an urgent letter requesting your help."
+description = ""
+vignette_texture = ""
+options = Array[ExtResource("1_y0en5")]([SubResource("Resource_krqi7"), SubResource("Resource_ahuha"), SubResource("Resource_j0b8t")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

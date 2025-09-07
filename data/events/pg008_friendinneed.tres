@@ -1,0 +1,111 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=14 format=3 uid="uid://ctb0dr1agjhnn"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_6f4g3"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_b1fv8"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_omsg8"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_elyry"]
+
+[sub_resource type="Resource" id="Resource_b1fv8"]
+script = ExtResource("2_b1fv8")
+type = "AddModifier"
+target = "GuiltRidden"
+value = 1
+duration = 4
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_tqyyr"]
+script = ExtResource("2_b1fv8")
+type = "KillCharacter"
+target = "{friend_id}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_g6isi"]
+script = ExtResource("3_elyry")
+stat = "Diplomacy"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_elyry"]
+script = ExtResource("2_b1fv8")
+type = "UnlockEvent"
+target = "PG009"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0y0pk"]
+script = ExtResource("2_b1fv8")
+type = "ChangeCourt"
+target = "{friend_id}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_84xk1"]
+script = ExtResource("1_6f4g3")
+text = "\"Send an envoy. Demand they release my friend.\""
+success_text = "You send a strongly worded letter to your friend's court. Intimidated by your authority and unwilling to risk a diplomatic incident over a minor courtier, they grudgingly agree to release your friend. A few weeks later, a grateful {friend_name} arrives at your court, now a loyal and permanent member of your council."
+failure_text = "Your demand is seen as an arrogant overreach. You receive a curt reply: \"Mind your own realm's affairs.\" 
+{friend_name} is made an example of, executed  publicly as a show of strength. You have failed, and your friend is dead."
+skill_check = SubResource("Resource_g6isi")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_b1fv8")]([SubResource("Resource_elyry"), SubResource("Resource_0y0pk")])
+failure_outcomes = Array[ExtResource("2_b1fv8")]([SubResource("Resource_b1fv8"), SubResource("Resource_tqyyr")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_m8we6"]
+script = ExtResource("2_b1fv8")
+type = "KillCharacter"
+target = "{friend_id}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2hr01"]
+script = ExtResource("2_b1fv8")
+type = "AddModifier"
+target = "GuiltRidden"
+value = 1
+duration = 4
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ppk5j"]
+script = ExtResource("1_6f4g3")
+text = "\"I cannot risk a war for one person. I will do nothing.\""
+success_text = "You send no reply. It is a cold but pragmatic decision. A few seasons later, you hear that your friend was quietly executed. You have preserved the peace and stability of your realm, but the memory of your choice, and your friend's last plea, weighs heavily upon you."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_b1fv8")]([SubResource("Resource_m8we6"), SubResource("Resource_2hr01")])
+failure_outcomes = Array[ExtResource("2_b1fv8")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_omsg8")
+category = 6
+event_id = "PG008"
+title = "A Friend in Need"
+unlocked_at_start = false
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = "Your childhood friend, {friend_name}, has sent an urgent letter requesting your help."
+description = "A messenger arrives bearing the personal seal of your childhood friend, [b]{friend_name}[/b]. The letter is written in a hurried, desperate hand.
+
+\"My King,\" it reads, \"I am in grave trouble. I have falsely been accused of treason. I am to be arrested and likely executed. I am innocent, I swear it on our friendship. I beg you, intervene on my behalf. A word from a king like you is my only hope.\""
+vignette_texture = ""
+options = Array[ExtResource("1_6f4g3")]([SubResource("Resource_84xk1"), SubResource("Resource_ppk5j")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

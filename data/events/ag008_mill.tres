@@ -1,0 +1,166 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=20 format=3 uid="uid://ch20t6w1ckd47"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_8jcjq"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_4pd1x"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_pbowb"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_6alqq"]
+
+[sub_resource type="Resource" id="Resource_pbowb"]
+script = ExtResource("2_pbowb")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_6alqq"]
+script = ExtResource("2_pbowb")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_yojsk"]
+script = ExtResource("3_6alqq")
+stat = "Diplomacy"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_cjm8p"]
+script = ExtResource("2_pbowb")
+type = "ChangeOpinion"
+target = "Public"
+value = 20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cur21"]
+script = ExtResource("2_pbowb")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_14774"]
+script = ExtResource("1_8jcjq")
+text = "Side with the peasants. Order him to lower the toll."
+success_text = "Your command is firm and just. Lord Aldred, though furious, knows he cannot defy a royal decree. He lowers the toll. The peasants are overjoyed, and your reputation as a just ruler grows."
+failure_text = "Your order is weak and unconvincing. Lord Aldred sees it as a suggestion, not a command, and ignores it. You have failed to help your people and have lost face with the nobility."
+skill_check = SubResource("Resource_yojsk")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_pbowb")]([SubResource("Resource_cjm8p"), SubResource("Resource_cur21")])
+failure_outcomes = Array[ExtResource("2_pbowb")]([SubResource("Resource_pbowb"), SubResource("Resource_6alqq")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_7tome"]
+script = ExtResource("2_pbowb")
+type = "ChangeOpinion"
+target = "Public"
+value = -20
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dhj3g"]
+script = ExtResource("2_pbowb")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ygk0o"]
+script = ExtResource("1_8jcjq")
+text = "Side with the noble. His land, his rights."
+success_text = "You uphold the rights of the nobility. Lord Aldred is pleased by your support of the feudal order. The peasants return to their village, dejected and resentful. They see you not as their protector, but as a friend to their oppressors."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_pbowb")]([SubResource("Resource_7tome"), SubResource("Resource_dhj3g")])
+failure_outcomes = Array[ExtResource("2_pbowb")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_m6214"]
+script = ExtResource("2_pbowb")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a58xw"]
+script = ExtResource("2_pbowb")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hkdso"]
+script = ExtResource("3_6alqq")
+stat = "Stewardship"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_2dyvo"]
+script = ExtResource("2_pbowb")
+type = "AddModifier"
+target = "CrownMillIncome"
+value = 1
+duration = -1
+stackable = true
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q88at"]
+script = ExtResource("2_pbowb")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q5jhp"]
+script = ExtResource("1_8jcjq")
+text = "\"Build a Crown Mill. Create competition.\""
+success_text = "You fund the construction of a new mill owned by the crown, with fair and fixed prices. The peasants flock to it, and Lord Aldred is forced to lower his own prices to compete. You have solved the problem and gained a new source of income."
+failure_text = "The Crown Mill is a disaster. Poorly built and inefficient, it cannot compete with Aldred's established mill. The project is a costly failure."
+skill_check = SubResource("Resource_hkdso")
+required_gold = 200
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_pbowb")]([SubResource("Resource_2dyvo"), SubResource("Resource_q88at")])
+failure_outcomes = Array[ExtResource("2_pbowb")]([SubResource("Resource_m6214"), SubResource("Resource_a58xw")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_4pd1x")
+category = 2
+event_id = "AG008"
+title = "The Miller's Toll"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A local lord has increased the toll at his grain mill, and the peasants are on the verge of rioting."
+description = "A delegation of angry peasants stands before you, their spokesman clutching his hat in his hands. \"My Liege,\" he pleads, \"Lord Aldred has doubled the toll to use his grain mill! He takes nearly a quarter of our flour. It is pure greed! We cannot feed our families. We beg you to intervene.\"
+
+Later, Lord Aldred argues his case. \"The mill is on MY land. The peasants will pay what I demand. It is my right as a noble!\""
+vignette_texture = ""
+options = Array[ExtResource("1_8jcjq")]([SubResource("Resource_14774"), SubResource("Resource_ygk0o"), SubResource("Resource_q5jhp")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

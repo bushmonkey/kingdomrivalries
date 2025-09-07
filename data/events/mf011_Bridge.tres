@@ -1,0 +1,166 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=20 format=3 uid="uid://b53raswudqplw"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_xdour"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_qersi"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_s81fk"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_0eeqi"]
+
+[sub_resource type="Resource" id="Resource_14rxi"]
+script = ExtResource("2_qersi")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_24u4x"]
+script = ExtResource("2_qersi")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wh46y"]
+script = ExtResource("3_s81fk")
+stat = "Stewardship"
+difficulty = 16
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_mbm7r"]
+script = ExtResource("2_qersi")
+type = "AddModifier"
+target = "SturdyBridge"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_m5xdv"]
+script = ExtResource("1_xdour")
+text = "\"Rebuild it with stone, stronger than before.\" "
+success_text = "You hire the best stonemasons in the realm. They work tirelessly to construct a new, stronger bridge with reinforced arches. Trade is restored, and the new bridge stands as a proud symbol of your reign's commitment to infrastructure."
+failure_text = "Even with the advanced knowledge, a critical The master mason is a cheat who uses poor quality mortar. The new bridge is unstable and costs a fortune in additional repairs. The entire project is a costly embarrassment."
+skill_check = SubResource("Resource_wh46y")
+required_gold = 100
+required_manpower = 0
+required_food = 0
+required_modifier = "AdvancedArchitecture"
+success_outcomes = Array[ExtResource("2_qersi")]([SubResource("Resource_14rxi"), SubResource("Resource_mbm7r")])
+failure_outcomes = Array[ExtResource("2_qersi")]([SubResource("Resource_14rxi"), SubResource("Resource_24u4x")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_enuxs"]
+script = ExtResource("2_qersi")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3c2qj"]
+script = ExtResource("2_qersi")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rhwcd"]
+script = ExtResource("2_qersi")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_qdf66"]
+script = ExtResource("2_qersi")
+type = "AddModifier"
+target = "WoodenBridge"
+value = 1
+duration = 10
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_to60q"]
+script = ExtResource("2_qersi")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xdour"]
+script = ExtResource("2_qersi")
+type = "UnlockEvent"
+target = "RD010"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3hisl"]
+script = ExtResource("1_xdour")
+text = "\"A quick fix with wood is all we can afford.\""
+success_text = "Your engineers quickly construct a sturdy wooden bridge over the river. It's not as permanent as stone, but it gets the trade route open again. The merchants are relieved."
+failure_text = "The wooden construction is plagued with leaks and rot from the start. It provides a mere trickle of water and is seen as a shoddy, half-hearted effort by the people."
+required_gold = 75
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_qersi")]([SubResource("Resource_rhwcd"), SubResource("Resource_qdf66"), SubResource("Resource_to60q"), SubResource("Resource_xdour")])
+failure_outcomes = Array[ExtResource("2_qersi")]([SubResource("Resource_enuxs"), SubResource("Resource_3c2qj")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_k4igt"]
+script = ExtResource("2_qersi")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_k0lej"]
+script = ExtResource("2_qersi")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cealr"]
+script = ExtResource("1_xdour")
+text = "\"Let the local merchants pay for it.\""
+success_text = "You decree that the merchant guild is responsible for the bridge's upkeep. They are furious at the new tax but have no choice but to pay for the repairs. The bridge is fixed, but your relationship with the burgeoning merchant class is damaged."
+failure_text = ""
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_qersi")]([SubResource("Resource_k4igt"), SubResource("Resource_k0lej")])
+failure_outcomes = Array[ExtResource("2_qersi")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_0eeqi")
+category = 3
+event_id = "MF011"
+title = "The Broken Bridge"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A vital stone bridge on the main trade route has collapsed after a flood, disrupting commerce."
+description = "A messenger arrives with bad news. The Old Stone Bridge, a crucial crossing on the main trade route into your capital, has been damaged by recent floods and is now impassable. Merchant carts are backed up for miles, and local commerce is grinding to a halt. The bridge must be repaired."
+vignette_texture = ""
+options = Array[ExtResource("1_xdour")]([SubResource("Resource_m5xdv"), SubResource("Resource_3hisl"), SubResource("Resource_cealr")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -53,6 +53,9 @@ func display_outcome(is_success: bool, flavor_text_template: String, outcomes: A
 		if roll_results.personality_bonus != 0:
 			breakdown += " + Personality (%d)" % roll_results.personality_bonus
 			
+		if roll_results.modifier_bonus != 0:
+			breakdown += " [color=green] + Mood Bonus[/color] (%d from %s)" % [roll_results.modifier_bonus, roll_results.bonus_reason]
+			
 		if roll_results.get("tech_bonus", 0) != 0:
 			breakdown += " [color=cyan] + Innovation Bonus[/color] (%d)" % roll_results.tech_bonus
 			

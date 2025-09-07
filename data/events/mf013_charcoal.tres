@@ -1,0 +1,132 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=16 format=3 uid="uid://2ucbwupqk30c"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_28r7b"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_6b4n8"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_w4pxu"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_6b4n8"]
+
+[sub_resource type="Resource" id="Resource_v01tb"]
+script = ExtResource("2_6b4n8")
+type = "AddModifier"
+target = "EfficientFuel"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_w4pxu"]
+script = ExtResource("2_6b4n8")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_gs6we"]
+script = ExtResource("1_28r7b")
+text = " \"Industry is progress. The burners have my support.\""
+success_text = "You side with the charcoal burners, ensuring a steady supply of fuel for your industry. The villagers are resentful as the forest continues to shrink."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_6b4n8")]([SubResource("Resource_v01tb"), SubResource("Resource_w4pxu")])
+failure_outcomes = Array[ExtResource("2_6b4n8")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_6b4n8"]
+script = ExtResource("2_6b4n8")
+type = "AddModifier"
+target = "ExpensiveFuel"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_57o6p"]
+script = ExtResource("2_6b4n8")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_riwq3"]
+script = ExtResource("1_28r7b")
+text = "\"Protect the forest. Restrict their operations.\""
+success_text = "You place heavy restrictions on the burners, preserving the forest. The villagers are grateful, but the price of charcoal skyrockets, increasing the cost of all metal goods in the kingdom."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_6b4n8")]([SubResource("Resource_6b4n8"), SubResource("Resource_57o6p")])
+failure_outcomes = Array[ExtResource("2_6b4n8")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_npqqq"]
+script = ExtResource("2_6b4n8")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0mimj"]
+script = ExtResource("2_6b4n8")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_0386c"]
+script = ExtResource("3_6b4n8")
+stat = "Stewardship"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_sdydi"]
+script = ExtResource("2_6b4n8")
+type = "ChangeOpinion"
+target = "Public"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5v27d"]
+script = ExtResource("1_28r7b")
+text = "\"Relocate them. Find a new forest to exploit.\""
+success_text = "Your steward finds a suitable, uninhabited woodland far from any villages. The burners are relocated at some expense, but now both the villagers and the forges are satisfied."
+failure_text = "The relocation is a poorly planned disaster. The new location is unsuitable, and production grinds to a halt for a season, causing a shortage of fuel. The effort was a costly failure."
+skill_check = SubResource("Resource_0386c")
+required_gold = 100
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_6b4n8")]([SubResource("Resource_npqqq"), SubResource("Resource_sdydi"), SubResource("Resource_v01tb")])
+failure_outcomes = Array[ExtResource("2_6b4n8")]([SubResource("Resource_npqqq"), SubResource("Resource_0mimj"), SubResource("Resource_6b4n8")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_w4pxu")
+category = 3
+event_id = "MF013"
+title = "The Charcoal Burners"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "The charcoal burners who supply your forges are clearing huge swathes of the forest, angering the local hunters and villagers."
+description = "A delegation of villagers petitions you. \"My Liege, the charcoal burners are a plague! They have cleared half the ancient woods to feed the forges. The game has fled, the streams are choked with ash, and our children cough from the smoke.\"
+
+Later, the guild master argues, \"Without our charcoal, every forge in your kingdom goes cold. There can be no swords, no plows, no nails. Our work is vital!\""
+vignette_texture = ""
+options = Array[ExtResource("1_28r7b")]([SubResource("Resource_gs6we"), SubResource("Resource_riwq3"), SubResource("Resource_5v27d")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

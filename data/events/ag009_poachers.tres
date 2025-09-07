@@ -1,0 +1,148 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=18 format=3 uid="uid://c5s48s4c3lihi"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_krbt8"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_v0cj7"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_yvavg"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="4_cniys"]
+
+[sub_resource type="Resource" id="Resource_cjm8p"]
+script = ExtResource("2_v0cj7")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cur21"]
+script = ExtResource("2_v0cj7")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_14774"]
+script = ExtResource("1_krbt8")
+text = "\"Make an example of them. Hang any poacher caught.\" "
+success_text = "Your command is firm and just. Lord Aldred, Your decree is carried out. A few unlucky poachers are caught and hanged, their bodies left as a warning. The poaching stops. The nobles are pleased that the law is upheld, but the common folk see the punishment as overly cruel for a man trying to feed his family."
+failure_text = "Your decree is carried out. A few unlucky poachers are caught and hanged, their bodies left as a warning. The poaching stops. The nobles are pleased that the law is upheld, but the common folk see the punishment as overly cruel for a man trying to feed his family."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_v0cj7")]([SubResource("Resource_cjm8p"), SubResource("Resource_cur21")])
+failure_outcomes = Array[ExtResource("2_v0cj7")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_7tome"]
+script = ExtResource("2_v0cj7")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dhj3g"]
+script = ExtResource("2_v0cj7")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ygk0o"]
+script = ExtResource("1_krbt8")
+text = "\"They must be desperate. Turn a blind eye.\""
+success_text = "You quietly order your gamekeeper to ease his patrols. The peasants are able to hunt enough to supplement their meager diets. They are grateful for your unspoken mercy, but the nobles are furious that you are allowing the law to be flouted."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_v0cj7")]([SubResource("Resource_7tome"), SubResource("Resource_dhj3g")])
+failure_outcomes = Array[ExtResource("2_v0cj7")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_m6214"]
+script = ExtResource("2_v0cj7")
+type = "ChangeResource"
+target = "Treasury"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a58xw"]
+script = ExtResource("2_v0cj7")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hkdso"]
+script = ExtResource("3_yvavg")
+stat = "Charisma"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_q88at"]
+script = ExtResource("2_v0cj7")
+type = "ChangeResource"
+target = "Treasury"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_krbt8"]
+script = ExtResource("2_v0cj7")
+type = "ChangeOpinion"
+target = "Public"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_v0cj7"]
+script = ExtResource("2_v0cj7")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q5jhp"]
+script = ExtResource("1_krbt8")
+text = "\"Organize a controlled cull. Distribute the meat.\""
+success_text = "You announce a royal cull of the deer herd, framed as a gesture of goodwill. You distribute the excess meat to the villages. The peasants get their food, the nobles get a hunt, and you are seen as a wise and generous ruler who provides for all his subjects."
+failure_text = "The cull is poorly organized and seen as a token gesture. Not enough meat is distributed to make a difference, and the poachers simply see it as a chance to hunt more easily. The effort is wasted."
+skill_check = SubResource("Resource_hkdso")
+required_gold = 50
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_v0cj7")]([SubResource("Resource_q88at"), SubResource("Resource_krbt8"), SubResource("Resource_v0cj7")])
+failure_outcomes = Array[ExtResource("2_v0cj7")]([SubResource("Resource_m6214"), SubResource("Resource_a58xw")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("4_cniys")
+category = 2
+event_id = "AG009"
+title = "Poachers in the Royal Wood"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "Your royal gamekeeper reports that poachers are illegally hunting deer in your personal forests."
+description = "Your gamekeeper reports that poachers have been active in the King's Wood. \"They are stealing the King's deer, my Liege!\" he fumes. \"It is an insult to your authority and depletes the stocks for the royal hunt.\""
+vignette_texture = ""
+options = Array[ExtResource("1_krbt8")]([SubResource("Resource_14774"), SubResource("Resource_ygk0o"), SubResource("Resource_q5jhp")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -379,6 +379,10 @@ func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 	if is_instance_valid(squire):
 		format_args["squire_name"] = squire.full_name
 		format_args["squire_id"] = squire.id
+
+	if is_instance_valid(player_ruler.childhood_friend):
+		format_args["friend_name"] = player_ruler.childhood_friend.full_name
+		format_args["friend_id"] = player_ruler.childhood_friend.id
 		
 	if is_instance_valid(weak_province):
 		format_args["weak_neighbor_province_name"] =weak_province.province_name

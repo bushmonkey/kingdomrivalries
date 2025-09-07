@@ -1,0 +1,110 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=14 format=3 uid="uid://c1pc16k6rrpah"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_fo1ok"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_kd4o1"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_ovc85"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_kwuc8"]
+
+[sub_resource type="Resource" id="Resource_ovc85"]
+script = ExtResource("2_ovc85")
+type = "ChangeOpinion"
+target = "Public"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jbdga"]
+script = ExtResource("3_kwuc8")
+stat = "Intrigue"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_omfuk"]
+script = ExtResource("2_ovc85")
+type = "ChangeStat"
+target = "Intrigue"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4bk6t"]
+script = ExtResource("1_fo1ok")
+text = "\"Lead the way! Let's see if the Captain of the Watch still has no sense of humor.\""
+success_text = "The night is a riot of laughter and nostalgia. You successfully swap the watch's banner with the baker's sign for a pig, share stories with unsuspecting commoners, and make it back to the castle before dawn, undetected. The thrill of it all has sharpened your wits."
+failure_text = "Your prank on the city watch goes horribly wrong. You are almost caught, and in the clumsy escape, you drop a glove bearing the royal crest. The next day, the entire city is gossiping about the king's childish and disruptive behavior. It is a royal embarrassment."
+skill_check = SubResource("Resource_jbdga")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_ovc85")]([SubResource("Resource_omfuk")])
+failure_outcomes = Array[ExtResource("2_ovc85")]([SubResource("Resource_ovc85")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_t0fbd"]
+script = ExtResource("2_ovc85")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_kwuc8"]
+script = ExtResource("3_kwuc8")
+stat = "Charisma"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_avlmu"]
+script = ExtResource("2_ovc85")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_v103p"]
+script = ExtResource("1_fo1ok")
+text = "\"A drink with my subjects sounds perfect, but let's leave the pranks for another time.\""
+success_text = "You and your friend spend the evening in the corner of a noisy tavern, listening to the songs and stories of the common folk. They have no idea who you are. The experience is grounding, giving you a rare and honest insight into the lives of the people you rule."
+failure_text = "You try to blend in, but your noble bearing and fine clothes (even your \"common\" ones) give you away. The tavern falls silent as people recognize you, and the night becomes a formal, awkward affair. The chance for a genuine connection is lost."
+skill_check = SubResource("Resource_kwuc8")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_ovc85")]([SubResource("Resource_avlmu")])
+failure_outcomes = Array[ExtResource("2_ovc85")]([SubResource("Resource_t0fbd")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ddpbp"]
+script = ExtResource("1_fo1ok")
+text = "\"Those days are behind me. I have a kingdom to run.\""
+success_text = "Success!"
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_ovc85")]([])
+failure_outcomes = Array[ExtResource("2_ovc85")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_kd4o1")
+category = 6
+event_id = "PG009"
+title = "Like Old Times"
+unlocked_at_start = false
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "Your childhood friend, now a member of your court, suggests sneaking out for a night of mischief like you did when you were young."
+description = "Late one evening, {friend_name} comes to your chambers with a mischievous glint in their eye. \"My Liege,\" they whisper, \"this is all very grand, but don't you ever miss the old days? Just for one night, let's forget the crown. Let's sneak down to the tavern in common clothes, share a cheap ale, and maybe play a few pranks on the city watch. Just like old times.\""
+vignette_texture = ""
+options = Array[ExtResource("1_fo1ok")]([SubResource("Resource_4bk6t"), SubResource("Resource_v103p"), SubResource("Resource_ddpbp")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

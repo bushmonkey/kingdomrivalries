@@ -1,0 +1,141 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=17 format=3 uid="uid://cfonwet8aibcc"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_txmvo"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_1566e"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_f83tt"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_1566e"]
+
+[sub_resource type="Resource" id="Resource_72cwk"]
+script = ExtResource("2_1566e")
+type = "AddModifier"
+target = "ReinforcedWalls"
+value = 1
+duration = 20
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pw1gi"]
+script = ExtResource("2_1566e")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_56p5x"]
+script = ExtResource("1_txmvo")
+text = "\"The Marshal is right. Reinforce the walls.\""
+success_text = "You side with the Marshal. The quarry's output for the next year is dedicated to military construction. Your kingdom is more secure, but a chance for economic growth is lost."
+failure_text = "Failure!"
+required_gold = 150
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_1566e")]([SubResource("Resource_72cwk"), SubResource("Resource_pw1gi")])
+failure_outcomes = Array[ExtResource("2_1566e")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_f83tt"]
+script = ExtResource("2_1566e")
+type = "AddModifier"
+target = "GrandMarketplace"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_21mw8"]
+script = ExtResource("2_1566e")
+type = "ChangeResource"
+target = "Treasury"
+value = -150
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_1566e"]
+script = ExtResource("1_txmvo")
+text = "\"The Steward is right. Build the marketplace.\""
+success_text = "You side with the Steward. The quarry's stone is used to build a new, grand marketplace. The city's commerce flourishes, but your defenses are not improved."
+failure_text = "Failure!"
+required_gold = 100
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_1566e")]([SubResource("Resource_f83tt"), SubResource("Resource_21mw8")])
+failure_outcomes = Array[ExtResource("2_1566e")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_pp4wn"]
+script = ExtResource("2_1566e")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_684b0"]
+script = ExtResource("2_1566e")
+type = "ChangeOpinion"
+target = "Public"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4tpj0"]
+script = ExtResource("3_1566e")
+stat = "Diplomacy"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_pa421"]
+script = ExtResource("2_1566e")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ng8fc"]
+script = ExtResource("2_1566e")
+type = "ChangeOpinion"
+target = "Public"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a6kdl"]
+script = ExtResource("1_txmvo")
+text = "\"Divide the stone between them.\""
+success_text = "You skillfully mediate a compromise, allocating enough stone for the Marshal to build new watchtowers and the Steward to expand the existing market. Both are satisfied with your wise leadership."
+failure_text = "Your attempt to compromise pleases no one. Both projects are under-resourced and progress slowly. Both advisors feel you have failed to commit, and their respect for you wanes."
+skill_check = SubResource("Resource_4tpj0")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_1566e")]([SubResource("Resource_pa421"), SubResource("Resource_ng8fc")])
+failure_outcomes = Array[ExtResource("2_1566e")]([SubResource("Resource_pp4wn"), SubResource("Resource_684b0")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_f83tt")
+category = 3
+event_id = "MF012"
+title = "The Quarry Dispute"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "Your Marshal and your Steward are arguing over the primary use for the stone from the royal quarry."
+description = "Your Marshal and your Steward are in a heated argument. \"The stone from the quarry must be used to reinforce the castle walls!\" the Marshal insists.
+
+\"Nonsense!\" the Steward retorts. \"That stone is needed for the new marketplace and guildhall! The city's economy is more important than another layer of stone on a wall that has never been breached!\" They both turn to you for the final decision."
+vignette_texture = ""
+options = Array[ExtResource("1_txmvo")]([SubResource("Resource_56p5x"), SubResource("Resource_1566e"), SubResource("Resource_a6kdl")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

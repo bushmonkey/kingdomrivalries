@@ -47,6 +47,7 @@ var mother: Character
 var spouse: Character
 var girlfriend: Character
 var ex_girlfriend: Character
+var childhood_friend: Character
 var spouse_at_inception: Character
 var children: Array[Character] = []
 
@@ -86,10 +87,12 @@ func die(cause: String):
 		# For an AI RULER, we handle their succession IMMEDIATELY.
 		print("AI RULER %s has died. Handling succession now." % full_name)
 		GameManager.handle_ruler_death(current_court)
-
-	var log_msg="DEATH: %s of the court of %s has %s at age %d." % [full_name, current_court.kingdom_name, cause, age]
-	GameManager.monthly_event_log.append(log_msg)
-	GameManager.monthly_chronicle.kingdom_logs[current_court].append(log_msg)
+	if is_instance_valid(current_court):
+		var log_msg="DEATH: %s of the court of %s has %s at age %d." % [full_name, current_court.kingdom_name, cause, age]
+		GameManager.monthly_event_log.append(log_msg)
+		GameManager.monthly_chronicle.kingdom_logs[current_court].append(log_msg)
+	else:
+		print("ERROR: no kingdom for dead ",full_name)
 	
 	
 func process_monthly_tick():

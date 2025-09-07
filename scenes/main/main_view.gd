@@ -448,6 +448,8 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 		"personality_bonus": 0,
 		"modifier_penalty": 0,
 		"penalty_reason": "",
+		"modifier_bonus": 0,
+		"bonus_reason": "",
 		"total_score": 0,
 		"difficulty": 0,
 		"tech_bonus": 0
@@ -470,6 +472,9 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 	# --- Modifier Penalty Logic ---
 	var modifier_penalty = 0
 	var penalty_reason = "" 
+	# --- Modifier Bonus Logic ---
+	var modifier_bonus = 0
+	var bonus_reason = "" 
 	
 	# --- Add bonus/penalty from personality ---
 	# We check if the skill being tested matches the ruler's personality.
@@ -524,6 +529,24 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 				modifier_penalty = min(modifier_penalty, -2) # A moderate penalty
 				if penalty_reason.is_empty(): # Only set the reason if one isn't already set
 					penalty_reason = "Diminished Authority"
+					
+	if ruler_kingdom.has_modifier("GuiltRidden") or ruler_kingdom.has_modifier("Stressed"):
+		# Both these modifiers affect a ruler's social confidence.
+		if check.stat == "Charisma":
+			# We'll make GuiltRidden slightly worse than Stressed.
+			var penalty = -2 if ruler_kingdom.has_modifier("GuiltRidden") else -1
+			modifier_penalty = min(modifier_penalty, penalty)
+			if penalty_reason.is_empty():
+				penalty_reason = "GuiltRidden" if ruler_kingdom.has_modifier("GuiltRidden") else "Stressed"
+				
+	if ruler_kingdom.has_modifier("Contended") or ruler_kingdom.has_modifier("Happy"):
+		# Both these modifiers affect a ruler's social confidence.
+		if check.stat == "Charisma":
+			# We'll make GuiltRidden slightly worse than Stressed.
+			var bonus = 2 if ruler_kingdom.has_modifier("Contended") else 1
+			modifier_bonus = min(modifier_bonus, bonus)
+			if bonus_reason.is_empty():
+				bonus_reason = "Contended" if ruler_kingdom.has_modifier("Contended") else "Happy"
 
 	result.tech_bonus = 0
 	
@@ -553,8 +576,10 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 
 	result.modifier_penalty = modifier_penalty # Your calculated value
 	result.penalty_reason = penalty_reason   # Your calculated reason
+	result.modifier_bonus = modifier_bonus # Your calculated value
+	result.bonus_reason = bonus_reason   # Your calculated reason
 	
-	result.total_score = result.base_stat + result.roll + result.personality_bonus + result.modifier_penalty + result.tech_bonus
+	result.total_score = result.base_stat + result.roll + result.personality_bonus + result.modifier_bonus + result.modifier_penalty + result.tech_bonus
 	result.is_success = result.total_score >= result.difficulty
 	var total_score = ruler_skill + roll + personality_bonus
 	

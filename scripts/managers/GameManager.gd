@@ -182,6 +182,29 @@ func start_new_game(num_kingdoms: int):
 			var is_player_court = (onekingdom == player_kingdom)
 			_populate_court(onekingdom, is_player_court)
 
+		var distant_courts = all_kingdoms.filter(func(k): 
+			return k != player_kingdom and not player_kingdom.rivals.has(k.id)
+			)
+		var friend_home_court = distant_courts.pick_random() if not distant_courts.is_empty() else null
+		
+		var friend = Character.new()
+		friend.gender = Character.Gender.MALE if randi() % 2 == 0 else Character.Gender.FEMALE
+		friend.first_name = NameGenerator.get_random_first_name(friend.gender)
+		# Give them a minor family name.
+		friend.dynasty_name = NameGenerator.get_random_dynasty_name() 
+		# They should be the same age as the player.
+		friend.set_initial_age(player_kingdom.ruler.get_age())
+		# Give them average, non-threatening stats.
+		friend.personality = [Character.CharacterPersonality.FRIENDLY, Character.CharacterPersonality.SHY].pick_random()
+		friend.stewardship = randi_range(3, 6)
+		friend.diplomacy = randi_range(4, 7)
+		
+		# 3. Add the friend to the world in their new home court.
+		add_character_to_world(friend, friend_home_court)
+		
+		# 4. Link the two characters by storing their IDs.
+		player_kingdom.ruler.childhood_friend = friend
+		friend.childhood_friend = player_kingdom.ruler
 
 	if is_instance_valid(player_kingdom):
 		_apply_meta_progression_bonuses(player_kingdom)
@@ -590,7 +613,22 @@ func apply_outcomes(target_kingdom: Kingdom, outcomes: Array[EventOutcome]):
 					var knight_modifier = player_kingdom.active_modifiers.back()
 					if knight_modifier.id == "RenownedKnight":
 						knight_modifier.attached_character_id = character_to_knight.id
-						
+			"KillCharacter":
+				# The target is the character's unique ID.
+				var char_to_kill = find_character_by_id(outcome.target)
+				# The value is hard-coded for now
+				var cause_of_death = "executed"
+				if is_instance_valid(char_to_kill):
+					# We only kill them if they are currently alive.
+					if char_to_kill.is_alive:
+						char_to_kill.die(cause_of_death)
+			"ChangeCourt":
+				var char_to_move = find_character_by_id(outcome.target)
+				var destination_kingdom = player_kingdom # Assuming it's always to the player's court
+				if is_instance_valid(char_to_move) and is_instance_valid(destination_kingdom):
+					char_to_move.current_court = destination_kingdom
+					
+					
 #Function to advance or end a storyline ---
 # A private helper to keep the logic clean.
 func _advance_storyline(storyline_id: String, new_stage: int):
@@ -1261,6 +1299,7 @@ func _calculate_monthly_economy():
 		
 		var base_gold_income = 0.0
 		var base_food_production = 0
+		var mine_income = 0.0
 		
 		# --- 1. Calculate Income & Food Production ---
 		for province in kingdom.provinces_owned:
@@ -1278,6 +1317,7 @@ func _calculate_monthly_economy():
 						food_change += FOOD_PER_FARM
 					Province.BuildingType.MINE:
 						gold_change += INCOME_PER_MINE_GOLD
+						mine_income += INCOME_PER_MINE_GOLD
 					Province.BuildingType.GRANARY:
 						food_change += FOOD_PER_GRANARY
 			if province.is_coastal and province.type != Province.ProvinceType.COASTAL_FISHING_VILLAGE:
@@ -1305,10 +1345,11 @@ func _calculate_monthly_economy():
 					flat_modifier_food_bonus += FOOD_BONUS_IRRIGATION
 				"GrandCathedral":
 					flat_modifier_gold_bonus += 25
+				"CrownMillIncome":
+					flat_modifier_gold_bonus += 10
 				#add other matches here	
 					
 			if modifier.id.begins_with("TradeDeal_"):
-				print("DEBUG: trade deal:",modifier.id)
 				if modifier.id.begins_with("TradeDeal_FoodForGold_Bad"):
 					food_change -= TRADE_DEAL_FOOD_AMOUNT
 					gold_change += (TRADE_DEAL_GOLD_AMOUNT/2) # A much worse rate
@@ -1350,7 +1391,16 @@ func _calculate_monthly_economy():
 					percentage_modifier_gold_bonus -= gold_change * 0.10
 					percentage_modifier_food_bonus += base_food_production * 0.10
 				# -------------------------
-		
+				"GrandMarketplace":
+					print("DEBUG: Grand Marketplace:",modifier.id)
+					percentage_modifier_food_bonus += base_food_production * 0.10
+					percentage_modifier_gold_bonus += gold_change * 0.05
+					
+				"EfficientFuel":
+					percentage_modifier_gold_bonus += mine_income * 0.10
+					
+				"ExpensiveFuel":
+					percentage_modifier_gold_bonus -= mine_income * 0.10
 		# Add the calculated percentage bonuses to the totals
 		gold_change += percentage_modifier_gold_bonus
 		food_change += percentage_modifier_food_bonus
