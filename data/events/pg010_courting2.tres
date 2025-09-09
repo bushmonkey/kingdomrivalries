@@ -1,0 +1,199 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=23 format=3 uid="uid://c6agccin865tf"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_hpnv0"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_2ey4i"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_4kclv"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="3_4kclv"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_eh75o"]
+
+[sub_resource type="Resource" id="Resource_iwvo7"]
+script = ExtResource("2_2ey4i")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_q3me0"]
+script = ExtResource("2_2ey4i")
+type = "EndCourting"
+target = "{lady_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ail8q"]
+script = ExtResource("3_eh75o")
+stat = "Martial"
+difficulty = 13
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_6uvni"]
+script = ExtResource("2_2ey4i")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_d448o"]
+script = ExtResource("2_2ey4i")
+type = "AddTrait_Ambitious"
+target = "{lady_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_nuo6w"]
+script = ExtResource("1_hpnv0")
+text = "\"Speak of power, legacy, and a great dynasty.\""
+success_text = "You speak of your ambitions for the kingdom, of conquest and a legacy that will last a thousand years. She listens, her eyes alight with the same fire. You have found a partner whose ambition matches your own."
+failure_text = "Your talks of conquests and blood are met with horror. Lady {girlfriend_name} cannot believe her ears and she runs away crying, terrified of what her life would be like with you."
+skill_check = SubResource("Resource_ail8q")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2ey4i")]([SubResource("Resource_6uvni"), SubResource("Resource_d448o")])
+failure_outcomes = Array[ExtResource("2_2ey4i")]([SubResource("Resource_iwvo7"), SubResource("Resource_q3me0")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_2ey4i"]
+script = ExtResource("2_2ey4i")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_eh75o"]
+script = ExtResource("3_eh75o")
+stat = "Stewardship"
+difficulty = 12
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_pfv1g"]
+script = ExtResource("2_2ey4i")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_e3ed6"]
+script = ExtResource("2_2ey4i")
+type = "AddTrait_Just"
+target = "{lady_id}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_shlr6"]
+script = ExtResource("1_hpnv0")
+text = "\"Speak of a just, peaceful, and prosperous realm.\""
+success_text = "You speak not of glory, but of justice for the common folk, of full granaries and a peaceful reign. A warm smile touches her lips. She shares your desire for a stable and prosperous kingdom."
+failure_text = "You speak not of glory, but of justice for the common folk, of full granaries and a peaceful reign. Lady {lady_name} is bored and can barely conceal a yawn. She is after more excitement than you seem to be able to offer."
+skill_check = SubResource("Resource_eh75o")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2ey4i")]([SubResource("Resource_pfv1g"), SubResource("Resource_e3ed6")])
+failure_outcomes = Array[ExtResource("2_2ey4i")]([SubResource("Resource_2ey4i")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_0ehn1"]
+script = ExtResource("2_2ey4i")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_h6jnh"]
+script = ExtResource("3_eh75o")
+stat = "Charisma"
+difficulty = 10
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_hprn1"]
+script = ExtResource("2_2ey4i")
+type = "ChangeAffection"
+target = "{lady_id}"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cih70"]
+script = ExtResource("2_2ey4i")
+type = "AddTrait_Family"
+target = "{lady_id}"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_c64o5"]
+script = ExtResource("1_hpnv0")
+text = "\"Speak of love, family, and many children.\""
+success_text = "You set aside talk of the realm and speak only of the family you hope to build together. She shares your dream of a happy and bustling household, full of laughter and children. The personal bond between you deepens."
+failure_text = "Your talks of the family you hope to build together scare her. She is not ready to settle down just yet."
+skill_check = SubResource("Resource_h6jnh")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_2ey4i")]([SubResource("Resource_hprn1"), SubResource("Resource_cih70")])
+failure_outcomes = Array[ExtResource("2_2ey4i")]([SubResource("Resource_0ehn1")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_ppq7t"]
+script = ExtResource("3_4kclv")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = true
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 15
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_valid_trade_partner = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+requires_player_has_heir = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_4kclv")
+category = 6
+trigger_conditions = SubResource("Resource_ppq7t")
+event_id = "PG010"
+title = "A Glimpse of the Future"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "You spend a quiet evening with {girlfriend_name}, discussing your hopes for the future."
+description = "You and lady {girlfriend_name} spend a quiet evening together by the fire. The talk turns to the future—of your reign, your lives together, and the children you will one day have. It is a chance to understand the woman who will soon be your queen."
+vignette_texture = ""
+options = Array[ExtResource("1_hpnv0")]([SubResource("Resource_nuo6w"), SubResource("Resource_shlr6"), SubResource("Resource_c64o5")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

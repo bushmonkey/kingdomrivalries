@@ -1,0 +1,121 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=15 format=3 uid="uid://r73fjl4hikm4"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_fa4cm"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_dbut5"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_s22dw"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_dbut5"]
+
+[sub_resource type="Resource" id="Resource_s22dw"]
+script = ExtResource("2_dbut5")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dbut5"]
+script = ExtResource("2_dbut5")
+type = "ChangeAffection"
+target = "{girlfriend_id}"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_n8gs5"]
+script = ExtResource("1_fa4cm")
+text = "\"shall we go on a formal procession through the capital.\""
+success_text = "You and lady {girlfriend_name} ride through the capital in a grand procession. The common folk cheer to see their ruler with such a charming companion. The outing is a great success for public relations."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_dbut5")]([SubResource("Resource_s22dw"), SubResource("Resource_dbut5")])
+failure_outcomes = Array[ExtResource("2_dbut5")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_tlmv1"]
+script = ExtResource("2_dbut5")
+type = "ChangeAffection"
+target = "{girlfriend_id}"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_hl3g1"]
+script = ExtResource("3_dbut5")
+stat = "Charisma"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_xynxn"]
+script = ExtResource("2_dbut5")
+type = "ChangeAffection"
+target = "{girlfriend_id}"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rwfr3"]
+script = ExtResource("1_fa4cm")
+text = "\"Shall we go on a private ride through the royal forests.\""
+success_text = "You ride into the seclusion of the King's Wood. Away from the court, the conversation is easy and genuine. You share a private, romantic moment that significantly strengthens your bond."
+failure_text = "The seclusion proves awkward rather than romantic. You struggle to find things to talk about, and the long silences are uncomfortable. The outing is a missed opportunity."
+skill_check = SubResource("Resource_hl3g1")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_dbut5")]([SubResource("Resource_xynxn")])
+failure_outcomes = Array[ExtResource("2_dbut5")]([SubResource("Resource_tlmv1")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_r3so5"]
+script = ExtResource("2_dbut5")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_8favi"]
+script = ExtResource("2_dbut5")
+type = "ChangeAffection"
+target = "{girlfriend_id}"
+value = 0
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ceboj"]
+script = ExtResource("1_fa4cm")
+text = "\"Shall we go visit the Grand Cathedral.\""
+success_text = "You ride together to the Grand Cathedral for morning prayers. The Bishop is pleased to see you with such a pious and respectable companion. Your shared devotion is seen as a promising sign for the future of the dynasty."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = "GrandCathedral"
+success_outcomes = Array[ExtResource("2_dbut5")]([SubResource("Resource_r3so5"), SubResource("Resource_8favi")])
+failure_outcomes = Array[ExtResource("2_dbut5")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_s22dw")
+category = 6
+event_id = "PG012"
+title = "A Public Outing"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "You have invited {girlfriend_name} to accompany you on a ride. Where will you go?"
+description = "You have invited {girlfriend_name} to join you for a ride, a chance to spend time together outside the stuffy confines of the castle. The eyes of the court will be watching to see how you conduct yourself."
+vignette_texture = ""
+options = Array[ExtResource("1_fa4cm")]([SubResource("Resource_n8gs5"), SubResource("Resource_rwfr3"), SubResource("Resource_ceboj")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

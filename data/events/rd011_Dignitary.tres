@@ -1,0 +1,137 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=17 format=3 uid="uid://dwiauqaxlt7go"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_maw6u"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_1604l"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_o3xv4"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_dsunv"]
+
+[sub_resource type="Resource" id="Resource_o3xv4"]
+script = ExtResource("2_o3xv4")
+type = "ChangeResource"
+target = "Treasury"
+value = 200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_dsunv"]
+script = ExtResource("2_o3xv4")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_ejh6q"]
+script = ExtResource("3_dsunv")
+stat = "Stewardship"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_ptppb"]
+script = ExtResource("2_o3xv4")
+type = "ChangeResource"
+target = "Treasury"
+value = -200
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_kyay5"]
+script = ExtResource("2_o3xv4")
+type = "AddModifier"
+target = "GoodRelations_Caliphate"
+value = 1
+duration = 20
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_1pyoh"]
+script = ExtResource("1_maw6u")
+text = "Host a grand feast in his honor."
+success_text = "The feast is a magnificent success. You showcase the best of your kingdom's hospitality. The dignitary is pleased by the honor you have shown him and his ruler."
+failure_text = "The feast is a disaster. The food is bland, the music is provincial, and the dignitary seems utterly bored. He is clearly unimpressed by your court's lack of sophistication."
+skill_check = SubResource("Resource_ejh6q")
+required_gold = 200
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_o3xv4")]([SubResource("Resource_ptppb"), SubResource("Resource_kyay5")])
+failure_outcomes = Array[ExtResource("2_o3xv4")]([SubResource("Resource_o3xv4"), SubResource("Resource_dsunv")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_8smky"]
+script = ExtResource("2_o3xv4")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_r4p0l"]
+script = ExtResource("3_dsunv")
+stat = "Martial"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_xdfwe"]
+script = ExtResource("2_o3xv4")
+type = "AddModifier"
+target = "GoodRelations_Caliphate"
+value = 1
+duration = 20
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_h2sak"]
+script = ExtResource("1_maw6u")
+text = "Take him on a royal hunt."
+success_text = "The hunt is a thrilling success. You display your martial prowess, and the dignitary, himself a keen hunter, is impressed by the sport and the valor of your nobles."
+failure_text = "The hunt is a frustrating and fruitless affair. The game is scarce, the weather is foul, and the dignitary seems to view the whole endeavor as a waste of time."
+skill_check = SubResource("Resource_r4p0l")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_o3xv4")]([SubResource("Resource_xdfwe")])
+failure_outcomes = Array[ExtResource("2_o3xv4")]([SubResource("Resource_8smky")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_5fe1t"]
+script = ExtResource("2_o3xv4")
+type = "AddModifier"
+target = "StrongRelations_Caliphate"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xdmxb"]
+script = ExtResource("1_maw6u")
+text = "Show him the wild beast in your menagerie"
+success_text = "You take the dignitary to see your Royal Menagerie. His eyes widen in genuine shock and admiration at the sight of the lion. \"A king who can command the king of beasts,\" he murmurs, \"is a king to be respected.\" You have made a powerful and lasting impression."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = "RoyalMenagerie"
+success_outcomes = Array[ExtResource("2_o3xv4")]([SubResource("Resource_5fe1t")])
+failure_outcomes = Array[ExtResource("2_o3xv4")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_1604l")
+category = 0
+event_id = "RD011"
+title = "A Visiting Dignitary"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "An important envoy from a powerful, distant kingdom is visiting your court, and you must find a way to impress them."
+description = "A high-ranking dignitary from a powerful southern Caliphate has arrived on a diplomatic mission. He is a worldly and sophisticated man, not easily impressed by the simple pleasures of your northern court. Your relationship with his powerful kingdom could be greatly influenced by the impression you make during his visit."
+vignette_texture = ""
+options = Array[ExtResource("1_maw6u")]([SubResource("Resource_1pyoh"), SubResource("Resource_h2sak"), SubResource("Resource_xdmxb")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

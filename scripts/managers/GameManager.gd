@@ -525,13 +525,29 @@ func apply_outcomes(target_kingdom: Kingdom, outcomes: Array[EventOutcome]):
 				else:
 					printerr("AddModifier outcome for '%s' has an invalid duration value." % outcome.target)
 			"ChangeAffection":
-				pass
+				var target_character = find_character_by_id(str(outcome.target))
+				if is_instance_valid(target_character):
+					target_character.affection = clampi(target_character.affection + int(outcome.value), 0, 100)
+					print("OUTCOME: Affection with %s changed by %d. New value: %d" % [target_character.full_name, int(outcome.value), target_character.affection])
 			"ChangeCharacterOpinion":
-				pass
+				var target_character = find_character_by_id(str(outcome.target))
+				if is_instance_valid(target_character):
+					var current_opinion = target_character.opinion_of.get(player_kingdom.ruler.id,0)
+					var new_opinion = clampi(current_opinion + int(outcome.value), -100, 100)
+					target_character.opinion_of[player_kingdom.ruler.id] = new_opinion
 			"GainIntel":
 				pass
 			"ChangeKingdomRelation":
-				pass
+				var other_kingdom_id = int(outcome.target)
+				var other_kingdom = find_kingdom_by_id(other_kingdom_id)
+				if is_instance_valid(other_kingdom):
+					# Get the current relation value, defaulting to 0.
+					var current_relation = target_kingdom.relations.get(other_kingdom_id, 0)
+					var new_relation = clampi(current_relation + int(outcome.value), -100, 100)
+					
+					# Set the relation MUTUALLY.
+					target_kingdom.relations[other_kingdom_id] = new_relation
+					other_kingdom.relations[target_kingdom.id] = new_relation
 			"GainRivalCasusBelli":
 				pass
 			"GainRival":

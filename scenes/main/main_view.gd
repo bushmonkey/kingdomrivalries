@@ -559,7 +559,13 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 	
 	# We now loop through ALL active modifiers on the kingdom.
 	for modifier in ruler_kingdom.active_modifiers:
-				
+		
+		if parent_event.category == GameEvent.EventCategory.ECONOMIC:
+			if ruler_kingdom.has_modifier("GoodRelations_Caliphate"):
+				result.tech_bonus += 1
+			if ruler_kingdom.has_modifier("StrongRelations_Caliphate"):
+				result.tech_bonus += 2
+			
 		if parent_event.category == GameEvent.EventCategory.MANUFACTURING:
 			
 			# Check for the AdvancedArchitecture modifier.

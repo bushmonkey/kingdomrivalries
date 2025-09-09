@@ -1,0 +1,139 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=17 format=3 uid="uid://c7h3ymfnk3mdm"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_5ag76"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_c73nq"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_nec1h"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_jl44o"]
+
+[sub_resource type="Resource" id="Resource_nec1h"]
+script = ExtResource("2_nec1h")
+type = "ChangeOpinion"
+target = "Church"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jl44o"]
+script = ExtResource("2_nec1h")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_5dwnl"]
+script = ExtResource("3_jl44o")
+stat = "Charisma"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_ugnp5"]
+script = ExtResource("2_nec1h")
+type = "ChangeStat"
+target = "Stewardship"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_n022l"]
+script = ExtResource("2_nec1h")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2mjh4"]
+script = ExtResource("2_nec1h")
+type = "ChangeOpinion"
+target = "Church"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_vh4c7"]
+script = ExtResource("1_5ag76")
+text = " \"Patronize him. A ruler should not fear new ideas.\" "
+success_text = "You welcome the philosopher. The debates he hosts are a sensation, sparking a new wave of intellectual curiosity throughout your court. Your reputation as an enlightened and confident ruler grows."
+failure_text = "The philosopher's debates are a disaster. He openly mocks cherished beliefs, offending both your nobles and the clergy. Your court is seen as a haven for radical and dangerous ideas."
+skill_check = SubResource("Resource_5dwnl")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_nec1h")]([SubResource("Resource_ugnp5"), SubResource("Resource_n022l"), SubResource("Resource_2mjh4")])
+failure_outcomes = Array[ExtResource("2_nec1h")]([SubResource("Resource_nec1h"), SubResource("Resource_jl44o")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_lfxgc"]
+script = ExtResource("2_nec1h")
+type = "ChangeOpinion"
+target = "Church"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_41f3s"]
+script = ExtResource("1_5ag76")
+text = "\"He may stay, but he will not speak publicly.\""
+success_text = "You offer the philosopher a quiet room in the library but forbid him from holding public debates. You have avoided offending the Church, but also missed an opportunity for cultural growth."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_nec1h")]([SubResource("Resource_lfxgc")])
+failure_outcomes = Array[ExtResource("2_nec1h")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_584so"]
+script = ExtResource("2_nec1h")
+type = "ChangeOpinion"
+target = "Church"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_lkhuc"]
+script = ExtResource("2_nec1h")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_47h45"]
+script = ExtResource("1_5ag76")
+text = "\"Expel him. His ideas are a poison to this court.\" "
+success_text = "You have the philosopher escorted from your lands. The Bishop is greatly relieved and praises your wisdom in protecting the flock from dangerous thoughts. Your nobles, however, see you as a fearful dogmatist."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_nec1h")]([SubResource("Resource_584so"), SubResource("Resource_lkhuc")])
+failure_outcomes = Array[ExtResource("2_nec1h")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_c73nq")
+category = 5
+event_id = "CU009"
+title = "The Philosopher's Visit"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A traveling philosopher known for his controversial ideas has arrived at your court, requesting your patronage."
+description = "A renowned but controversial philosopher has arrived in your kingdom. He is known for his lectures on logic, reason, and governance—ideas that many nobles find intriguing but the Church considers dangerously secular. He requests your patronage to hold a series of debates at court."
+vignette_texture = ""
+options = Array[ExtResource("1_5ag76")]([SubResource("Resource_vh4c7"), SubResource("Resource_41f3s"), SubResource("Resource_47h45")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"
