@@ -99,10 +99,10 @@ metadata/_custom_type_script = "uid://ba6vthi2ebiys"
 
 [sub_resource type="Resource" id="Resource_xdour"]
 script = ExtResource("2_qersi")
-type = "UnlockEvent"
+type = "AddDelayedEvent"
 target = "RD010"
 value = 1
-duration = 0
+duration = 12
 stackable = false
 metadata/_custom_type_script = "uid://ba6vthi2ebiys"
 

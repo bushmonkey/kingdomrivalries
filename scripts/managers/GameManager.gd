@@ -70,7 +70,7 @@ var active_storylines: Dictionary = {}   # Storyline Management
 
 var incremental_id: int = 0
 var all_characters_in_world: Array[Character] = [] # A central list of all characters.
-
+var delayed_events_queue: Array[Dictionary] = []
 
 var monthly_event_log: Array[String] = []
 var unlocked_event_ids: Array[String] = []
@@ -318,11 +318,13 @@ func advance_turn():
 	
 	# 1. Clear the log for the new month.
 	monthly_event_log.clear()
-
 	
 	for kingdom in all_kingdoms:
 		monthly_chronicle.kingdom_logs[kingdom] = []
-	# 2. Calculate the economy first. This determines income and expenses.
+		
+		
+	_process_delayed_events()
+
 	_calculate_monthly_economy()
 	
 	# 3. Simulate all AI actions (expansion, war declarations, marriages).
@@ -520,6 +522,8 @@ func apply_outcomes(target_kingdom: Kingdom, outcomes: Array[EventOutcome]):
 				#AgentInCourt_ : when in war, gives advantage
 				#RivalSchemePower : when in war, gives disadvantage
 				#LowMorale/HighMorale : Change military morale
+				#Stressed: Reduce rolls while active
+				#MountainFortress: Reduces attacks from enemies in war
 				if outcome.duration is int:
 					target_kingdom.add_modifier(outcome.target, outcome.duration, outcome.value, outcome.stackable)
 				else:
@@ -659,7 +663,16 @@ func apply_outcomes(target_kingdom: Kingdom, outcomes: Array[EventOutcome]):
 					monthly_event_log.append(log_msg)
 					monthly_chronicle.critical_events.append(log_msg)
 					print("EVENT UNLOCKED: ", event_id_to_unlock)
+			
+			"AddDelayedEvent":
+				var new_delayed_event = {
+					"event_id": str(outcome.target),
+					"seasons_remaining": int(outcome.duration)
+				}
+				delayed_events_queue.append(new_delayed_event)
+				print("EVENT QUEUED: '%s' will trigger in %d seasons." % [new_delayed_event.event_id, new_delayed_event.seasons_remaining])
 						
+			
 			"KnightCharacter":
 				var character_to_knight = find_character_by_id(outcome.target)
 				if is_instance_valid(character_to_knight):
@@ -1369,6 +1382,9 @@ func _calculate_monthly_economy():
 					food_change += FOOD_BONUS_FOREST
 				Province.ProvinceType.COASTAL_FISHING_VILLAGE:
 					food_change += FOOD_BONUS_FISHING_VILLAGE
+					if kingdom.active_modifiers.has("ProsperousCoast"):
+						food_change +=2
+						gold_change +=5
 				Province.ProvinceType.MOUNTAINOUS:
 					food_change += FOOD_BONUS_MOUNTAINOUS
 				Province.ProvinceType.PLAINS:
@@ -1411,6 +1427,9 @@ func _calculate_monthly_economy():
 					flat_modifier_gold_bonus += 25
 				"CrownMillIncome":
 					flat_modifier_gold_bonus += 10
+				"MotherlodeMine":
+					flat_modifier_gold_bonus += 30
+				
 				#add other matches here	
 					
 			if modifier.id.begins_with("TradeDeal_"):
@@ -1565,3 +1584,19 @@ func get_characters_in_court(kingdom: Kingdom) -> Array[Character]:
 func _update_player_stats():
 	if is_instance_valid(player_kingdom):
 		peak_province_count = max(peak_province_count, player_kingdom.provinces_owned.size())
+		
+
+func _process_delayed_events():
+	# Iterate backwards so we can safely remove items.
+	for i in range(delayed_events_queue.size() - 1, -1, -1):
+		var delayed_event = delayed_events_queue[i]
+		delayed_event.seasons_remaining -= 1
+		
+		if delayed_event.seasons_remaining <= 0:
+			# The timer is up! Unlock this event so it can appear.
+			var event_id_to_unlock = delayed_event.event_id
+			if not unlocked_event_ids.has(event_id_to_unlock):
+				unlocked_event_ids.append(event_id_to_unlock)
+				print("DELAYED EVENT UNLOCKED: ", event_id_to_unlock)
+			# Remove it from the queue.
+			delayed_events_queue.remove_at(i)

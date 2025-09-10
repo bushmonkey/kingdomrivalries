@@ -1,7 +1,96 @@
-[gd_resource type="Resource" script_class="GameEvent" load_steps=3 format=3 uid="uid://cyimek6prcglq"]
+[gd_resource type="Resource" script_class="GameEvent" load_steps=14 format=3 uid="uid://cyimek6prcglq"]
 
 [ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_lx665"]
 [ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_myi8l"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_p8r3x"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_lfudb"]
+
+[sub_resource type="Resource" id="Resource_6lmd1"]
+script = ExtResource("2_p8r3x")
+type = "ChangeResource"
+target = "Treasury"
+value = -400
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cxcis"]
+script = ExtResource("2_p8r3x")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_obedd"]
+script = ExtResource("3_lfudb")
+stat = "Stewardship"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_p8r3x"]
+script = ExtResource("2_p8r3x")
+type = "AddModifier"
+target = "SturdyBridge"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_lfudb"]
+script = ExtResource("2_p8r3x")
+type = "ChangeResource"
+target = "Treasury"
+value = -250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_32yg1"]
+script = ExtResource("1_lx665")
+text = "\"You are right. It is time for a permanent solution.\""
+success_text = "The old wooden bridge is dismantled and replaced with a magnificent stone structure. It is a costly project, but it secures the trade route for centuries to come. The merchants and people are grateful for your foresight."
+failure_text = "The new stone bridge is a disaster. Poor craftsmanship and shoddy materials lead to a partial collapse during construction. The final cost of the project is far greater than anticipated."
+skill_check = SubResource("Resource_obedd")
+required_gold = 400
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_p8r3x")]([SubResource("Resource_p8r3x"), SubResource("Resource_lfudb")])
+failure_outcomes = Array[ExtResource("2_p8r3x")]([SubResource("Resource_6lmd1"), SubResource("Resource_cxcis")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_p26o6"]
+script = ExtResource("2_p8r3x")
+type = "ChangeResource"
+target = "Treasury"
+value = -50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_vcpix"]
+script = ExtResource("2_p8r3x")
+type = "AddDelayedEvent"
+target = "RD010"
+value = 1
+duration = 6
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_4f4v6"]
+script = ExtResource("1_lx665")
+text = "\"We cannot afford that. Just patch the wooden bridge for now.\""
+success_text = "Your workers replace the most rotten timbers and reinforce the supports. The bridge is a little less wobbly, for now. You have bought yourself a few more years, but the problem will inevitably return."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_p8r3x")]([SubResource("Resource_p26o6"), SubResource("Resource_vcpix")])
+failure_outcomes = Array[ExtResource("2_p8r3x")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
 
 [resource]
 script = ExtResource("2_myi8l")
@@ -12,8 +101,8 @@ unlocked_at_start = false
 rarity = 1
 cooldown_years = 0
 selection_cost = 0
-summary = ""
-description = ""
+summary = "The temporary wooden bridge built years ago is becoming dangerously unstable and needs proper repairs."
+description = "Your steward brings a worrying report. \"My Liege, you may recall we built a temporary wooden bridge over the river some years ago. The wood is now rotting and the structure groans under the weight of heavy carts. It is only a matter of time before it collapses completely, once again severing our main trade route. We must replace it with a proper stone bridge.\""
 vignette_texture = ""
-options = Array[ExtResource("1_lx665")]([])
+options = Array[ExtResource("1_lx665")]([SubResource("Resource_32yg1"), SubResource("Resource_4f4v6")])
 metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

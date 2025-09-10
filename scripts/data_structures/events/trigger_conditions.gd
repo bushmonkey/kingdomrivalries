@@ -24,6 +24,8 @@ extends Resource
 #------neighbouring kingdom triggers---
 @export var requires_empty_neighboring_province: bool = false
 @export var requires_coastal_province: bool = false
+@export var requires_forest_province: bool = false
+@export var requires_mountain_province: bool = false
 @export var requires_player_has_heir: bool = false
 
 # --- Opinion Triggers ---

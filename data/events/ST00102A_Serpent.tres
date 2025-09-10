@@ -1,0 +1,73 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=9 format=3 uid="uid://cwrku1aw0nxvr"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_uhe1d"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_n6b72"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_w0v4m"]
+
+[sub_resource type="Resource" id="Resource_w0v4m"]
+script = ExtResource("2_n6b72")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jsyft"]
+script = ExtResource("2_n6b72")
+type = "AddModifier"
+target = "FactionIntel"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_rr8kl"]
+script = ExtResource("1_uhe1d")
+text = "\"Thank you for your loyalty. Help me uncover the others.\""
+success_text = "Working together, you and your loyal vassal identify several key members of your uncle's conspiracy. This knowledge will be invaluable in dismantling their plot when the time is right."
+failure_text = "Your attempt to use your loyal vassal as a double agent is discovered. Valerius now knows who the loyalists are and becomes even more secretive."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_n6b72")]([SubResource("Resource_jsyft")])
+failure_outcomes = Array[ExtResource("2_n6b72")]([SubResource("Resource_w0v4m")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_n6b72"]
+script = ExtResource("2_n6b72")
+type = "UnlockEvent"
+target = "ST00102C"
+value = 1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_2jngg"]
+script = ExtResource("1_uhe1d")
+text = "\"A dangerous accusation. I must consider this.\""
+success_text = "You thank the lord for his warning but commit to nothing. You have gained valuable information without taking any immediate risk."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_n6b72")]([SubResource("Resource_n6b72")])
+failure_outcomes = Array[ExtResource("2_n6b72")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_w0v4m")
+category = 4
+event_id = "SERPENT_S2_A_LOYAL_LORD"
+title = "A Loyal Lord's Warning"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A loyal noble has discovered a piece of your uncle's conspiracy and has come to warn you."
+description = "One of your most loyal vassals requests a secret audience. \"My Liege,\" he whispers, his face pale, \"I must speak plainly. Lord Valerius approached me. He spoke of dissatisfaction, of your 'weak' rule, and of a 'stronger' future. He is building a faction of traitors. I refused him, but others may not. Be warned.\""
+vignette_texture = ""
+options = Array[ExtResource("1_uhe1d")]([SubResource("Resource_rr8kl"), SubResource("Resource_2jngg")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

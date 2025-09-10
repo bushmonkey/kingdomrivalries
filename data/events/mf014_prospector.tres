@@ -1,0 +1,120 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=14 format=3 uid="uid://bxfxdjoejnady"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_2n3ew"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_7iygi"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_8pt07"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="3_8pt07"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_lxwfv"]
+
+[sub_resource type="Resource" id="Resource_lxwfv"]
+script = ExtResource("2_7iygi")
+type = "ChangeResource"
+target = "Treasury"
+value = -250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_23xgg"]
+script = ExtResource("2_7iygi")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3ll5s"]
+script = ExtResource("3_lxwfv")
+stat = "Intrigue"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_l5sid"]
+script = ExtResource("2_7iygi")
+type = "AddModifier"
+target = "MotherlodeMine"
+value = 1
+duration = -1
+stackable = true
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_7iygi"]
+script = ExtResource("2_7iygi")
+type = "ChangeResource"
+target = "Treasury"
+value = -250
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_lno3e"]
+script = ExtResource("1_2n3ew")
+text = "\"Trust the dwarf. Fund his expedition.\""
+success_text = "It's a massive gamble, but it pays off! Borin leads your miners deep into the mountain and, just as he promised, uncovers a breathtaking vein of pure gold. The mine's output will be legendary!"
+failure_text = "He was a charlatan. After taking your gold, Borin leads your miners on a week-long wild goose chase before disappearing in the night. You have been swindled."
+skill_check = SubResource("Resource_3ll5s")
+required_gold = 250
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_7iygi")]([SubResource("Resource_l5sid"), SubResource("Resource_7iygi")])
+failure_outcomes = Array[ExtResource("2_7iygi")]([SubResource("Resource_lxwfv"), SubResource("Resource_23xgg")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_22237"]
+script = ExtResource("1_2n3ew")
+text = "\"There is no such things as ancient lost dwarven clans. The man is a charlatan.  Throw him in the dungeon.\""
+success_text = "You don't trust the strange prospector. Your guards seize him. He may have known something, or he may have been a con artist, but now he's just another prisoner."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_7iygi")]([])
+failure_outcomes = Array[ExtResource("2_7iygi")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_4k0io"]
+script = ExtResource("3_8pt07")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 15
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_valid_trade_partner = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+requires_forest_province = false
+requires_mountain_province = true
+requires_player_has_heir = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_8pt07")
+category = 3
+trigger_conditions = SubResource("Resource_4k0io")
+event_id = "MF014"
+title = "The Dwarven Prospector"
+unlocked_at_start = true
+rarity = 1
+cooldown_years = 0
+selection_cost = 50
+summary = "A mysterious, bearded prospector claiming to be from a lost Dwarven clan offers to reveal a rich vein of gold in your mountains... for a price."
+description = "A stout, heavily bearded man in dusty traveler's clothes arrives at your court. He introduces himself as Borin, a prospector from the ancient clans of the mountains. \"Your miners scratch the surface, King,\" he says in a gravelly voice. \"But the true wealth, the Motherlode, lies deeper. I can show you where to dig. My fee is steep, but the riches you'll find will repay it a hundredfold.\""
+vignette_texture = ""
+options = Array[ExtResource("1_2n3ew")]([SubResource("Resource_lno3e"), SubResource("Resource_22237")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

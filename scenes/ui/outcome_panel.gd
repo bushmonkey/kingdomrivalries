@@ -56,6 +56,11 @@ func display_outcome(is_success: bool, flavor_text_template: String, outcomes: A
 		if roll_results.modifier_bonus != 0:
 			breakdown += " [color=green] + Mood Bonus[/color] (%d from %s)" % [roll_results.modifier_bonus, roll_results.bonus_reason]
 			
+		#Display Storyline Bonus ---
+		if roll_results.has("storyline_bonus") and roll_results.storyline_bonus != 0:
+			var reason = roll_results.get("storyline_bonus_reason", "Story Bonus")
+			breakdown += " [color=magenta]%s[/color] (%+d)" % [reason, roll_results.storyline_bonus]
+			
 		if roll_results.get("tech_bonus", 0) != 0:
 			breakdown += " [color=cyan] + Innovation Bonus[/color] (%d)" % roll_results.tech_bonus
 			

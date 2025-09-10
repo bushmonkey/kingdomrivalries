@@ -41,6 +41,8 @@ func update_monthly_warfare():
 			defender_modifier_bonus += 0.10
 		if war.defender.has_modifier("LowMorale"):
 			defender_modifier_bonus -= 0.10
+		if war.defender.has_modifier("MountainFortress"):
+			defender_modifier_bonus += 0.20
 		
 		# c) Check for Border Fortifications
 		# This is a special modifier that only helps the DEFENDER,

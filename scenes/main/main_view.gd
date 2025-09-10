@@ -529,6 +529,7 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 			modifier_penalty = -3 # A significant penalty
 			penalty_reason = "Minor Injury"
 			
+			
 	if ruler_kingdom.has_modifier("DiminishedAuthority"):
 			if check.stat == "Diplomacy" or check.stat == "Charisma" or check.stat == "Martial":
 				# We use min() so if they have both injury and this, they don't get a double penalty on Martial.
@@ -544,7 +545,7 @@ func _perform_skill_check(ruler: Character, check: SkillCheck, parent_event: Gam
 			var penalty = -2 if ruler_kingdom.has_modifier("GuiltRidden") else -1
 			modifier_penalty = min(modifier_penalty, penalty)
 			if penalty_reason.is_empty():
-				penalty_reason = "GuiltRidden" if ruler_kingdom.has_modifier("GuiltRidden") else "Stressed"
+				penalty_reason = "Guilt Ridden" if ruler_kingdom.has_modifier("GuiltRidden") else "Stressed"
 				
 	if ruler_kingdom.has_modifier("Contended") or ruler_kingdom.has_modifier("Happy"):
 		# Both these modifiers affect a ruler's social confidence.
@@ -681,6 +682,23 @@ func _handle_event_resolution(choice_package: Dictionary, on_complete_callable: 
 	var is_success = roll_results.is_success
 	#var is_success = _perform_skill_check(player_ruler, choice_data.skill_check)
 	
+	var storyline_bonus = 0
+	var storyline_bonus_reason = ""
+	
+	match parent_event.event_id:
+		"SERPENT_S2": # This is "The Alliance" event
+			var ruler_kingdom = GameManager.player_kingdom
+			if ruler_kingdom.has_modifier("FactionIntel"):
+				storyline_bonus += 3
+				storyline_bonus_reason = "Faction Intel"
+			if ruler_kingdom.has_modifier("ValeriusWeakened"):
+				storyline_bonus += 2
+				storyline_bonus_reason = "Valerius Weakened"
+			# We can also check for the negative modifier from a previous failure
+			if ruler_kingdom.has_modifier("Valerius_Cautious"):
+				storyline_bonus -= 2
+				storyline_bonus_reason = "Valerius is Cautious"
+				
 	# --- NEW: Custom Logic for Specific Events ---
 	match parent_event.event_id: # get_parent() gets the GameEvent from the EventOption
 		"ML008":
@@ -701,7 +719,15 @@ func _handle_event_resolution(choice_package: Dictionary, on_complete_callable: 
 			var standard_calculation = _perform_skill_check(player_ruler, choice_data.skill_check, parent_event)
 			is_success = standard_calculation.is_success
 			roll_results = standard_calculation
+			
 	# --- 3. Determine which raw text and outcomes to use ---
+	roll_results.total_score += storyline_bonus
+	# Re-evaluate success based on the new total score.
+	is_success = roll_results.total_score >= roll_results.difficulty
+	if storyline_bonus != 0:
+		roll_results["storyline_bonus"] = storyline_bonus
+		roll_results["storyline_bonus_reason"] = storyline_bonus_reason
+		
 	var flavor_text_template: String
 	var outcomes_to_apply_raw: Array[EventOutcome]
 

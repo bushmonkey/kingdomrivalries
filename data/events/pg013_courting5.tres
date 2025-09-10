@@ -1,0 +1,154 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=18 format=3 uid="uid://bb7s0qq43ubiv"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_fi50n"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_e1m8l"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_m2lj6"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_f5lv5"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="5_jqhxk"]
+
+[sub_resource type="Resource" id="Resource_q370q"]
+script = ExtResource("2_e1m8l")
+type = "ChangeAffection"
+target = "{girlfriend_name}"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3aipu"]
+script = ExtResource("3_f5lv5")
+stat = "Martial"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_7lbbn"]
+script = ExtResource("2_e1m8l")
+type = "ChangeAffection"
+target = "{girlfriend_name}"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_xgtro"]
+script = ExtResource("1_fi50n")
+text = "\"Challenge him to a duel. I will prove my superiority.\" "
+success_text = "You challenge the knight to a \"friendly\" spar in the training yard. You fight with skill and vigor, soundly defeating him in front of the entire court. {girlfriend_name} is clearly impressed by your prowess."
+failure_text = "The duel is a humiliation. The young knight is faster and more skilled, and he bests you easily. You have only succeeded in making yourself look weak and foolish in front of the woman you are trying to woo."
+skill_check = SubResource("Resource_3aipu")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_e1m8l")]([SubResource("Resource_7lbbn")])
+failure_outcomes = Array[ExtResource("2_e1m8l")]([SubResource("Resource_q370q")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_tktuy"]
+script = ExtResource("2_e1m8l")
+type = "ChangeOpinion"
+target = "Public"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_66va1"]
+script = ExtResource("3_f5lv5")
+stat = "Intrigue"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_wnn44"]
+script = ExtResource("1_fi50n")
+text = "\"Ruin his reputation with a subtle rumor.\""
+success_text = "Your spymaster discreetly spreads a scandalous (and entirely fabricated) rumor about the young knight. His reputation is tarnished, and he is no longer seen as a suitable match. {girlfriend_name} now only has eyes for you."
+failure_text = "The rumor is so clumsy that it is immediately traced back to you. You are seen as a petty and dishonorable schemer. The plot backfires spectacularly, making your rival look like a victim of your jealousy."
+skill_check = SubResource("Resource_66va1")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_e1m8l")]([SubResource("Resource_7lbbn")])
+failure_outcomes = Array[ExtResource("2_e1m8l")]([SubResource("Resource_q370q"), SubResource("Resource_tktuy")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_e1m8l"]
+script = ExtResource("2_e1m8l")
+type = "ChangeAffection"
+target = "{girlfriend_name}"
+value = 5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_f5lv5"]
+script = ExtResource("3_f5lv5")
+stat = "Charisma"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_jqhxk"]
+script = ExtResource("2_e1m8l")
+type = "ChangeAffection"
+target = "{girlfriend_name}"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_t8md4"]
+script = ExtResource("1_fi50n")
+text = "\"Let her choose. My own merits will win her over.\""
+success_text = "You do nothing, confident in your own courtship. You show that you are a king, above such petty rivalries."
+failure_text = "You do nothing, confident in your own courtship. You show that you are a king, above such petty rivalries."
+skill_check = SubResource("Resource_f5lv5")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_e1m8l")]([SubResource("Resource_jqhxk")])
+failure_outcomes = Array[ExtResource("2_e1m8l")]([SubResource("Resource_e1m8l")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_spnrl"]
+script = ExtResource("5_jqhxk")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = true
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 15
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_valid_trade_partner = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+requires_player_has_heir = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_m2lj6")
+category = 6
+trigger_conditions = SubResource("Resource_spnrl")
+event_id = "PG013"
+title = "A Rival Suitor"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "A young, handsome noble has also been attempting to win the affection of {girlfriend_name}."
+description = "Your spymaster informs you that you are not the only one vying for the affection of {girlfriend_name}. A young and popular knight, known for his charm and skill in the tourney, has also been sending her gifts and poems. He is becoming a genuine rival for her heart."
+vignette_texture = ""
+options = Array[ExtResource("1_fi50n")]([SubResource("Resource_xgtro"), SubResource("Resource_wnn44"), SubResource("Resource_t8md4")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

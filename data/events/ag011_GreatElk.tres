@@ -1,0 +1,178 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=20 format=3 uid="uid://cwf0svssls6q1"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_wu5mf"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_3ax6u"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_5rjja"]
+[ext_resource type="Script" uid="uid://bdnmbh4kwjwa8" path="res://scripts/data_structures/events/trigger_conditions.gd" id="3_3ax6u"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_bsipw"]
+
+[sub_resource type="Resource" id="Resource_5rjja"]
+script = ExtResource("2_5rjja")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_bsipw"]
+script = ExtResource("2_5rjja")
+type = "AddModifier"
+target = "Stressed"
+value = 1
+duration = 2
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_mvak8"]
+script = ExtResource("3_bsipw")
+stat = "Martial"
+difficulty = 14
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_45mmc"]
+script = ExtResource("2_5rjja")
+type = "ChangeResource"
+target = "Food"
+value = 50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_falkr"]
+script = ExtResource("2_5rjja")
+type = "AddModifier"
+target = "FestivalSpirit"
+value = 1
+duration = 4
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_7jmjt"]
+script = ExtResource("2_5rjja")
+type = "ChangeOpinion"
+target = "Nobility"
+value = 15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_3xv2x"]
+script = ExtResource("1_wu5mf")
+text = "\"I shall lead the hunt myself!\""
+success_text = "You lead the hunt with masterful skill. After a long and thrilling chase, you bring down the magnificent beast with a single, perfectly aimed arrow. The court is awed by your prowess, and the resulting feast is a legendary affair, bolstering the spirits of the entire kingdom."
+failure_text = "The hunt is a disaster. The Great Elk outwits your trackers at every turn. After days of fruitless searching, you return empty-handed and exhausted. The court whispers about the beast that humbled their king."
+skill_check = SubResource("Resource_mvak8")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_5rjja")]([SubResource("Resource_45mmc"), SubResource("Resource_falkr"), SubResource("Resource_7jmjt")])
+failure_outcomes = Array[ExtResource("2_5rjja")]([SubResource("Resource_5rjja"), SubResource("Resource_bsipw")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_1a8ri"]
+script = ExtResource("2_5rjja")
+type = "ChangeResource"
+target = "Food"
+value = 50
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_quqaw"]
+script = ExtResource("2_5rjja")
+type = "ChangeResource"
+target = "Treasury"
+value = -100
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_miy3c"]
+script = ExtResource("1_wu5mf")
+text = "\"Send my best hunters. I am too busy.\""
+success_text = "You dispatch your Royal Huntsman and his best men. They return a week later, weary but successful, with the Great Elk in tow. The court enjoys a fine feast in their honor, and your food stores are supplemented."
+failure_text = "Failure!"
+required_gold = 100
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_5rjja")]([SubResource("Resource_1a8ri"), SubResource("Resource_quqaw")])
+failure_outcomes = Array[ExtResource("2_5rjja")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_xir1r"]
+script = ExtResource("2_5rjja")
+type = "ChangeOpinion"
+target = "Public"
+value = 10
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_a8hio"]
+script = ExtResource("2_5rjja")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -5
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_l4qii"]
+script = ExtResource("1_wu5mf")
+text = "\"Forbid the hunt. The beast is a spirit of the forest.\""
+success_text = "You declare the Great Elk a protected spirit of the woods, forbidding anyone from hunting it. The common folk, who hold to the old ways, are deeply pleased by your respect for nature. Your nobles, however, grumble about the missed opportunity for sport."
+failure_text = "Failure!"
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_5rjja")]([SubResource("Resource_xir1r"), SubResource("Resource_a8hio")])
+failure_outcomes = Array[ExtResource("2_5rjja")]([])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_tft7n"]
+script = ExtResource("3_3ax6u")
+requires_player_is_married = false
+requires_player_is_unmarried = false
+requires_player_is_courting = false
+requires_player_is_not_courting = false
+requires_spouse_is_not_pregnant = false
+min_gold = 0
+max_gold = 100
+min_food = 0
+max_food = 100
+requires_is_at_war = false
+requires_is_at_peace = false
+allowed_seasons = 15
+requires_friendly_rival = false
+requires_unfriendly_rival = false
+requires_valid_trade_partner = false
+requires_empty_neighboring_province = false
+requires_coastal_province = false
+requires_forest_province = true
+requires_mountain_province = false
+requires_player_has_heir = false
+max_nobility_opinion = 100
+min_nobility_opinion = 0
+max_public_opinion = 100
+min_public_opinion = 0
+metadata/_custom_type_script = "uid://bdnmbh4kwjwa8"
+
+[resource]
+script = ExtResource("2_3ax6u")
+category = 2
+trigger_conditions = SubResource("Resource_tft7n")
+event_id = "AG011"
+title = "The Great Elk"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "Scouts have spotted a magnificent Great Elk in the royal forests, presenting a rare and prestigious hunting opportunity."
+description = "Your Royal Huntsman bursts into court, his eyes wide with excitement. \"My Liege, we have sighted it! The Great Elk of the Whisperwood, a beast of legend with antlers like a throne! To bring down such a creature would be a feat spoken of for generations. The hunt is dangerous, but the glory... and the feast... would be unparalleled.\""
+vignette_texture = ""
+options = Array[ExtResource("1_wu5mf")]([SubResource("Resource_3xv2x"), SubResource("Resource_miy3c"), SubResource("Resource_l4qii")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"

@@ -157,21 +157,6 @@ func _is_event_valid_for_kingdom(event: GameEvent, kingdom: Kingdom) -> bool:
 				return false
 			
 		
-	#if event.event_id == "ML009":
-		#var target_province = _find_weakest_neighbor_province()
-		#if is_instance_valid(target_province):
-			#print('ML009 is valid, trying for ',target_province.province_name)
-			#_prepare_border_dispute_event(event_resource, target_province)
-		#else:
-			#print('ML009 not valid')
-			#return false
-			#
-	#if event.event_id == "ML015":
-		#var squire=_find_squire_for_knighting()
-		#if !is_instance_valid(squire):
-			#print('ML015 not valid')
-			#return false
-	# If an event has no conditions defined, it's always valid.
 	if not is_instance_valid(event.trigger_conditions):
 		return true
 	
@@ -250,16 +235,28 @@ func _is_event_valid_for_kingdom(event: GameEvent, kingdom: Kingdom) -> bool:
 	
 	if conditions.requires_coastal_province:
 		var has_coast = false
-		# Loop through all of the kingdom's provinces
 		for province in kingdom.provinces_owned:
 			if province.is_coastal:
-				# We found at least one coastal province, so the condition is met.
 				has_coast = true
 				break # Stop searching for efficiency.
-					
-		# If the loop finished and we never found a coastal province, the condition fails.
 		if not has_coast:
 			return false
+	if conditions.requires_forest_province:
+		var has_forest = false
+		for province in kingdom.provinces_owned:
+			if province.type == Province.ProvinceType.FOREST:
+				has_forest = true
+				break # Stop searching for efficiency.
+			if not has_forest:
+				return false
+	if conditions.requires_mountain_province:
+		var has_mountain = false
+		for province in kingdom.provinces_owned:
+			if province.type == Province.ProvinceType.MOUNTAINOUS:
+				has_mountain = true
+				break # Stop searching for efficiency.
+			if not has_mountain:
+				return false
 			
 	if conditions.max_nobility_opinion<kingdom.nobility_opinion:
 		return false
@@ -336,9 +333,18 @@ func _get_active_storyline_event() -> GameEvent:
 	for storyline_id in GameManager.active_storylines:
 		var stage = GameManager.active_storylines[storyline_id]
 		
+		var optional_event_ids = _get_optional_story_events(storyline_id, stage)
+		optional_event_ids.shuffle()
+		for event_id in optional_event_ids:
+			if randf() < 0.30: # 30% chance per season for a side-story event
+				var event = get_event_by_id(event_id)
+				if is_instance_valid(event) and _is_event_valid_for_kingdom(event, GameManager.player_kingdom):
+					return event
+					
 		# Construct the event ID we are looking for, e.g., "SERPENT_S1"
 		var event_id_to_find = "%s_S%d" % [storyline_id, stage]
 		print ('checking for:',event_id_to_find)
+		
 		
 		if event_id_to_find=="SERPENT_S0":
 		#this is a special story beat that happens immediatly on first turn
@@ -351,6 +357,16 @@ func _get_active_storyline_event() -> GameEvent:
 				return event
 				
 	return null
+
+
+func _get_optional_story_events(storyline_id: String, stage: int) -> Array[String]:
+	if storyline_id == "SERPENT_IN_COURT":
+		if stage == 2:
+			# These are the two new events that can happen during stage 2
+			return ["SERPENT_S2_A_LOYAL_LORD", "SERPENT_S2_B_BLACKMAIL"]
+	
+	return []
+	
 	
 func _get_contextual_format_args_for_event(event: GameEvent) -> Dictionary:
 	var format_args = {}

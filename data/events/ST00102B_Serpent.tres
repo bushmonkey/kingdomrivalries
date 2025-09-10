@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="GameEvent" load_steps=12 format=3 uid="uid://d0xeney63cdd5"]
+
+[ext_resource type="Script" uid="uid://cohvc8fiel25u" path="res://scripts/data_structures/events/event_option.gd" id="1_081jk"]
+[ext_resource type="Script" uid="uid://cv44sc5a1ixbf" path="res://scripts/data_structures/events/game_event.gd" id="2_b1550"]
+[ext_resource type="Script" uid="uid://ba6vthi2ebiys" path="res://scripts/data_structures/events/event_outcome.gd" id="2_fogut"]
+[ext_resource type="Script" uid="uid://th10ftgxxtg6" path="res://scripts/data_structures/events/skill_check.gd" id="3_fgkpl"]
+
+[sub_resource type="Resource" id="Resource_fogut"]
+script = ExtResource("2_fogut")
+type = "ChangeOpinion"
+target = "Nobility"
+value = -15
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_jauwa"]
+script = ExtResource("3_fgkpl")
+stat = "Intrigue"
+difficulty = 15
+metadata/_custom_type_script = "uid://th10ftgxxtg6"
+
+[sub_resource type="Resource" id="Resource_gahgr"]
+script = ExtResource("2_fogut")
+type = "AddModifier"
+target = "ValeriusWeakened"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_wm6t0"]
+script = ExtResource("1_081jk")
+text = "\"Use it. Destroy his reputation.\""
+success_text = "You leak the documents. The scandal explodes in the court. The revelation that Valerius stole from his own brother shatters his credibility. Many of his supporters abandon him, seeing him not as a righteous claimant, but as a common thief."
+failure_text = "Valerius, ever the cunning politician, skillfully turns the scandal around. He claims the documents are forgeries planted by you, a paranoid king. You have not only failed to harm him, you have made him look like a victim."
+skill_check = SubResource("Resource_jauwa")
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_fogut")]([SubResource("Resource_gahgr")])
+failure_outcomes = Array[ExtResource("2_fogut")]([SubResource("Resource_fogut")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[sub_resource type="Resource" id="Resource_fgkpl"]
+script = ExtResource("2_fogut")
+type = "ChangeStat"
+target = "Charisma"
+value = -1
+duration = 0
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_pnqad"]
+script = ExtResource("2_fogut")
+type = "AddModifier"
+target = "ValeriusWeakened"
+value = 1
+duration = -1
+stackable = false
+metadata/_custom_type_script = "uid://ba6vthi2ebiys"
+
+[sub_resource type="Resource" id="Resource_cmv40"]
+script = ExtResource("1_081jk")
+text = " \"Confront him with it privately.\""
+success_text = "You show Valerius the proof in private. He turns pale, his composure cracking for the first time. Trapped, he agrees to abandon his conspiracy in exchange for your silence. You have won, but now hold a dangerous secret."
+failure_text = "He laughs in your face. \"Do it,\" he dares. \"Release it. My followers will see it as a desperate lie.\" He is completely unintimidated. Your gambit has failed, and he now knows what you have on him."
+required_gold = 0
+required_manpower = 0
+required_food = 0
+required_modifier = ""
+success_outcomes = Array[ExtResource("2_fogut")]([SubResource("Resource_pnqad")])
+failure_outcomes = Array[ExtResource("2_fogut")]([SubResource("Resource_fgkpl")])
+metadata/_custom_type_script = "uid://cohvc8fiel25u"
+
+[resource]
+script = ExtResource("2_b1550")
+category = 4
+event_id = "SERPENT_S2_B_BLACKMAIL"
+title = "A Piece of Blackmail"
+unlocked_at_start = true
+rarity = 0
+cooldown_years = 0
+selection_cost = 0
+summary = "Your spymaster has uncovered a dark secret from your uncle's past that could be used as leverage."
+description = "Your spymaster brings you a sealed document. \"My Liege, we have found it,\" he says with a grim smile. \"Proof that Lord Valerius embezzled funds from your father's treasury years ago. It is a secret he has guarded jealously. We could use this to ruin him, but blackmail is a dirty and unpredictable weapon.\""
+vignette_texture = ""
+options = Array[ExtResource("1_081jk")]([SubResource("Resource_wm6t0"), SubResource("Resource_cmv40")])
+metadata/_custom_type_script = "uid://cv44sc5a1ixbf"
