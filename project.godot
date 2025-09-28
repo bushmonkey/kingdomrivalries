@@ -27,6 +27,7 @@ Aimanager="*res://scripts/managers/aimanager.gd"
 ColorManager="*res://scripts/managers/color_manager.gd"
 DebugConsole="*res://debug/DebugConsole.tscn"
 MetaProgression="*res://scripts/managers/meta_progression.gd"
+BattleManager="*res://scripts/managers/battle_manager.gd"
 
 [display]
 

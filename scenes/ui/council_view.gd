@@ -45,8 +45,8 @@ func _ready():
 	# Connect the signals for every Area2D.
 	for area in _advisor_areas:
 		var data = _advisor_areas[area]
-		area.mouse_entered.connect(_on_advisor_mouse_entered.bind(data.tooltip))
-		area.mouse_exited.connect(_on_advisor_mouse_exited)
+		area.mouse_entered.connect(_on_advisor_mouse_entered.bind(area, data.tooltip))
+		area.mouse_exited.connect(_on_advisor_mouse_exited.bind(area))
 		area.input_event.connect(_on_advisor_input_event.bind(data.category))
 		
 
@@ -59,11 +59,35 @@ func _on_advisor_input_event(viewport, event, shape_idx, category):
 			emit_signal("advisor_clicked", category)
 
 # These handle the hovering for the tooltip.
-func _on_advisor_mouse_entered(tooltip_text):
+func _on_advisor_mouse_entered(area: Area2D, tooltip_text: String):
+	# 1. Handle the tooltip (your existing logic)
 	emit_signal("advisor_hovered", tooltip_text)
+	
+	# 2. Handle the highlight (the new logic)
+	var mask_polygon = area.get_node("Polygon2D") # Assumes your visual mask is named "Polygon2D"
+	if is_instance_valid(mask_polygon):
+		# We set the color to a semi-transparent white to create a brightening effect.
+		#mask_polygon.color = Color(1.0, 1.0, 1.0, 0.25)
+		# We make sure it's visible.
+		mask_polygon.visible = true
 
-func _on_advisor_mouse_exited():
+func _on_advisor_mouse_exited(area: Area2D):
+	# 1. Handle the tooltip (your existing logic)
 	emit_signal("advisor_unhovered")
+	
+	# 2. Handle the highlight (the new logic)
+	var mask_polygon = area.get_node("Polygon2D")
+	if is_instance_valid(mask_polygon):
+		# We need to decide whether to hide the polygon completely OR
+		# revert it to the dark "used" mask. We can check the 'disabled'
+		# status of the collision shape to know which state it's in.
+		var collision_shape = area.get_child(0)
+		if collision_shape.disabled:
+			# If the advisor is "used", revert the mask to the dark overlay color.
+			mask_polygon.color = Color(0.0, 0.0, 0.0, 0.6)
+		else:
+			# If the advisor is available, hide the highlight completely.
+			mask_polygon.visible = false
 	
 # This function will be called by MainView to disable used advisors.
 func update_disabled_advisors(used_categories: Array):

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dxhseqvkj2kdn"]
+
+[node name="UnitDisplay" type="PanelContainer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="UnitName" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UnitCount" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2

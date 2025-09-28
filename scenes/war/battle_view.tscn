@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://brurxb6lj1p2q"]
+
+[ext_resource type="Script" uid="uid://dei7t1k78cts5" path="res://scenes/war/battle_view.gd" id="1_he2qc"]
+
+[node name="BattleView" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_he2qc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Your Turn"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AttackerPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/AttackerPanel"]
+layout_mode = 2
+
+[node name="AttackerName" type="Label" parent="VBoxContainer/HBoxContainer/AttackerPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Attacker"
+
+[node name="AttackerUnits" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/AttackerPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="DefenderPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DefenderPanel"]
+layout_mode = 2
+
+[node name="DefenderName" type="Label" parent="VBoxContainer/HBoxContainer/DefenderPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Defender"
+
+[node name="DefenderUnits" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DefenderPanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
