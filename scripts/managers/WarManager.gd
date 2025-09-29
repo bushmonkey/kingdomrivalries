@@ -1,8 +1,11 @@
 extends Node
 
 var active_wars: Array[War] = []
+var _war_being_battled: War = null # To remember which war the results are for
 
-
+func _ready():
+	# Connect to the BattleManager's signal ---
+	BattleManager.battle_concluded.connect(_on_battle_concluded)
 
 func declare_war(attacker: Kingdom, defender: Kingdom, target_province: Province):
 	# ... check if neighbors ...
@@ -20,6 +23,46 @@ func declare_war(attacker: Kingdom, defender: Kingdom, target_province: Province
 	print("%s has declared war on %s!" % [attacker.kingdom_name, defender.kingdom_name])
 	
 func update_monthly_warfare():
+	var finished_wars: Array[War] = []
+	var player_kingdom = GameManager.player_kingdom
+	for war in active_wars:
+		# Check if a battle is already in progress for this war.
+		if _war_being_battled == war: continue
+
+		if randf() < 0.50:
+			var is_player_war = (war.attacker == player_kingdom or war.defender == player_kingdom)
+			
+			if is_player_war:
+				# --- Player Battle: Go to the battle scene ---
+				print("BATTLE: A major battle is occurring involving the player!")
+				_war_being_battled = war
+				BattleManager.start_battle(war.attacker, war.defender)
+				# Stop processing other wars, as we are changing scenes.
+				break
+			else:
+				# --- AI-Only Battle: Simulate it instantly ---
+				# The attacker of the WAR is passed as kingdom_a
+				var results = BattleManager.simulate_ai_battle(war.attacker, war.defender)
+				
+				# We get the results back immediately and apply them.
+				_on_battle_concluded(results) # We'll need to adapt this handler
+			
+			
+		war.attacker_war_exhaustion = min(100.0, war.attacker_war_exhaustion)
+		war.defender_war_exhaustion = min(100.0, war.defender_war_exhaustion)
+
+		# 3. Check for automatic conclusion (total victory)
+		if war.war_score >= 100:
+			end_war_total_victory(war.attacker, war.defender, war)
+			# ... remove war from active list
+		elif war.war_score <= -100:
+			end_war_total_victory(war.defender, war.attacker, war)
+			# ... remove war from active list
+
+	for finished_war in finished_wars:
+		active_wars.erase(finished_war)
+	
+func update_monthly_warfare_old():
 	var finished_wars: Array[War] = []
 	for war in active_wars:
 		# 1. Calculate battle outcome
@@ -89,6 +132,38 @@ func update_monthly_warfare():
 	for finished_war in finished_wars:
 		active_wars.erase(finished_war)
 
+
+func _on_battle_concluded(results: Dictionary):
+	print("WarManager: Received PLAYER battle results.")
+	
+	if not is_instance_valid(_war_being_battled):
+		printerr("Battle concluded, but no active war was being tracked!")
+		return
+
+	# Call our new, generic handler.
+	_apply_battle_results(results, _war_being_battled)
+	
+	# Reset the tracking variable.
+	_war_being_battled = null
+	
+	
+func _apply_battle_results(results: Dictionary, war: War):
+	if not is_instance_valid(war):
+		printerr("Cannot apply battle results, the war object is invalid!")
+		return
+		
+	# Apply the war score change. The 'results' dictionary needs to be relative to the attacker.
+	# Let's assume the war score change is always from the perspective of the war's original attacker.
+	var war_score_change = results.war_score_change
+	if war.attacker != results.victor:
+		war_score_change = -war_score_change
+	
+	war.war_score = clampf(war.war_score + war_score_change, -100.0, 100.0)
+	
+	# Log the event for the player to see
+	var log_msg = "A major battle was fought between The %s and The %s. The %s was victorious." % [war.attacker.kingdom_name, war.defender.kingdom_name, results.victor.kingdom_name]
+	GameManager.monthly_chronicle.critical_events.append(log_msg)
+	
 func _end_war(war: War, winner: Kingdom):
 	var loser = war.defender if winner == war.attacker else war.attacker
 	if winner == war.attacker:

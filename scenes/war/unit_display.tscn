@@ -1,6 +1,13 @@
-[gd_scene format=3 uid="uid://dxhseqvkj2kdn"]
+[gd_scene load_steps=2 format=3 uid="uid://dxhseqvkj2kdn"]
+
+[ext_resource type="Script" uid="uid://cmccvcyaruh6" path="res://scenes/war/unit_display.gd" id="1_4ummx"]
 
 [node name="UnitDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(140, 60)
+offset_right = 140.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+script = ExtResource("1_4ummx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -8,7 +15,9 @@ layout_mode = 2
 [node name="UnitName" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+text = "name"
 
 [node name="UnitCount" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+text = "count"

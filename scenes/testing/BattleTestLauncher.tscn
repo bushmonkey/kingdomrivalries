@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgamq5veypf5h"]
+
+[ext_resource type="Script" uid="uid://bwcb4nmhf6bu7" path="res://scenes/testing/battle_test_launcher.gd" id="1_amyq2"]
+
+[node name="BattleTestLauncher" type="Node"]
+script = ExtResource("1_amyq2")

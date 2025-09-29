@@ -9,12 +9,14 @@ extends Button
 # --- A dictionary to map unit types to their icons ---
 # This is much cleaner than a big 'match' statement.
 const UNIT_ICONS = {
-	BattleUnit.UnitType.FOOT_SOLDIER: preload("res://assets/icons/units/foot_soldier_icon.svg"),
-	BattleUnit.UnitType.CAVALRY: preload("res://assets/icons/units/cavalry_icon.svg"),
+	BattleUnit.UnitType.FOOT_SOLDIER: preload("res://assets/icons/units/foot_soldier_icon.png"),
+	BattleUnit.UnitType.CAVALRY: preload("res://assets/icons/units/cavalry_icon.png"),
 	BattleUnit.UnitType.PIKEMAN: preload("res://assets/icons/units/pikeman_icon.svg"),
 	BattleUnit.UnitType.KNIGHT: preload("res://assets/icons/units/knight_icon.svg"),
 	BattleUnit.UnitType.CANNON: preload("res://assets/icons/units/cannon_icon.svg")
 }
+
+var unit_type: BattleUnit.UnitType
 
 # This is the public "front door" function that the BattleView will call.
 func set_unit_data(unit: BattleUnit):
