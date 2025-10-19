@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://brurxb6lj1p2q"]
+[gd_scene load_steps=4 format=3 uid="uid://brurxb6lj1p2q"]
 
 [ext_resource type="Script" uid="uid://dei7t1k78cts5" path="res://scenes/war/battle_view.gd" id="1_he2qc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_he2qc"]
+font_size = 24
+font_color = Color(5.05373e-07, 0.215123, 0.215329, 1)
+
+[sub_resource type="AudioStream" id="AudioStream_he2qc"]
+resource_name = "CLASH_SOUND"
 
 [node name="BattleView" type="Control"]
 layout_mode = 3
@@ -11,49 +18,72 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_he2qc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="StatusLabel" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "Your Turn"
+label_settings = SubResource("LabelSettings_he2qc")
+vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="AttackerPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="AttackerPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/AttackerPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/AttackerPanel"]
 layout_mode = 2
 
-[node name="AttackerName" type="Label" parent="VBoxContainer/HBoxContainer/AttackerPanel/VBoxContainer"]
+[node name="AttackerName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/AttackerPanel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Attacker"
 
-[node name="AttackerUnits" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/AttackerPanel/VBoxContainer"]
+[node name="AttackerUnits" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/AttackerPanel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DefenderPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="DefenderPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DefenderPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/DefenderPanel"]
 layout_mode = 2
 
-[node name="DefenderName" type="Label" parent="VBoxContainer/HBoxContainer/DefenderPanel/VBoxContainer"]
+[node name="DefenderName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/DefenderPanel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Defender"
 
-[node name="DefenderUnits" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DefenderPanel/VBoxContainer"]
+[node name="DefenderUnits" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/DefenderPanel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="TurnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStream_he2qc")

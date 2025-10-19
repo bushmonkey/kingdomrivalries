@@ -34,3 +34,11 @@ func set_unit_data(unit: BattleUnit):
 	# If the unit count is 0, disable the button.
 	if unit.count <= 0:
 		self.disabled = true
+		
+func highlight(is_on: bool):
+	if is_on:
+		# Use modulate to make it glow. A yellow tint works well.
+		self.modulate = Color.GOLD
+	else:
+		# Reset to the default color.
+		self.modulate = Color.WHITE 

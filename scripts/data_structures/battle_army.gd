@@ -14,17 +14,35 @@ func _init(p_kingdom: Kingdom):
 func _assemble_army():
 	var total_manpower = kingdom.manpower
 	
+	var base_archer_count = int(total_manpower * 0.10)
+	
+	# Other troops now come from the remaining manpower pool
+	var remaining_manpower = total_manpower - base_archer_count
+	
 	# Foot Soldiers (70%)
 	var foot_soldiers = BattleUnit.new()
 	foot_soldiers.unit_type = BattleUnit.UnitType.FOOT_SOLDIER
-	foot_soldiers.count = int(total_manpower * 0.70)
+	foot_soldiers.count = int(remaining_manpower * 0.70)
 	units[BattleUnit.UnitType.FOOT_SOLDIER] = foot_soldiers
 	
 	# Cavalry (30%)
 	var cavalry = BattleUnit.new()
 	cavalry.unit_type = BattleUnit.UnitType.CAVALRY
-	cavalry.count = int(total_manpower * 0.30)
+	cavalry.count = int(remaining_manpower * 0.30)
 	units[BattleUnit.UnitType.CAVALRY] = cavalry
+
+	# --- Handle the new Archer unit ---
+	var archers = BattleUnit.new()
+	archers.unit_type = BattleUnit.UnitType.ARCHER
+	archers.count = base_archer_count
+	# We can add bonuses from modifiers here
+	if kingdom.has_modifier("ArcheryRanges"):
+		archers.count += 200 # Example flat bonus
+	if kingdom.has_modifier("LongbowTradition"):
+		# Example percentage bonus
+		archers.count = int(archers.count * 1.20) 
+		
+	units[BattleUnit.UnitType.ARCHER] = archers
 	
 	# Special Units
 	var pikemen = BattleUnit.new(); pikemen.unit_type = BattleUnit.UnitType.PIKEMAN

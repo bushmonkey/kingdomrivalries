@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw0wkrxrkii82"]
+
+[ext_resource type="Script" uid="uid://blct70orpj1b5" path="res://scenes/war/casualty_display.gd" id="1_l2oer"]
+
+[node name="CasualtyDisplay" type="Label"]
+text = "12"
+script = ExtResource("1_l2oer")

@@ -6,7 +6,8 @@ enum UnitType {
 	CAVALRY,
 	PIKEMAN,
 	KNIGHT,
-	CANNON
+	CANNON,
+	ARCHER
 }
 var unit_type: UnitType
 var count: int = 0
