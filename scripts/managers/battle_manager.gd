@@ -117,28 +117,31 @@ func simulate_ai_battle(kingdom_a: Kingdom, kingdom_b: Kingdom):
 	return results
 	
 # This is the core rock-paper-scissors logic
-func resolve_combat(attacker_unit: BattleUnit, defender_unit: BattleUnit,is_simulation: bool = false):
+func resolve_combat(attacker_unit: BattleUnit, defender_unit: BattleUnit, is_simulation: bool = false):
+	# --- 1. Get Initial Data ---
 	var attacker_type = attacker_unit.unit_type
 	var defender_type = defender_unit.unit_type
-
 	var attacker_start_count = float(attacker_unit.count)
 	var defender_start_count = float(defender_unit.count)
 	
-	var damage_multiplier = 1.0 # Default damage
+	# --- 2. Determine Rock-Paper-Scissors Multiplier ---
+	var damage_multiplier = 1.0
+	var attacker_is_ranged = false
 	
 	match attacker_type:
 		BattleUnit.UnitType.KNIGHT:
-			damage_multiplier = 2.5 # Strong against everything
+			damage_multiplier = 2.5
 		BattleUnit.UnitType.CANNON:
+			attacker_is_ranged = true
 			if defender_type in [BattleUnit.UnitType.PIKEMAN, BattleUnit.UnitType.FOOT_SOLDIER]:
-				damage_multiplier = 3.0
+				damage_multiplier = 8.0
 			if defender_type == BattleUnit.UnitType.CAVALRY:
-				damage_multiplier = 0.2 # Very weak vs cavalry
+				damage_multiplier = 0.2
 		BattleUnit.UnitType.CAVALRY:
 			if defender_type in [BattleUnit.UnitType.CANNON, BattleUnit.UnitType.FOOT_SOLDIER]:
 				damage_multiplier = 2.0
 			if defender_type == BattleUnit.UnitType.PIKEMAN:
-				damage_multiplier = 0.3 # Very weak vs pikemen
+				damage_multiplier = 0.3
 		BattleUnit.UnitType.PIKEMAN:
 			if defender_type == BattleUnit.UnitType.CAVALRY:
 				damage_multiplier = 3.5
@@ -146,65 +149,53 @@ func resolve_combat(attacker_unit: BattleUnit, defender_unit: BattleUnit,is_simu
 				damage_multiplier = 1.2
 		BattleUnit.UnitType.FOOT_SOLDIER:
 			damage_multiplier = 1.0
-
 		BattleUnit.UnitType.ARCHER:
-			# Strong against all traditional infantry and cavalry
+			attacker_is_ranged = true
 			if defender_type in [BattleUnit.UnitType.FOOT_SOLDIER, BattleUnit.UnitType.CAVALRY, BattleUnit.UnitType.PIKEMAN]:
-				damage_multiplier = 2.5
-			# Less effective against heavily armored Knights
+				damage_multiplier = 6.5
 			if defender_type == BattleUnit.UnitType.KNIGHT:
 				damage_multiplier = 0.8
-			# Ineffective against fortifications (represented by Cannon)
 			if defender_type == BattleUnit.UnitType.CANNON:
 				damage_multiplier = 0.5
-				
-	if defender_type == BattleUnit.UnitType.ARCHER:
-		# If attacked by anything other than other archers, they take extra damage.
-		if attacker_type != BattleUnit.UnitType.ARCHER:
-			# We can do this by multiplying the final damage later, or by
-			# adjusting the attacker's damage multiplier here. Let's do the latter.
-			damage_multiplier *= 2.0 # The attacker's damage is doubled against archers.
-			
-# --- 3. THE NEW DAMAGE FORMULA ---
 	
-	# a) Calculate Attacker's "Power". Let's say 20% of their troops deal damage.
-	var attacker_power = attacker_start_count * 0.20
+	# --- 3. THE NEW, SIMPLER DAMAGE FORMULA ---
 	
-	# b) Calculate Defender's "Toughness". This is how much damage they absorb.
-	#    Let's say their toughness is 10% of their numbers.
-	var defender_toughness = defender_start_count * 0.10
+	# a) Base "Power" is a percentage of the unit's count. 10% is a good starting point.
+	var attacker_power = attacker_start_count * 0.10
+	var defender_power = defender_start_count * 0.10
 	
-	# c) Calculate raw damage dealt by the attacker, including the RPS multiplier.
-	var raw_damage = attacker_power * damage_multiplier
+	# b) Calculate the total damage each side will deal.
+	# The attacker's damage is amplified by the rock-paper-scissors matchup.
+	var total_damage_to_defender = attacker_power * damage_multiplier
 	
-	# d) The final damage is the raw damage minus the defender's toughness.
-	var final_damage_to_defender = raw_damage - defender_toughness
+	# The defender's damage is based on their raw power.
+	# However, we apply the ARCHER's specific defensive weakness here.
+	var total_damage_to_attacker = 0.0 # Start at 0
 	
-	# e) The attacker also suffers casualties, based on the defender's power.
-	var defender_power = defender_start_count * 0.20
-	var size_ratio = attacker_start_count / defender_start_count
-	var damage_reduction = atan(size_ratio - 1.0) / (PI / 2.0) # Normalizes to a 0-1 range
-# c) The final damage to the attacker is the defender's power reduced by this percentage.
-#    We'll cap the reduction at 90% to ensure they always take at least 10% of the damage.
-	var final_damage_to_attacker = defender_power * (1.0 - clamp(damage_reduction, 0.0, 0.90))
+	# If the attacker is NOT ranged, the defender fights back.
+	if not attacker_is_ranged:
+		total_damage_to_attacker = defender_power
+		
+	var defender_is_ranged = defender_type in [BattleUnit.UnitType.ARCHER, BattleUnit.UnitType.CANNON]
+	if not attacker_is_ranged and defender_is_ranged:
+		# A melee unit attacking a ranged unit deals massive bonus damage.
+		total_damage_to_defender *= 3.0
+		# The ranged unit's counter-attack is weak.
+		total_damage_to_attacker *= 0.2
 	
-	# --- 4. Calculate Final Casualties ---
-	# Ensure casualties are never negative and convert to integer.
-	var attacker_casualties = int(max(0, final_damage_to_attacker))
-	var defender_casualties = int(max(0, final_damage_to_defender))
+	# --- 4. Convert Damage to Casualties ---
+	# We add a random factor to make battles less predictable.
+	var attacker_casualties = int(total_damage_to_attacker * randf_range(0.8, 1.2))
+	var defender_casualties = int(total_damage_to_defender * randf_range(0.8, 1.2))
+
+	# Ensure casualties are never negative.
+	attacker_casualties = max(0, attacker_casualties)
+	defender_casualties = max(0, defender_casualties)
 	
-	# --- 5. store Casualties ---
+	# --- 5. Store Calculated Casualties for the UI ---
 	calculated_attacker_casualties = attacker_casualties
 	calculated_defender_casualties = defender_casualties
 	
-	
-	#attacker_unit.count = max(0, attacker_unit.count - attacker_casualties)
-	#defender_unit.count = max(0, defender_unit.count - defender_casualties)
-	
-	# Switch turns
-	#if not is_simulation:
-		#current_turn_army = defender_army if current_turn_army == attacker_army else attacker_army
-
 # AI logic for choosing units
 func get_ai_attack_choice(ai_army: BattleArmy) -> BattleUnit:
 	# Simple AI: pick the unit with the most troops
